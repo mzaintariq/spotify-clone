@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
-import Header from './components/header/Header';
-import Login from './components/login/Login';
 import './App.css';
+import React, { useEffect } from 'react';
+import Dashboard from './components/dashboard/Dashboard';
+import Login from './components/login/Login';
 import { getToken } from './api/spotify/spotify';
 import { useSelector, useDispatch } from 'react-redux';
 import { setAccessToken, setExpiresIn, setRefreshToken } from './actions/index'
@@ -26,7 +26,7 @@ function App() {
       {
         myState.accessToken ? (
           // <h1>Logged In!!!</h1>
-          <Header />
+          <Dashboard />
         ) : (
           <Login />
         )
