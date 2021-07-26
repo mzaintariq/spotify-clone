@@ -1,12 +1,3 @@
-// export const checkAction = { type: "CHECK" }
-
-// export const setToken = token => {
-//     return {
-//         type: "SET_TOKEN",
-//         payload: token
-//     }
-// }
-
 export const setAccessToken = accessToken => {
     return {
         type: "SET_ACCESS_TOKEN",

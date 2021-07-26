@@ -1,6 +1,6 @@
 const initialState = {
   accessToken: null,
-  expiresIn: 0,
+  expiresIn: null,
   refreshToken: null
 };
 
