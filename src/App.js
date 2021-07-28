@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import React, { useEffect } from 'react';
 import Dashboard from './components/dashboard/Dashboard';
 import Login from './components/login/Login';
