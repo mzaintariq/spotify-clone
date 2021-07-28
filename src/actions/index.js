@@ -1,20 +1,16 @@
-export const setAccessToken = accessToken => {
+export const GET_TOKEN = "GET_TOKEN";
+const SET_TOKEN = "SET_TOKEN";
+
+export const getToken = (code) => {
     return {
-        type: "SET_ACCESS_TOKEN",
-        payload: accessToken
+        type: "GET_TOKEN",
+        payload: code
     }
 }
 
-export const setRefreshToken = refreshToken => {
+export const setToken = data => {
     return {
-        type: "SET_REFRESH_TOKEN",
-        payload: refreshToken
-    }
-}
-
-export const setExpiresIn = time => {
-    return {
-        type: "SET_EXPIRES_IN",
-        payload: time
+        type: "SET_TOKEN",
+        payload: data
     }
 }

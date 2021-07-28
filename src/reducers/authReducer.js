@@ -2,24 +2,19 @@ const initialState = {
   accessToken: null,
   expiresIn: null,
   refreshToken: null
+  // data: null
 };
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "SET_ACCESS_TOKEN":
+    case "SET_TOKEN":
+      const data = action.payload;
       return {
         ...state,
-        accessToken: action.payload
-      };
-    case "SET_REFRESH_TOKEN":
-      return {
-        ...state,
-        refreshToken: action.payload
-      };
-    case "SET_EXPIRES_IN":
-      return {
-        ...state,
-        expiresIn: action.payload
+        accessToken: data.access_token,
+        expiresIn: data.expires_in,
+        refreshToken: data.refresh_token
+        // data: action.payload
       };
     default:
       return state;
