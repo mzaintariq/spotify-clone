@@ -2,7 +2,7 @@ import './Dashboard.scss';
 import React, { useEffect } from 'react';
 // import Search from '../search/Search';
 import { useSelector, useDispatch } from 'react-redux';
-import { setUserData } from '../../actions/index'
+import { getUserData, setUserData } from '../../actions/index'
 
 import { BrowserRouter as Router, Switch, Route, Link, useRouteMatch, useParams } from "react-router-dom";
 import Header from '../header/Header';
@@ -15,32 +15,17 @@ import Library from '../library/Library'
 
 
 function Dashboard() {
+  // const myState = useSelector((state) => state.userReducer);
   const myState = useSelector((state) => state.authReducer);
+  const myState2 = useSelector((state) => state.userReducer);
   const dispatch = useDispatch();
 
-  useEffect(async () => {
-    const profiledata = await getProfile();
-    dispatch(setUserData(profiledata));
-    console.log("EFFECT: ", profiledata);
+  useEffect(() => {
+    dispatch(getUserData(myState.accessToken));
   }, [])
 
-  const getProfile = async () => {
-    try {
-      const response = await fetch("https://api.spotify.com/v1/me", {
-        method: 'GET',
-        headers: {
-          Accept: "application/json",
-          Authorization: `Bearer ${myState.accessToken}`,
-          "Content-Type": "application/json"
-        }
-      })
-      const data = await response.json();
-      console.log("CHECK DATA: ", data)
-      return data;
-    } catch (err) {
-      console.error(err);
-    }
-  }
+  console.log("CHECK: ", myState)
+  console.log("CHECK 2: ", myState2)
 
   return (
     <>

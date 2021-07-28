@@ -17,7 +17,6 @@ function Header() {
   const myState = useSelector((state) => state.userReducer);
   const dispatch = useDispatch();
 
-
   return (
     <div>
       <header className="header">
@@ -27,7 +26,8 @@ function Header() {
         <div className="header__nav">
           <Option Icon={HomeIcon} text="Home" to="/"/>
           <Option Icon={SearchIcon} text="Search" to="/search"/>
-          <Option Icon={LibraryMusicIcon} text="My Library" to="/library"/>       
+          <Option Icon={LibraryMusicIcon} text="My Library" to="/library"/>
+          {/* <Option imgUrl={myState.userData.images[0].url} text={myState.userData.display_name} to="/profile" /> */}
           {/* {myState.userData ? <Option Icon={AccountCircleIcon} text={myState.userData.display_name} to="/profile" /> : <Option Icon={AccountCircleIcon} text="Profile" to="/profile" />} */}
           {myState.userData ? <Option imgUrl={myState.userData.images[0].url} text={myState.userData.display_name} to="/profile" /> : <Option Icon={AccountCircleIcon} text="Profile" to="/profile" />}
         </div>
