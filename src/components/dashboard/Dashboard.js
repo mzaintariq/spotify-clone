@@ -2,12 +2,10 @@ import './Dashboard.scss';
 import React, { useEffect } from 'react';
 // import Search from '../search/Search';
 import { useSelector, useDispatch } from 'react-redux';
-import { getUserData, setUserData } from '../../actions/index'
-
+import { getUserData } from '../../actions/index'
 import { BrowserRouter as Router, Switch, Route, Link, useRouteMatch, useParams } from "react-router-dom";
 import Header from '../header/Header';
 import Footer from '../footer/Footer'
-
 import Home from '../home/Home'
 import Profile from '../profile/Profile'
 import Search from '../search/Search'
