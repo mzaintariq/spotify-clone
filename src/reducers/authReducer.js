@@ -1,7 +1,12 @@
 const initialState = {
+  // DELETE AFTER TESTING
+  // accessToken: "BQBw_lorpSumr_P-Hq96527OOTje-goKBLk4tuFMNtJ3YhfukTuiVBjB_2setRsRbtcFXAjamsVrpvmajeqdlziL_ugueBGQYz-Ot3H4yYEdVuoN5f6GLcY56Gm6j-PctYu5SOubQDyl_4VDIqykDx2aCXq5ul_0Ig2_jea4ef0eGu58DVLWLRI",
+  
   accessToken: null,
   expiresIn: null,
-  refreshToken: null
+  refreshToken: null,
+
+  check: null
 };
 
 const authReducer = (state = initialState, action) => {
@@ -21,6 +26,13 @@ const authReducer = (state = initialState, action) => {
         ...state,
         expiresIn: action.payload
       };
+
+    case "SET_CHECK":
+        return {
+          ...state,
+          check: action.payload
+        };
+        
     default:
       return state;
   }

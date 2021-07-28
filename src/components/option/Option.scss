@@ -1,0 +1,29 @@
+.option__link {
+    text-decoration: none;
+    color: grey;
+    font-weight: 600;
+    padding-left: 50px;
+    padding-right: 50px;
+    transition: 250ms color ease-in;
+}
+
+.option__link:hover {
+    color: white;
+}
+
+// .option__link:hover .option__avatar {
+//     zoom: 1.1;
+// }
+
+.option__label {
+    display: flex;
+    align-items: center;
+}
+
+.option__icon {
+    padding-right: 10px;
+}
+
+.option__avatar {
+    padding-right: 10px;
+}
