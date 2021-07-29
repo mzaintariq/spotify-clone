@@ -2,8 +2,10 @@
     text-decoration: none;
     color: grey;
     font-weight: 600;
-    padding-left: 50px;
-    padding-right: 50px;
+    // padding-left: 50px;
+    // padding-right: 50px;
+    padding-left: 4vw;
+    padding-right: 4vw;
     transition: 250ms color ease-in;
 }
 
@@ -26,4 +28,15 @@
 
 .option__avatar {
     padding-right: 10px;
+}
+
+
+@media (max-width: 900px) {
+    .option__label > h4 {
+        display: none;
+    }
+    // .option__link {
+    //     padding-left: 20px;
+    //     padding-right: 20px;
+    // }
 }
