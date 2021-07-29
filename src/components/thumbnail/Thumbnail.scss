@@ -1,0 +1,62 @@
+
+.thumbnail {
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    // outline: 1.5px #1db954 solid;
+    // background-color: lightgreen;
+    // border-radius: 4px;
+    // transition: .3s ease box-shadow;
+}
+.thumbnail:hover {
+    // box-shadow: 0px 0px 10px 3px #4db6c48f;
+    // box-shadow: 0px 0px 10px 3px #1db954;
+    // box-shadow: 0px 0px 2px 2px #1db954;
+    // outline: 1.5px #1db954 solid;
+    cursor: pointer;
+}
+
+.thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: .5s ease transform;
+}
+.thumbnail:hover img {
+    transform: scale(1.05);
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    // background-color: #008CBA;
+    // background-color: rgba(255, 255, 255, 0.185);
+    background-color: #0000005d;
+    // filter: blur(8px);
+    backdrop-filter: blur(6px);
+}
+.overlay > .text {
+    color: white;
+    font-size: 25px;
+    font-weight: 800;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.thumbnail:hover .overlay {
+    opacity: 1;
+}
