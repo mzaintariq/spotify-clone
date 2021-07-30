@@ -2,8 +2,6 @@
     text-decoration: none;
     color: grey;
     font-weight: 600;
-    // padding-left: 50px;
-    // padding-right: 50px;
     padding-left: 4vw;
     padding-right: 4vw;
     transition: 250ms color ease-in;
@@ -12,10 +10,6 @@
 .option__link:hover {
     color: white;
 }
-
-// .option__link:hover .option__avatar {
-//     zoom: 1.1;
-// }
 
 .option__label {
     display: flex;
@@ -40,10 +34,6 @@
     .option__label > h4 {
         display: none;
     }
-    // .option__link {
-    //     padding-left: 20px;
-    //     padding-right: 20px;
-    // }
 }
 
 @media (max-width: 400px) {

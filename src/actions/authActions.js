@@ -1,5 +1,4 @@
 export const GET_TOKEN = "GET_TOKEN";
-const SET_TOKEN = "SET_TOKEN";
 
 export const getToken = (code) => {
     return {

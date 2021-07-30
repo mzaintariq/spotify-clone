@@ -1,6 +1,5 @@
 import './Dashboard.scss';
 import React, { useEffect } from 'react';
-// import Search from '../search/Search';
 import { useSelector, useDispatch } from 'react-redux';
 import { getUserData } from '../../actions/index'
 import { BrowserRouter as Router, Switch, Route, Link, useRouteMatch, useParams } from "react-router-dom";

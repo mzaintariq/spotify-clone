@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import './Header.scss'
 import { Link } from "react-router-dom";
 import HomeIcon from '@material-ui/icons/Home';
@@ -24,8 +24,6 @@ function Header() {
           <Option Icon={HomeIcon} text="Home" to="/"/>
           <Option Icon={SearchIcon} text="Search" to="/search"/>
           <Option Icon={LibraryMusicIcon} text="My Library" to="/library"/>
-          {/* <Option imgUrl={myState.userData.images[0].url} text={myState.userData.display_name} to="/profile" /> */}
-          {/* {myState.userData ? <Option Icon={AccountCircleIcon} text={myState.userData.display_name} to="/profile" /> : <Option Icon={AccountCircleIcon} text="Profile" to="/profile" />} */}
           {myState.userData ? <Option imgUrl={myState.userData.images[0].url} text={myState.userData.display_name} to="/profile" /> : <Option Icon={AccountCircleIcon} text="Profile" to="/profile" />}
         </div>
       </header>
