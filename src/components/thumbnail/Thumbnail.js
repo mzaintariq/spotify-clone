@@ -12,6 +12,8 @@ function Thumbnail({ data }) {
     // </Link>
 
     <div>
+      <Link to={`/playlist/${data.id}`}>
+
         <div className="thumbnail">
           <img src={data.images[0].url} alt="" />
           <div class="overlay">
@@ -19,10 +21,11 @@ function Thumbnail({ data }) {
             {/* <div class="text2">{data.description}</div> */}
           </div>
         </div>
+
         {/* <div className="playlist__name">
           <h3>{data.name}</h3>
         </div> */}
-
+      </Link>
     </div>
 
 

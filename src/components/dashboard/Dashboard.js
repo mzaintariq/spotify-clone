@@ -11,6 +11,9 @@ import Profile from '../profile/Profile'
 import Search from '../search/Search'
 import Library from '../library/Library'
 
+import Playlist from '../playlist/Playlist'
+
+
 
 function Dashboard() {
   const myState = useSelector((state) => state.authReducer);
@@ -26,6 +29,11 @@ function Dashboard() {
         <Header />
         <div className="homepage">
           <Switch>
+            {/* <Route path='/Profile/:id/editProfile' component={EditUser} /> */}
+            <Route path="/playlist/:id">
+              <Playlist />
+            </Route>
+            
             <Route path="/search">
               <Search />
             </Route>
