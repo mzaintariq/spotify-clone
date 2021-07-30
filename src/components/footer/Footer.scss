@@ -1,17 +1,46 @@
+// .footer {
+//     position: fixed;
+//     bottom: 0;
+//     width: 100%;
+//     color: white;
+//     height: 60px;
+//     // background-color: #1e1e1e;
+//     background-color: #181818;
+//     // padding: 20px;
+
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+
+//     // align-self: ;
+//     // border: 1px solid red;
+// }
+
 .footer {
     position: fixed;
     bottom: 0;
     width: 100%;
     color: white;
     height: 60px;
-    // background-color: #1e1e1e;
     background-color: #181818;
-    // padding: 20px;
+
 
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    // padding-right: 20px;
 
     // align-self: ;
     // border: 1px solid red;
 }
+
+
+// .footer__left {
+//     flex: 0.3;
+// }
+// .footer__center {
+//     flex: 0.4;
+// }
+// .footer__right {
+//     flex: 0.3;
+// }
