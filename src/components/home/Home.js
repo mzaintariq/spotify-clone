@@ -39,7 +39,7 @@ function Home() {
                 <div className="container">
                     <h2>Featured Playlists</h2>
                     <div className="gallery">
-                        {myState2.featuredPlaylists.items.map((item, index) => (
+                        {myState2.featuredPlaylists.items.map((item) => (
                             <Thumbnail key={item.id} data={item}/>
                         ))}
                     </div>
