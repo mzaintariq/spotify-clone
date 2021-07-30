@@ -28,6 +28,11 @@
 
 .option__avatar {
     padding-right: 10px;
+    opacity: 0.8;
+    transition: 250ms opacity ease-in;
+}
+.option__label:hover .option__avatar{
+    opacity: 1;
 }
 
 
@@ -39,4 +44,18 @@
     //     padding-left: 20px;
     //     padding-right: 20px;
     // }
+}
+
+@media (max-width: 400px) {
+    .option__label > h4 {
+        display: none;
+    }
+    .option__link {
+        padding-left: 2vw;
+        padding-right: 2vw;
+    }
+    .header__logo > img {
+        margin-left: 2vw;
+        margin-right: 2vw;
+    }
 }
