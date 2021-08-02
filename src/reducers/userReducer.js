@@ -1,17 +1,17 @@
 const initialState = {
-  userData: null
+  userData: null,
 };
 
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case "SET_USER_DATA":
-        return {
-          ...state,
-          userData: action.payload
-        };     
+      return {
+        ...state,
+        userData: action.payload,
+      };
     default:
       return state;
   }
-}
+};
 
-export default userReducer
+export default userReducer;
