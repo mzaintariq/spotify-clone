@@ -18,6 +18,8 @@ import Profile from "./components/profile/Profile";
 import Library from "./components/library/Library";
 import Login from "./components/login/Login";
 import Search from "./components/search/Search";
+import Playlist from "./components/playlist/Playlist";
+import Album from "./components/album/Album";
 
 function App() {
   const myState = useSelector((state) => state.authReducer);
@@ -47,6 +49,12 @@ function App() {
                 </Route>
                 <Route path="/search">
                   <Search />
+                </Route>
+                <Route path="/playlist/:id">
+                  <Playlist />
+                </Route>
+                <Route path="/album/:id">
+                  <Album />
                 </Route>
                 <Route path="/">
                   <Home />
