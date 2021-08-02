@@ -1,62 +1,33 @@
 .playlist__grid {
-    display: grid;
+  display: grid;
 }
 
 .gallery {
-    // background-color: yellow;
-
-    display: grid;
-    // width: 80%;
-    // margin: 50px auto;
-    margin: 50px auto;
-    // padding: 50px 30px;
-    
-
-    // width: 100%;
-    width: 90%;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    margin-top: 50px;
-    margin-bottom: 50px;
-    grid-gap: 50px;
+  display: grid;
+  margin: 50px auto;
+  width: 90%;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  margin-top: 50px;
+  margin-bottom: 50px;
+  grid-gap: 50px;
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    // width: 100%;
-    width: 90%;
-    // max-width: 1200px;
-    margin: 20px auto 60px auto;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  // width: 100%;
+  width: 90%;
+  // max-width: 1200px;
+  margin: 20px auto 60px auto;
+  text-align: center;
 }
 
 .container > h2 {
-    // color: rgb(206, 206, 206);
-    color: lightgray;
-    margin: 20px auto -10px auto;
-    // margin-left: 70px;
-
-    // color: #1db954;
+  color: lightgray;
+  margin: 20px auto -10px auto;
 }
-
-// .container {
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-//     justify-content: center;
-//     background-color: #ffffff;
-//     width: 80%;
-//     max-width: 1200px;
-//     margin: 50px auto;
-//     padding: 50px 30px;
-//     text-align: center;
-//   }
-
-
-
-
 
 /**
 * ==============================================
@@ -64,58 +35,59 @@
 * ==============================================
 */
 .snippet {
-    // margin-top: 1vh;
-    // padding-top: 50vh;
-    position: fixed;
+  // margin-top: 1vh;
+  // padding-top: 50vh;
+  position: fixed;
 }
 
 .dot-flashing {
-    position: relative;
-    width: 10px;
-    height: 10px;
-    border-radius: 5px;
-    background-color: #1db954;
-    color: #1db954;
-    animation: dotFlashing 1s infinite linear alternate;
-    animation-delay: .5s;
+  position: relative;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: #1db954;
+  color: #1db954;
+  animation: dotFlashing 1s infinite linear alternate;
+  animation-delay: 0.5s;
 }
 
-.dot-flashing::before, .dot-flashing::after {
-    content: '';
-    display: inline-block;
-    position: absolute;
-    top: 0;
-}
-  
-.dot-flashing::before {
-    left: -15px;
-    width: 10px;
-    height: 10px;
-    border-radius: 5px;
-    background-color: #1db954;
-    color: #1db954;
-    animation: dotFlashing 1s infinite alternate;
-    animation-delay: 0s;
-}
-  
+.dot-flashing::before,
 .dot-flashing::after {
-    left: 15px;
-    width: 10px;
-    height: 10px;
-    border-radius: 5px;
-    background-color: #1db954;
-    color: #1db954;
-    animation: dotFlashing 1s infinite alternate;
-    animation-delay: 1s;
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 0;
 }
-  
+
+.dot-flashing::before {
+  left: -15px;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: #1db954;
+  color: #1db954;
+  animation: dotFlashing 1s infinite alternate;
+  animation-delay: 0s;
+}
+
+.dot-flashing::after {
+  left: 15px;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: #1db954;
+  color: #1db954;
+  animation: dotFlashing 1s infinite alternate;
+  animation-delay: 1s;
+}
+
 @keyframes dotFlashing {
-    0% {
-      background-color: #1db954;
-    }
-    50%,
-    100% {
+  0% {
+    background-color: #1db954;
+  }
+  50%,
+  100% {
     //   background-color: #ebe6ff;
-      background-color: #1db95444;
-    }
+    background-color: #1db95444;
+  }
 }

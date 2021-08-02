@@ -1,7 +1,6 @@
-import React from 'react'
-import './Footer.scss'
+import React from "react";
+import "./Footer.scss";
 import { Link } from "react-router-dom";
-
 
 function Footer() {
   return (
@@ -9,7 +8,7 @@ function Footer() {
       <h2>Footer</h2>
       {/* Footer */}
     </div>
-  )
+  );
 }
 
-export default Footer
+export default Footer;
