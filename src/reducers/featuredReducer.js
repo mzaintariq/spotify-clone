@@ -1,5 +1,5 @@
 const initialState = {
-  featuredPlaylists: null
+  featuredPlaylists: null,
 };
 
 const featuredReducer = (state = initialState, action) => {
@@ -8,13 +8,11 @@ const featuredReducer = (state = initialState, action) => {
       const data = action.payload;
       return {
         ...state,
-        // featuredPlaylists: action.payload,
         featuredPlaylists: data.playlists,
-        // featuredPlaylists: data.access_token,
       };
     default:
       return state;
   }
-}
+};
 
-export default featuredReducer
+export default featuredReducer;
