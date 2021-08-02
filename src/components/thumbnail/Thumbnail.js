@@ -9,7 +9,7 @@ function Thumbnail({ data }) {
         <div className="thumbnail">
           <img src={data.images[0].url} alt="" />
           <div class="overlay">
-            <div class="text">{data.name}</div>\
+            <div class="text">{data.name}</div>
           </div>
         </div>
       </Link>
