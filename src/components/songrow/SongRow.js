@@ -7,7 +7,7 @@ function SongRow({ track, id }) {
     return (
         <div className="songrow">
             <div className="songrow__number">
-                <h1>{id}</h1> 
+                <h1>{id+1}</h1> 
             </div>
             <img className="songrow__album" src={track.album.images[0].url} alt=""/>
             <div className="songrow__info">
