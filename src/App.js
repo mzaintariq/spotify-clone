@@ -19,7 +19,7 @@ function App() {
     const code = new URLSearchParams(window.location.search).get('code');
     if (code) {
       dispatch(getToken(code));
-      window.history.pushState("", "", "/")
+      window.history.pushState("", "", "/");
     }
   }, [])
 
