@@ -1,7 +1,7 @@
 const initialState = {
   accessToken: null,
   expiresIn: null,
-  refreshToken: null
+  refreshToken: null,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -12,7 +12,7 @@ const authReducer = (state = initialState, action) => {
         ...state,
         accessToken: data.access_token,
         expiresIn: data.expires_in,
-        refreshToken: data.refresh_token
+        refreshToken: data.refresh_token,
       };
     default:
       return state;

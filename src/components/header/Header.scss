@@ -1,28 +1,28 @@
 .header {
-    width: 100vw;
-    background-color: black;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: fixed;
-    top: 0;
-    height: 70px;
+  width: 100vw;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  height: 70px;
 }
 
 .header__logo {
-    background-color: black;
-    height: 60px;
+  background-color: black;
+  height: 60px;
 }
 
 .header__logo > img {
-    height: 100%;
-    object-fit: contain;
-    margin-bottom: 0px;
-    margin-left: 3vw;
-    margin-right: 30px;
+  height: 100%;
+  object-fit: contain;
+  margin-bottom: 0px;
+  margin-left: 3vw;
+  margin-right: 30px;
 }
 
 .header__nav {
-    display: flex;
-    color: white;
+  display: flex;
+  color: white;
 }
