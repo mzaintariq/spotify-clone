@@ -11,7 +11,7 @@ function Option({ text, Icon, to, imgUrl }) {
         {Icon && <Icon className="option__icon" />}
         {imgUrl && 
           <div className="option__avatar">
-            <Avatar src={imgUrl} alt="MZT" style={{ height: '30px', width: '30px' }} />
+            <Avatar src={imgUrl} alt="" style={{ height: '30px', width: '30px' }} />
           </div>
         }
         <h4>{text}</h4>
