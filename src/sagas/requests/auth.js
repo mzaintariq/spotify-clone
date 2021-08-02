@@ -2,11 +2,11 @@ import {
   tokenEndpoint,
   redirectUri,
   clientId,
-  clientSecret,
 } from "../../app/spotify";
+const { REACT_APP_CLIENT_SECRET } = process.env;
 
 export function requestGetToken(code) {
-  const formBody = `grant_type=authorization_code&code=${code}&redirect_uri=${redirectUri}&client_id=${clientId}&client_secret=${clientSecret}`;
+  const formBody = `grant_type=authorization_code&code=${code}&redirect_uri=${redirectUri}&client_id=${clientId}&client_secret=${REACT_APP_CLIENT_SECRET}`;
   return fetch(tokenEndpoint, {
     method: "POST",
     headers: {

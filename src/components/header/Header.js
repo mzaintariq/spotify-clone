@@ -9,10 +9,20 @@ import SpotifyLogo from "../../assets/spotifylogo.jpeg";
 import Option from "../option/Option";
 
 import { useSelector, useDispatch } from "react-redux";
+import { getUserData } from "../../actions";
 
 function Header() {
+  const myState2 = useSelector((state) => state.authReducer);
   const myState = useSelector((state) => state.userReducer);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (myState2.accessToken) {
+      dispatch(getUserData(myState2.accessToken));
+    }
+  }, [myState2]);
+
+  console.log("CHECK USER DATA FETCH 2: ", myState.userData);
 
   return (
     <div>

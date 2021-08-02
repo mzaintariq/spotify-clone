@@ -14,13 +14,6 @@ const authReducer = (state = initialState, action) => {
         expiresIn: data.expires_in,
         refreshToken: data.refresh_token,
       };
-
-    case "SET_CHECK":
-      return {
-        ...state,
-        check: action.payload,
-      };
-
     default:
       return state;
   }
