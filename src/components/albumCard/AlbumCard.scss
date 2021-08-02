@@ -6,7 +6,6 @@
 .card {
   border-radius: 5px;
   background-color: #ffffff0c;
-  // background-color: #272727;
   transition: 250ms background-color ease-in;
   box-shadow: 0 4px 8px 0 rgb(0, 0, 0);
 }
@@ -14,73 +13,30 @@
   background-color: #ffffff2c;
   box-shadow: 0 8px 16px 0 rgb(0, 0, 0);
 }
-
 .card img {
   width: 100%;
   object-fit: cover;
-  border-radius: 2px;
+  border-radius: 5px;
+  transition: 0.5s ease transform;
   // border-radius: 5px 5px 0px 0px;
 }
 
 .card__thumbnail {
   padding: 15px;
   border-radius: 5px;
-  // border-radius: 5px 5px 0px 0px;
   position: relative;
   overflow: hidden;
 }
 .card__thumbnail:hover {
   cursor: pointer;
 }
-
-.card__thumbnail img {
-  width: 100%;
-  object-fit: cover;
-  transition: 0.5s ease transform;
-}
-// .card__thumbnail:hover img {
-//   transform: scale(1.05);
-// }
-
-.card__overlay {
-  opacity: 0;
-  transition: 0.25s ease;
-}
-
-.card__overlay > .card__icon {
-  color: white;
-  position: absolute;
-  top: 88%;
-  left: 84%;
-  transition: 0.25s ease;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  text-align: center;
-}
-
-.card:hover .card__overlay {
-  opacity: 1;
-}
-.card:hover .card__icon {
-  top: 84%;
-}
-
-.play__icon {
-  font-size: 50px !important;
-  transition: 0.25s ease;
-  color: #1db954;
-  text-shadow: 2px 2px 4px #000000 !important;
-}
-.play__icon:hover {
-  font-size: 55px !important;
-  cursor: default;
+.card__thumbnail:hover img {
+  transform: scale(1.05);
 }
 
 .card__text {
   padding: 16px 16px;
 }
-
 .card__text h4 {
   color: white;
   font-size: 14px;
@@ -91,7 +47,6 @@
   overflow: hidden;
   white-space: nowrap;
 }
-
 .card__text p {
   color: lightgray;
   font-size: 14px;

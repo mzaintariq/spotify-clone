@@ -10,13 +10,6 @@ function AlbumCard({ data }) {
         <div className="card">
           <div className="card__thumbnail">
             <img src={data.images[0].url} alt="PlaylistArt" />
-            <div class="card__overlay">
-              <div class="card__icon">
-                <PlayCircleFilledWhiteIcon
-                  className="play__icon red"
-                />
-              </div>
-            </div>
           </div>
           <div className="card__text">
             <h4>{data.name}</h4>
