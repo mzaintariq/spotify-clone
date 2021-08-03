@@ -8,6 +8,8 @@ const scopes = [
   "streaming",
   "user-read-email",
   "user-read-private",
+  "user-library-read",
+  "user-library-modify",
 ];
 export const redirectUri = "http://localhost:3000/";
 export const clientId = "9c2b9616464949a9a3e68c21250663a0";

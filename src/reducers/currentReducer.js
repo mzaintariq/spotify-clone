@@ -1,5 +1,6 @@
 const initialState = {
-  currentPlaying: null,
+  currentArray: null,
+  currentNumber: null,
 };
 
 const currentReducer = (state = initialState, action) => {
@@ -8,7 +9,8 @@ const currentReducer = (state = initialState, action) => {
       const data = action.payload;
       return {
         ...state,
-        currentPlaying: data,
+        currentArray: data[0],
+        currentNumber: data[1],
       };
     default:
       return state;

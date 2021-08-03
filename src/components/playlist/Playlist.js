@@ -17,8 +17,11 @@ function Playlist() {
     dispatch(getPlaylist([myState.accessToken, id]));
   }, []);
 
-  function handleClick(item) {
-    dispatch(setCurrent(item));
+  function handleClick(index) {
+    var trackUris = myState2.playlistData.tracks.items.map(
+      (item) => item.track.uri
+    );
+    dispatch(setCurrent([trackUris, index]));
   }
 
   return (
@@ -61,8 +64,7 @@ function Playlist() {
             <hr className="playlist__line" />
             <div className="playlist__songList">
               {myState2.playlistData.tracks.items.map((item, index) => (
-                <div onClick={() => handleClick(item.track.uri)}>
-                  {/* <div onClick={() => {console.log(item.track.uri)}}> */}
+                <div onClick={() => handleClick(index)}>
                   {item.track ? (
                     <SongRow key={item.id} track={item.track} id={index} />
                   ) : (
