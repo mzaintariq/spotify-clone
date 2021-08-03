@@ -1,8 +1,4 @@
-import {
-  tokenEndpoint,
-  redirectUri,
-  clientId,
-} from "../../app/spotify";
+import { tokenEndpoint, redirectUri, clientId } from "../../app/spotify";
 const { REACT_APP_CLIENT_SECRET } = process.env;
 
 export function requestGetToken(code) {

@@ -1,19 +1,17 @@
 import React, { useEffect } from "react";
-import "./Library.scss";
+import "./Album.scss";
 
-function Library() {
+function Album() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   return (
     <div>
-      <div>
-        LIBRARY
-        <h1>LIBRARY</h1>
-      </div>
+      ALBUM
+      <h1>ALBUM</h1>
     </div>
   );
 }
 
-export default Library;
+export default Album;

@@ -1,40 +1,58 @@
 import React, { useEffect } from "react";
 import "./Home.scss";
 import { useSelector, useDispatch } from "react-redux";
-import { getFeatured } from "../../actions";
-import Thumbnail from "../thumbnail/Thumbnail";
+import { getFeatured, getNewReleases } from "../../actions";
+import Loading from "../loading/Loading";
+import PlaylistCard from "../playlistCard/PlaylistCard";
+import AlbumCard from "../albumCard/AlbumCard";
+import { Grid } from "@material-ui/core";
 
 function Home() {
   const myState = useSelector((state) => state.authReducer);
-  const myState2 = useSelector((state) => state.featuredReducer);
+  const myState2 = useSelector((state) => state.browseReducer);
   const dispatch = useDispatch();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     if (myState2.featuredPlaylists == null) {
-      console.log("DISPATCHING");
       dispatch(getFeatured(myState.accessToken));
+      dispatch(getNewReleases(myState.accessToken));
     }
   }, []);
 
   return (
     <div>
       {myState2.featuredPlaylists ? (
-        <div className="container">
+        <div className="homepage">
           <h2>Featured Playlists</h2>
-          <div className="gallery">
-            {myState2.featuredPlaylists.items.map((item, index) => (
-              <Thumbnail key={item.id} data={item} />
-            ))}
+          <div className="grid">
+            <Grid container justifyContent="flex-start" spacing={3}>
+              {myState2.featuredPlaylists.items.map((item, index) => (
+                <Grid item xs={6} sm={4} md={3} lg={2} xl={2}>
+                  <PlaylistCard key={item.id} data={item} type="featured" />
+                </Grid>
+              ))}
+            </Grid>
           </div>
         </div>
       ) : (
-        <div className="container">
-          <div class="snippet" data-title=".dot-flashing">
-            <div class="stage">
-              <div class="dot-flashing"></div>
-            </div>
+        <Loading />
+      )}
+      {myState2.newreleasesPlaylists ? (
+        <div className="homepage">
+          <h2>New Releases</h2>
+          <div className="grid">
+            <Grid container justifyContent="flex-start" spacing={3}>
+              {myState2.newreleasesPlaylists.items.map((item, index) => (
+                <Grid item xs={6} sm={4} md={3} lg={2} xl={2}>
+                  <AlbumCard key={item.id} data={item} type="newreleases" />
+                </Grid>
+              ))}
+            </Grid>
           </div>
         </div>
+      ) : (
+        <Loading />
       )}
     </div>
   );
