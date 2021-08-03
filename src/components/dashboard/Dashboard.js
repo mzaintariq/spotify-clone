@@ -1,7 +1,6 @@
-import './Dashboard.scss';
-import React from 'react';
-// import Search from '../search/Search';
-import { useSelector, useDispatch } from 'react-redux';
+import "./Dashboard.scss";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 function Dashboard() {
   const myState = useSelector((state) => state.authReducer);
