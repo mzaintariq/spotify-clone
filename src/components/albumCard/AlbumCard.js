@@ -13,7 +13,7 @@ function AlbumCard({ data }) {
           </div>
           <div className="card__text">
             <h4>{data.name}</h4>
-            <p>{data.artists.map(artist => artist.name).join(", ")}</p>
+            <p>{data.artists.map((artist) => artist.name).join(", ")}</p>
           </div>
         </div>
       </Link>

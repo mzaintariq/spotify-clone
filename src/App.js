@@ -1,15 +1,7 @@
 import "./App.scss";
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  Redirect,
-  useRouteMatch,
-  useParams,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { getToken } from "./actions/index";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";

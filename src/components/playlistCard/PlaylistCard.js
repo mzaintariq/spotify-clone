@@ -1,8 +1,6 @@
 import React from "react";
 import "./PlaylistCard.scss";
 import { Link } from "react-router-dom";
-import PlayCircleFilledWhiteIcon from "@material-ui/icons/PlayCircleFilledWhite";
-import PlayCircleFilledTwoToneIcon from '@material-ui/icons/PlayCircleFilledTwoTone';
 
 function PlaylistCard({ data }) {
   return (

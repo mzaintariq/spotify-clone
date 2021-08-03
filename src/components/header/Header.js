@@ -22,8 +22,6 @@ function Header() {
     }
   }, [myState2]);
 
-  console.log("CHECK USER DATA FETCH 2: ", myState.userData);
-
   return (
     <div>
       <header className="header">

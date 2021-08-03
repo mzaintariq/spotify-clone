@@ -3,7 +3,12 @@ import { handleGetToken } from "./handlers/auth";
 import { handleGetUserData } from "./handlers/user";
 import { handleGetFeatured } from "./handlers/featured";
 import { handleGetNewReleases } from "./handlers/newreleases";
-import { GET_FEATURED, GET_NEW_RELEASES, GET_TOKEN, GET_USER_DATA } from "../actions";
+import {
+  GET_FEATURED,
+  GET_NEW_RELEASES,
+  GET_TOKEN,
+  GET_USER_DATA,
+} from "../actions";
 
 export function* watcherSaga() {
   yield takeLatest(GET_TOKEN, handleGetToken);
