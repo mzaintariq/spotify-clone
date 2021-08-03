@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "./Playlist.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getPlaylist } from "../../actions";
+import { getPlaylist, setCurrent } from "../../actions";
 import SongRow from "../songRow/SongRow";
 import Loading from "../loading/Loading";
 
@@ -18,8 +18,7 @@ function Playlist() {
   }, []);
 
   function handleClick(item) {
-    // console.log('The link was clicked.');
-    // console.log(item);
+    dispatch(setCurrent(item));
   }
 
   return (

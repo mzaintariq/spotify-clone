@@ -8,4 +8,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  //   justify-content: flex-end;
+}
+
+.player {
+  width: 100%;
+  padding: 0px 10px 0px 10px;
+  // position: absolute;
+  bottom: 0;
 }
