@@ -1,1 +1,1 @@
-export const checkAction = { type: "CHECK" }
+export const checkAction = { type: "CHECK" };

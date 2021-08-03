@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import check from './check';
+import check from "./check";
 
 const rootReducer = combineReducers({
-  check
+  check,
 });
 
 export default rootReducer;

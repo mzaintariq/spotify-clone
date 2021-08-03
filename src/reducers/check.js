@@ -1,7 +1,7 @@
 const initialState = {
   value: 0,
-  name: 'spotify',
-  isPerson: true
+  name: "spotify",
+  isPerson: true,
 };
 
 const check = (state = initialState, action) => {
@@ -10,11 +10,11 @@ const check = (state = initialState, action) => {
       return {
         ...state,
         value: state.value + 1,
-        name: 'SPOTIFY'
+        name: "SPOTIFY",
       };
     default:
       return state;
   }
-}
+};
 
-export default check
+export default check;
