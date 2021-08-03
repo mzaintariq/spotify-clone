@@ -1,73 +1,61 @@
-import React, { useEffect } from 'react'
-import './Home.scss'
-import { useSelector, useDispatch } from 'react-redux';
-import { getFeatured } from '../../actions';
-import Thumbnail from '../thumbnail/Thumbnail'
-
+import React, { useEffect } from "react";
+import "./Home.scss";
+import { useSelector, useDispatch } from "react-redux";
+import { getFeatured, getNewReleases } from "../../actions";
+import Loading from "../loading/Loading";
+import PlaylistCard from "../playlistCard/PlaylistCard";
+import AlbumCard from "../albumCard/AlbumCard";
+import { Grid } from "@material-ui/core";
 
 function Home() {
-    const myState = useSelector((state) => state.authReducer);
-    const myState2 = useSelector((state) => state.featuredReducer);
-    const dispatch = useDispatch();
+  const myState = useSelector((state) => state.authReducer);
+  const myState2 = useSelector((state) => state.browseReducer);
+  const dispatch = useDispatch();
 
-    useEffect(() => {
-        if (myState2.featuredPlaylists == null) {
-            console.log("DISPATCHING")
-            dispatch(getFeatured(myState.accessToken));
-        }
-    }, [])
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    if (myState2.featuredPlaylists == null) {
+      dispatch(getFeatured(myState.accessToken));
+      dispatch(getNewReleases(myState.accessToken));
+    }
+  }, []);
 
-    console.log("CHECK: ", myState2.featuredPlaylists);
-
-    return (
-        <div>
-            {/* HOME */}
-            {/* <h1>HOME</h1> */}
-            {/* <p>{myState2.featuredPlaylists.items[0].description}</p> */}
-            {/* <img src={myState2.featuredPlaylists.items[0].images[0].url} alt="" /> */}
-            {/* <div className="playlist__grid">
-                {myState2.featuredPlaylists.items.map((item, index) => (
-                    // <p>Hello, {person.name} from {person.country}!</p>
-                    // <p>{check.description}</p>
-                    <div>
-                        <p>{item.description}</p>
-                        <img src={item.images[0].url} alt="" />
-                    </div>
-                ))}
-            </div> */}
-            {myState2.featuredPlaylists ?
-                <div className="container">
-                    <h2>Featured Playlists</h2>
-                    <div className="gallery">
-                        {myState2.featuredPlaylists.items.map((item) => (
-                            <Thumbnail key={item.id} data={item}/>
-                        ))}
-                    </div>
-                </div>
-                : 
-                // <div className="container">
-                //     <h2>HOME</h2>
-                // </div>
-                <div className="container">
-                    <div class="snippet" data-title=".dot-flashing">
-                        <div class="stage">
-                            <div class="dot-flashing"></div>
-                        </div>
-                    </div>
-                </div>
-            }
-
-            {/* <div className="container">
-                <h1>Featured Playlists</h1>
-                <div className="gallery">
-                    {myState2.featuredPlaylists.items.map((item, index) => (
-                        <Thumbnail data={item}/>
-                    ))}
-                </div>
-            </div> */}
-                
+  return (
+    <div>
+      {myState2.featuredPlaylists ? (
+        <div className="homepage">
+          <h2>Featured Playlists</h2>
+          <div className="grid">
+            <Grid container justifyContent="flex-start" spacing={3}>
+              {myState2.featuredPlaylists.items.map((item, index) => (
+                <Grid item xs={6} sm={4} md={3} lg={2} xl={2}>
+                  <PlaylistCard key={item.id} data={item} type="featured" />
+                </Grid>
+              ))}
+            </Grid>
+          </div>
         </div>
-    )
+      ) : (
+        <Loading />
+      )}
+      {myState2.newreleasesPlaylists ? (
+        <div className="homepage">
+          <h2>New Releases</h2>
+          <div className="grid">
+            <Grid container justifyContent="flex-start" spacing={3}>
+              {myState2.newreleasesPlaylists.items.map((item, index) => (
+                <Grid item xs={6} sm={4} md={3} lg={2} xl={2}>
+                  <AlbumCard key={item.id} data={item} type="newreleases" />
+                </Grid>
+              ))}
+            </Grid>
+          </div>
+        </div>
+      ) : (
+        <Loading />
+      )}
+    </div>
+  );
 }
 
-export default Home
+export default Home;

@@ -1,5 +1,5 @@
-export function requestGetUserData(accessToken) {
-  return fetch("https://api.spotify.com/v1/me", {
+export function requestGetNewReleases(accessToken) {
+  return fetch("https://api.spotify.com/v1/browse/new-releases?country=PK", {
     method: "GET",
     headers: {
       Accept: "application/json",

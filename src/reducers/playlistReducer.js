@@ -1,5 +1,5 @@
 const initialState = {
-  playlistData: null
+  playlistData: null,
 };
 
 const playlistReducer = (state = initialState, action) => {
@@ -13,6 +13,6 @@ const playlistReducer = (state = initialState, action) => {
     default:
       return state;
   }
-}
+};
 
-export default playlistReducer
+export default playlistReducer;

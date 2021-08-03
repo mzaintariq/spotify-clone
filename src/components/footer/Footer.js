@@ -29,7 +29,7 @@ function Footer() {
       {/* Footer */}
       {/* <Player /> */}
     </div>
-  )
+  );
 }
 
-export default Footer
+export default Footer;
