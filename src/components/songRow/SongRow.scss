@@ -29,9 +29,9 @@
 
 .songrow__small {
   width: 100%;
+  display: flex;
   align-items: center;
   justify-content: space-between;
-  display: flex;
 }
 .songrow__info {
   margin: 0px 10px 0px 0px;
@@ -46,5 +46,14 @@
   color: rgb(134, 134, 134);
 }
 .songrow__info__icon {
+  color: rgb(134, 134, 134);
+}
+
+.songrow_right {
+  display: flex;
+  align-items: center;
+}
+.songrow_time {
+  margin-left: 10px;
   color: rgb(134, 134, 134);
 }

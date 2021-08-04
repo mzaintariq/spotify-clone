@@ -1,11 +1,33 @@
 import React from "react";
 import "./SongRow.scss";
 import ExplicitIcon from "@material-ui/icons/Explicit";
-import PlayArrowIcon from "@material-ui/icons/PlayArrow";
+import { useSelector, useDispatch } from "react-redux";
+import { setCurrent } from "../../actions";
 
 function SongRow({ track, id }) {
+  const myState = useSelector((state) => state.playlistReducer);
+  const dispatch = useDispatch();
+
+  const handleClick = (index) => {
+    var trackUris = myState.playlistData.tracks.items.map((item) => {
+      if (item.track) {
+        return item.track.uri;
+      }
+    });
+    var filteredTrackUris = trackUris.filter((item) => {
+      return item != null;
+    });
+    dispatch(setCurrent([filteredTrackUris, index]));
+  };
+
+  const msToMinutesAndSeconds = (duration_ms) => {
+    var minutes = Math.floor(duration_ms / 60000);
+    var seconds = ((duration_ms % 60000) / 1000).toFixed(0);
+    return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+  };
+
   return (
-    <div className="songrow">
+    <div className="songrow" onClick={() => handleClick(id)}>
       <div className="songrow__number">
         <h4>{id + 1}</h4>
       </div>
@@ -28,11 +50,17 @@ function SongRow({ track, id }) {
             </p>
           </div>
         </div>
-        {track.explicit ? (
-          <ExplicitIcon className="songrow__info__icon" />
-        ) : (
-          <></>
-        )}
+
+        <div className="songrow_right">
+          {track.explicit ? (
+            <ExplicitIcon className="songrow__info__icon" />
+          ) : (
+            <></>
+          )}
+          <div className="songrow_time">
+            {msToMinutesAndSeconds(track.duration_ms)}
+          </div>
+        </div>
       </div>
     </div>
   );

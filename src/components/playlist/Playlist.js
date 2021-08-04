@@ -2,27 +2,22 @@ import React, { useEffect } from "react";
 import "./Playlist.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getPlaylist, setCurrent } from "../../actions";
+import { getPlaylist } from "../../actions";
 import SongRow from "../songRow/SongRow";
 import Loading from "../loading/Loading";
+import AccessTimeIcon from "@material-ui/icons/AccessTime";
 
 function Playlist() {
   const myState = useSelector((state) => state.authReducer);
   const myState2 = useSelector((state) => state.playlistReducer);
   const { id } = useParams();
   const dispatch = useDispatch();
+  var num = 0;
 
   useEffect(() => {
     window.scrollTo(0, 0);
     dispatch(getPlaylist([myState.accessToken, id]));
   }, []);
-
-  function handleClick(index) {
-    var trackUris = myState2.playlistData.tracks.items.map(
-      (item) => item.track.uri
-    );
-    dispatch(setCurrent([trackUris, index]));
-  }
 
   return (
     <div>
@@ -52,21 +47,28 @@ function Playlist() {
           </div>
 
           <div className="playlist__songs">
-            <div className="playlist__icons"></div>
             <div className="playlist__header">
-              <div className="header__number">
-                <h4>#</h4>
+              <div className="playlist__header__left">
+                <div className="header__number">
+                  <h4>#</h4>
+                </div>
+                <div className="header__title">
+                  <h4>TITLE</h4>
+                </div>
               </div>
-              <div className="header__title">
-                <h4>TITLE</h4>
+              <div className="header__icons">
+                <AccessTimeIcon className="time__icon" />
               </div>
             </div>
             <hr className="playlist__line" />
             <div className="playlist__songList">
               {myState2.playlistData.tracks.items.map((item, index) => (
-                <div onClick={() => handleClick(index)}>
+                <div>
                   {item.track ? (
-                    <SongRow key={item.id} track={item.track} id={index} />
+                    <div>
+                      <SongRow key={item.id} track={item.track} id={num} />
+                      <div className="hidden">{num++}</div>
+                    </div>
                   ) : (
                     <></>
                   )}
