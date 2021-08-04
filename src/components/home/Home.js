@@ -52,7 +52,7 @@ function Home() {
           </div>
         </div>
       ) : (
-        <Loading />
+        <></>
       )}
     </div>
   );

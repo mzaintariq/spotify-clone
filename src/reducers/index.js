@@ -4,6 +4,7 @@ import userReducer from "./userReducer";
 import browseReducer from "./browseReducer";
 import playlistReducer from "./playlistReducer";
 import currentReducer from "./currentReducer";
+import searchReducer from "./searchReducer";
 
 const rootReducer = combineReducers({
   authReducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   browseReducer,
   playlistReducer,
   currentReducer,
+  searchReducer,
 });
 
 export default rootReducer;
