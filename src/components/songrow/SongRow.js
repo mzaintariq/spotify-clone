@@ -4,20 +4,24 @@ import ExplicitIcon from "@material-ui/icons/Explicit";
 import { useSelector, useDispatch } from "react-redux";
 import { setCurrent } from "../../actions";
 
-function SongRow({ track, id }) {
+function SongRow({ track, id, type }) {
   const myState = useSelector((state) => state.playlistReducer);
   const dispatch = useDispatch();
 
   const handleClick = (index) => {
-    var trackUris = myState.playlistData.tracks.items.map((item) => {
-      if (item.track) {
-        return item.track.uri;
-      }
-    });
-    var filteredTrackUris = trackUris.filter((item) => {
-      return item != null;
-    });
-    dispatch(setCurrent([filteredTrackUris, index]));
+    if (type === "single") {
+      dispatch(setCurrent([track.uri, 0]));
+    } else {
+      var trackUris = myState.playlistData.tracks.items.map((item) => {
+        if (item.track) {
+          return item.track.uri;
+        }
+      });
+      var filteredTrackUris = trackUris.filter((item) => {
+        return item != null;
+      });
+      dispatch(setCurrent([filteredTrackUris, index]));
+    }
   };
 
   const msToMinutesAndSeconds = (duration_ms) => {

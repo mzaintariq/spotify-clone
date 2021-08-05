@@ -23,7 +23,7 @@
   margin: 0;
 }
 .playlist__infoText > h2 {
-  font-size: 6vw;
+  font-size: 5vw;
   margin: 0;
   padding: 0;
 }
@@ -73,4 +73,10 @@
 
 .hidden {
   display: none;
+}
+
+@media (max-width: 800px) {
+  .playlist__infoText > h2 {
+    font-size: 6vw;
+  }
 }

@@ -6,6 +6,7 @@ import { getPlaylist } from "../../actions";
 import SongRow from "../songRow/SongRow";
 import Loading from "../loading/Loading";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
+import PlaylistImage from "../../assets/playlistImage.png";
 
 function Playlist() {
   const myState = useSelector((state) => state.authReducer);
@@ -25,7 +26,15 @@ function Playlist() {
         <div className="playlist__page">
           <div className="playlist">
             <div className="playlist__info">
-              <img src={myState2.playlistData.images[0].url} alt="" />
+              {myState2.playlistData.images[0] ? (
+                <img src={myState2.playlistData.images[0].url} alt="" />
+              ) : (
+                <img
+                  className="noUserPic"
+                  src={PlaylistImage}
+                  alt="NoPlaylistPicture"
+                />
+              )}
               <div className="playlist__infoText">
                 <h4>PLAYLIST</h4>
                 <h2>{myState2.playlistData.name}</h2>
