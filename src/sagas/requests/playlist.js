@@ -6,5 +6,7 @@ export function requestGetPlaylist(data) {
       Authorization: `Bearer ${data[0]}`,
       "Content-Type": "application/json",
     },
-  }).then((response) => response.json());
+  })
+    .then((response) => response.json())
+    .catch((error) => console.log(error));
 }
