@@ -1,5 +1,5 @@
 import { Grid } from "@material-ui/core";
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import AlbumCard from "../albumCard/AlbumCard";
 import PlaylistCard from "../playlistCard/PlaylistCard";
@@ -12,44 +12,16 @@ import ArtistCard from "../artistCard/ArtistCard";
 import { setSearchToggle } from "../../actions";
 
 function Search() {
-  const [track, setTrack] = useState();
-  const [album, setAlbum] = useState();
-  const [artist, setArtist] = useState();
-  const [playlist, setPlaylist] = useState();
   const myState = useSelector((state) => state.searchReducer);
   const dispatch = useDispatch();
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    handleToggles(myState.searchToggleValue);
+    dispatch(setSearchToggle(myState.searchToggleValue));
   }, []);
 
-  const handleToggles = (value) => {
-    dispatch(setSearchToggle(value));
-    setTrack(false);
-    setAlbum(false);
-    setArtist(false);
-    setPlaylist(false);
-    switch (value) {
-      case "tracks":
-        setTrack(true);
-        break;
-      case "albums":
-        setAlbum(true);
-        break;
-      case "artists":
-        setArtist(true);
-        break;
-      case "playlists":
-        setPlaylist(true);
-        break;
-      default:
-        break;
-    }
-  };
-
   const handleClick = (value) => {
-    handleToggles(value);
+    dispatch(setSearchToggle(value));
   };
 
   return (
@@ -59,19 +31,19 @@ function Search() {
           <SearchBar />
         </div>
         <div className="searchpage__toggle">
-          <input id="tracks" name="toggle" type="radio" checked={track} />
+          <input id="tracks" name="toggle" type="radio" checked={myState.searchToggleValue === "tracks"} />
           <label htmlFor="tracks" onClick={() => handleClick("tracks")}>
             <h4>Songs</h4>
           </label>
-          <input id="albums" name="toggle" type="radio" checked={album} />
+          <input id="albums" name="toggle" type="radio" checked={myState.searchToggleValue === "albums"} />
           <label htmlFor="albums" onClick={() => handleClick("albums")}>
             <h4>Albums</h4>
           </label>
-          <input id="artists" name="toggle" type="radio" checked={artist} />
+          <input id="artists" name="toggle" type="radio" checked={myState.searchToggleValue === "artists"} />
           <label htmlFor="artists" onClick={() => handleClick("artists")}>
             <h4>Artists</h4>
           </label>
-          <input id="playlists" name="toggle" type="radio" checked={playlist} />
+          <input id="playlists" name="toggle" type="radio" checked={myState.searchToggleValue === "playlists"} />
           <label htmlFor="playlists" onClick={() => handleClick("playlists")}>
             <h4>Playlists</h4>
           </label>
@@ -80,7 +52,7 @@ function Search() {
 
       {myState.searchValue ? (
         <div className="searchpage__body">
-          {track ? (
+          {myState.searchToggleValue === "tracks" ? (
             <div>
               {myState.searchTracks.total ? (
                 <div>
@@ -126,7 +98,7 @@ function Search() {
             <></>
           )}
 
-          {album ? (
+          {myState.searchToggleValue === "albums" ? (
             <div>
               {myState.searchAlbums.total ? (
                 <div>
@@ -158,7 +130,7 @@ function Search() {
             <></>
           )}
 
-          {artist ? (
+          {myState.searchToggleValue === "artists" ? (
             <div>
               {myState.searchArtists.total ? (
                 <div>
@@ -190,7 +162,7 @@ function Search() {
             <></>
           )}
 
-          {playlist ? (
+          {myState.searchToggleValue === "playlists" ? (
             <div>
               {myState.searchPlaylists.total ? (
                 <div>
