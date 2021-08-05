@@ -13,3 +13,10 @@ export const setSearch = (data) => {
     payload: data,
   };
 };
+
+export const setSearchToggle = (data) => {
+  return {
+    type: "SET_SEARCH_TOGGLE",
+    payload: data,
+  };
+};

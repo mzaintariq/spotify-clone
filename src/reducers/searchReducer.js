@@ -1,6 +1,11 @@
 const initialState = {
-  searchValue: null,
-  searchResult: null,
+  // searchValue: null,
+  searchValue: "",
+  searchToggleValue: "tracks",
+  searchAlbums: null,
+  searchTracks: null,
+  searchPlaylists: null,
+  searchArtists: null,
 };
 
 const searchReducer = (state = initialState, action) => {
@@ -10,7 +15,15 @@ const searchReducer = (state = initialState, action) => {
       return {
         ...state,
         searchValue: data[0],
-        searchResult: data[1],
+        searchAlbums: data[1].albums,
+        searchTracks: data[1].tracks,
+        searchPlaylists: data[1].playlists,
+        searchArtists: data[1].artists,
+      };
+    case "SET_SEARCH_TOGGLE":
+      return {
+        ...state,
+        searchToggleValue: data,
       };
     default:
       return state;
