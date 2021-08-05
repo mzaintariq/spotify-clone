@@ -1,17 +1,25 @@
 import React from "react";
 import "./AlbumCard.scss";
 import { Link } from "react-router-dom";
-import PlayCircleFilledWhiteIcon from "@material-ui/icons/PlayCircleFilledWhite";
+import PlaylistImage from "../../assets/playlistImage.png";
 
 function AlbumCard({ data }) {
   return (
     <div>
-      <Link className="card__link" to={`/album/${data.id}`}>
-        <div className="card">
-          <div className="card__thumbnail">
-            <img src={data.images[0].url} alt="PlaylistArt" />
+      <Link className="albumcard__link" to={`/album/${data.id}`}>
+        <div className="albumcard">
+          <div className="albumcard__thumbnail">
+            {data.images[0] ? (
+              <img src={data.images[0].url} alt="PlaylistArt" />
+            ) : (
+              <img
+                className="noPlaylistPic"
+                src={PlaylistImage}
+                alt="NoPlaylistPicture"
+              />
+            )}
           </div>
-          <div className="card__text">
+          <div className="albumcard__text">
             <h4>{data.name}</h4>
             <p>{data.artists.map((artist) => artist.name).join(", ")}</p>
           </div>

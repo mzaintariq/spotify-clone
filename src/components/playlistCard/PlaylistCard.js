@@ -1,18 +1,33 @@
 import React from "react";
 import "./PlaylistCard.scss";
 import { Link } from "react-router-dom";
+import PlaylistImage from "../../assets/playlistImage.png";
 
 function PlaylistCard({ data }) {
   return (
     <div>
-      <Link className="card__link" to={`/playlist/${data.id}`}>
-        <div className="card">
-          <div className="card__thumbnail">
-            <img src={data.images[0].url} alt="PlaylistArt" />
+      <Link className="playlistcard__link" to={`/playlist/${data.id}`}>
+        <div className="playlistcard">
+          <div className="playlistcard__thumbnail">
+            {data.images[0] ? (
+              <img src={data.images[0].url} alt="PlaylistArt" />
+            ) : (
+              <img
+                className="noUserPic"
+                src={PlaylistImage}
+                alt="NoPlaylistPicture"
+              />
+            )}
           </div>
-          <div className="card__text">
+          <div className="playlistcard__text">
             <h4>{data.name}</h4>
-            <p>{data.description.replaceAll(/<[^>]*>/gi, "")}</p>
+            {data.description ? (
+              <p>{data.description.replaceAll(/<[^>]*>/gi, "")}</p>
+            ) : (
+              <p>
+                Made by: <b>{data.owner.display_name}</b>
+              </p>
+            )}
           </div>
         </div>
       </Link>
