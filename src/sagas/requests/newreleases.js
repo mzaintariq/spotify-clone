@@ -6,5 +6,7 @@ export function requestGetNewReleases(accessToken) {
       Authorization: `Bearer ${accessToken}`,
       "Content-Type": "application/json",
     },
-  }).then((response) => response.json());
+  })
+    .then((response) => response.json())
+    .catch((error) => console.log(error));
 }

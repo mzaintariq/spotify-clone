@@ -28,8 +28,8 @@ function Home() {
           <div className="grid">
             <Grid container justifyContent="flex-start" spacing={3}>
               {myState2.featuredPlaylists.items.map((item, index) => (
-                <Grid item xs={6} sm={4} md={3} lg={2} xl={2}>
-                  <PlaylistCard key={item.id} data={item} type="featured" />
+                <Grid key={item.id} item xs={6} sm={4} md={3} lg={2} xl={2}>
+                  <PlaylistCard data={item} />
                 </Grid>
               ))}
             </Grid>
@@ -44,8 +44,8 @@ function Home() {
           <div className="grid">
             <Grid container justifyContent="flex-start" spacing={3}>
               {myState2.newreleasesPlaylists.items.map((item, index) => (
-                <Grid item xs={6} sm={4} md={3} lg={2} xl={2}>
-                  <AlbumCard key={item.id} data={item} type="newreleases" />
+                <Grid key={item.id} item xs={6} sm={4} md={3} lg={2} xl={2}>
+                  <AlbumCard data={item} />
                 </Grid>
               ))}
             </Grid>

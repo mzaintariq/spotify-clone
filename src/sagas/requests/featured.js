@@ -9,5 +9,7 @@ export function requestGetFeatured(accessToken) {
         "Content-Type": "application/json",
       },
     }
-  ).then((response) => response.json());
+  )
+    .then((response) => response.json())
+    .catch((error) => console.log(error));
 }
