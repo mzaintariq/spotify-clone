@@ -9,5 +9,7 @@ export function requestGetToken(code) {
       "Content-Type": "application/x-www-form-urlencoded",
     },
     body: formBody,
-  }).then((response) => response.json());
+  })
+    .then((response) => response.json())
+    .catch((error) => console.log(error));
 }
