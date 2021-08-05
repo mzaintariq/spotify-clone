@@ -13,7 +13,7 @@ function PlaylistCard({ data }) {
               <img src={data.images[0].url} alt="PlaylistArt" />
             ) : (
               <img
-                className="noUserPic"
+                className="noPlaylistPic"
                 src={PlaylistImage}
                 alt="NoPlaylistPicture"
               />

@@ -30,7 +30,7 @@ function Playlist() {
                 <img src={myState2.playlistData.images[0].url} alt="" />
               ) : (
                 <img
-                  className="noUserPic"
+                  className="noPlaylistPic"
                   src={PlaylistImage}
                   alt="NoPlaylistPicture"
                 />
