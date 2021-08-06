@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "./Playlist.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getPlaylist } from "../../actions";
+import { getMorePlaylistTracks, getPlaylist } from "../../actions";
 import SongRow from "../songRow/SongRow";
 import Loading from "../loading/Loading";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
@@ -19,6 +19,12 @@ function Playlist() {
     window.scrollTo(0, 0);
     dispatch(getPlaylist([myState.accessToken, id]));
   }, []);
+
+  useEffect(() => {
+    if (myState2.playlistData && myState2.playlistData.tracks.next) {
+      dispatch(getMorePlaylistTracks([myState.accessToken, myState2.playlistData.tracks.next]));
+    }
+  }, [myState2.playlistData]);
 
   return (
     <div>
@@ -72,7 +78,7 @@ function Playlist() {
             <hr className="playlist__line" />
             <div className="playlist__songList">
               {myState2.playlistData.tracks.items.map((item, index) => (
-                <div>
+                <div key={index}>
                   {item.track ? (
                     <div>
                       <SongRow key={item.id} track={item.track} id={num} />
