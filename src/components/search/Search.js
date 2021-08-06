@@ -56,7 +56,7 @@ function Search() {
             <div>
               {myState.searchTracks.total ? (
                 <div>
-                  <h2>Songs for "{myState.searchValue}"</h2>
+                  <h2 className="searchpage__body__title">Songs for "{myState.searchValue}"</h2>
                   <div className="searchpage__playlist__songs">
                     <div className="searchpage__playlist__header">
                       <div className="playlist__header__left">
@@ -102,7 +102,7 @@ function Search() {
             <div>
               {myState.searchAlbums.total ? (
                 <div>
-                  <h2>Albums for "{myState.searchValue}"</h2>
+                  <h2 className="searchpage__body__title">Albums for "{myState.searchValue}"</h2>
                   <div className="grid">
                     <Grid container justifyContent="flex-start" spacing={3}>
                       {myState.searchAlbums.items.map((item, index) => (
@@ -134,7 +134,7 @@ function Search() {
             <div>
               {myState.searchArtists.total ? (
                 <div>
-                  <h2>Artists for "{myState.searchValue}"</h2>
+                  <h2 className="searchpage__body__title">Artists for "{myState.searchValue}"</h2>
                   <div className="grid">
                     <Grid container justifyContent="flex-start" spacing={3}>
                       {myState.searchArtists.items.map((item, index) => (
@@ -166,7 +166,7 @@ function Search() {
             <div>
               {myState.searchPlaylists.total ? (
                 <div>
-                  <h2>Playlists for "{myState.searchValue}"</h2>
+                  <h2 className="searchpage__body__title">Playlists for "{myState.searchValue}"</h2>
                   <div className="grid">
                     <Grid container justifyContent="flex-start" spacing={3}>
                       {myState.searchPlaylists.items.map((item, index) => (
