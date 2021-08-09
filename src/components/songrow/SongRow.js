@@ -6,11 +6,17 @@ import { setCurrent } from "../../actions";
 
 function SongRow({ track, id, type }) {
   const myState = useSelector((state) => state.playlistReducer);
+  const myState2 = useSelector((state) => state.albumReducer);
   const dispatch = useDispatch();
 
   const handleClick = (index) => {
     if (type === "single") {
       dispatch(setCurrent([track.uri, 0]));
+    } else if (type === "album") {
+      var trackUris = myState2.albumData.tracks.items.map((item) => {
+        return item.uri;
+      });
+      dispatch(setCurrent([trackUris, index]));
     } else {
       var trackUris = myState.playlistData.tracks.items.map((item) => {
         if (item.track) {
@@ -35,13 +41,17 @@ function SongRow({ track, id, type }) {
       <div className="songrow__number">
         <h4>{id + 1}</h4>
       </div>
-      <div className="songrow__albumart">
-        <img
-          className="songrow__album"
-          src={track.album.images[0].url}
-          alt=""
-        />
-      </div>
+      {type !== "album" ? (
+        <div className="songrow__albumart">
+          <img
+            className="songrow__album"
+            src={track.album.images[0].url}
+            alt=""
+          />
+        </div>
+      ) : (
+        <></>
+      )}
       <div className="songrow__small">
         <div className="songrow__info">
           <div className="songrow__info__name">
@@ -49,8 +59,8 @@ function SongRow({ track, id, type }) {
           </div>
           <div className="songrow__info__artist">
             <p>
-              {track.artists.map((artist) => artist.name).join(", ")} - {}
-              {track.album.name}
+              {track.artists.map((artist) => artist.name).join(", ")}
+              {type !== "album" ? <> - {track.album.name} </> : <></>}
             </p>
           </div>
         </div>
