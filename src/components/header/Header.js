@@ -7,7 +7,6 @@ import LibraryMusicIcon from "@material-ui/icons/LibraryMusic";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import SpotifyLogo from "../../assets/spotifylogo.jpeg";
 import Option from "../option/Option";
-
 import { useSelector, useDispatch } from "react-redux";
 import { getUserData } from "../../actions";
 
@@ -20,7 +19,7 @@ function Header() {
     if (myState2.accessToken) {
       dispatch(getUserData(myState2.accessToken));
     }
-  }, [myState2]);
+  }, [myState2, dispatch]);
 
   return (
     <div>

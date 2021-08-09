@@ -13,15 +13,16 @@ function SongRow({ track, id, type }) {
     if (type === "single") {
       dispatch(setCurrent([track.uri, 0]));
     } else if (type === "album") {
-      var trackUris = myState2.albumData.tracks.items.map((item) => {
+      var albumTrackUris = myState2.albumData.tracks.items.map((item) => {
         return item.uri;
       });
-      dispatch(setCurrent([trackUris, index]));
+      dispatch(setCurrent([albumTrackUris, index]));
     } else {
       var trackUris = myState.playlistData.tracks.items.map((item) => {
         if (item.track) {
           return item.track.uri;
         }
+        return null;
       });
       var filteredTrackUris = trackUris.filter((item) => {
         return item != null;

@@ -18,7 +18,7 @@ function Search() {
   useEffect(() => {
     window.scrollTo(0, 0);
     dispatch(setSearchToggle(myState.searchToggleValue));
-  }, []);
+  }, [dispatch, myState.searchToggleValue]);
 
   const handleClick = (value) => {
     dispatch(setSearchToggle(value));

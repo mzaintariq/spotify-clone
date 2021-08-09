@@ -24,7 +24,7 @@ function SearchBar() {
       }
     }, 1000);
     return () => clearTimeout(timeoutId);
-  }, [value]);
+  }, [value, dispatch, myState.accessToken]);
 
   const handleOnChange = (event) => {
     setValue(event.target.value);

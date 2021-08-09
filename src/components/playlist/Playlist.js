@@ -18,13 +18,13 @@ function Playlist() {
   useEffect(() => {
     window.scrollTo(0, 0);
     dispatch(getPlaylist([myState.accessToken, id]));
-  }, []);
+  }, [dispatch, myState, id]);
 
   useEffect(() => {
     if (myState2.playlistData && myState2.playlistData.tracks.next) {
       dispatch(getMorePlaylistTracks([myState.accessToken, myState2.playlistData.tracks.next]));
     }
-  }, [myState2.playlistData]);
+  }, [myState2.playlistData, dispatch, myState.accessToken]);
 
   return (
     <div>

@@ -24,7 +24,7 @@ function App() {
       dispatch(getToken(code));
       window.history.pushState("", "", "/");
     }
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="app">

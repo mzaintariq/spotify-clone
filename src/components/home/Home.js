@@ -18,7 +18,7 @@ function Home() {
       dispatch(getFeatured(myState.accessToken));
       dispatch(getNewReleases(myState.accessToken));
     }
-  }, []);
+  }, [dispatch, myState.accessToken, myState2.featuredPlaylists]);
 
   return (
     <div>

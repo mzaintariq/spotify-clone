@@ -17,7 +17,7 @@ function Album() {
   useEffect(() => {
     window.scrollTo(0, 0);
     dispatch(getAlbum([myState.accessToken, id]));
-  }, []);
+  }, [dispatch, id, myState.accessToken]);
 
   return (
     <div>

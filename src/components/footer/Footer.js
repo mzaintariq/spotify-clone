@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Footer.scss";
 import SpotifyPlayer from "react-spotify-web-playback";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 function Footer() {
   const myState = useSelector((state) => state.authReducer);
