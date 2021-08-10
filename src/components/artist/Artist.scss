@@ -1,0 +1,88 @@
+.verified {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.verified__icon {
+  font-size: 20px !important;
+  color: #2e77d0;
+  margin-right: 4px;
+}
+
+//////////
+
+.artist__page {
+  padding-bottom: 20px;
+}
+
+.artist {
+  padding: 30px;
+}
+
+.artist__info {
+  display: flex;
+  align-items: flex-end;
+}
+
+.artist__info > img {
+  height: 40vw;
+  max-height: 300px;
+  margin: 0 20px 0 0;
+  box-shadow: 0 4px 60px rgba(0, 0, 0, 0.5);
+  border-radius: 250px;
+}
+
+.artist__infoText > h4 {
+  font-size: 12px;
+  margin: 0;
+}
+.artist__infoText > h2 {
+  font-size: 5vw;
+  margin: 0;
+  padding: 0;
+}
+.artist__infoText > p {
+  font-size: 13px;
+  color: lightgray;
+}
+.artist__infoText > p > b {
+  color: white;
+}
+
+.artist__songs {
+  background-color: #000000;
+  padding: 20px 50px;
+}
+
+.artist__songList {
+  background-color: #ffffff0c;
+  //   border-radius: 10px;
+  border-radius: 5px;
+  margin: 30px 0vw;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  box-shadow: 0 4px 8px 0 rgb(0, 0, 0);
+}
+
+.artist__albums {
+  background-color: #000000;
+  padding: 20px 50px 20px 50px;
+}
+
+.artist__albumGrid {
+  border-radius: 5px;
+  margin: 30px 0vw;
+}
+
+.artist__singles {
+  background-color: #000000;
+  padding: 20px 50px 20px 50px;
+}
+
+@media (max-width: 800px) {
+  .artist__infoText > h2 {
+    font-size: 6vw;
+  }
+}

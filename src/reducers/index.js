@@ -6,6 +6,7 @@ import playlistReducer from "./playlistReducer";
 import currentReducer from "./currentReducer";
 import searchReducer from "./searchReducer";
 import albumReducer from "./albumReducer";
+import artistReducer from "./artistReducer";
 
 const rootReducer = combineReducers({
   authReducer,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   currentReducer,
   searchReducer,
   albumReducer,
+  artistReducer,
 });
 
 export default rootReducer;

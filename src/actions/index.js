@@ -22,3 +22,4 @@ export {
 } from "./searchActions";
 export { setCurrent } from "./currentActions";
 export { GET_ALBUM, getAlbum, setAlbum } from "./albumActions";
+export { GET_ARTIST, getArtist, setArtist, setArtistTopTracks, setArtistAlbums } from "./artistActions";

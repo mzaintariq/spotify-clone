@@ -7,8 +7,10 @@ import { handleGetPlaylist } from "./handlers/playlist";
 import { handleGetSearchResult } from "./handlers/search";
 import { handleGetMorePlaylistTracks } from "./handlers/playlist_loadmore";
 import { handleGetAlbum } from "./handlers/album";
+import { handleGetArtist } from "./handlers/artist";
 import {
   GET_ALBUM,
+  GET_ARTIST,
   GET_FEATURED,
   GET_MORE_PLAYLIST_TRACKS,
   GET_NEW_RELEASES,
@@ -27,4 +29,5 @@ export function* watcherSaga() {
   yield takeLatest(GET_SEARCH_RESULT, handleGetSearchResult);
   yield takeLatest(GET_MORE_PLAYLIST_TRACKS, handleGetMorePlaylistTracks);
   yield takeLatest(GET_ALBUM, handleGetAlbum);
+  yield takeLatest(GET_ARTIST, handleGetArtist);
 }
