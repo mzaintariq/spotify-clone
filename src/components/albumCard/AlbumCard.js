@@ -2,6 +2,11 @@ import React from "react";
 import "./AlbumCard.scss";
 import { Link } from "react-router-dom";
 import PlaylistImage from "../../assets/playlistImage.png";
+import PropTypes from "prop-types";
+
+AlbumCard.propTypes = {
+  data: PropTypes.object,
+};
 
 function AlbumCard({ data }) {
   return (
