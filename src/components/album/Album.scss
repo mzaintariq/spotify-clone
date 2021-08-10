@@ -74,6 +74,14 @@
   display: none;
 }
 
+.artist__link {
+  text-decoration: none;
+  color: white;
+}
+.artist__link:hover {
+  cursor: pointer;
+}
+
 @media (max-width: 800px) {
   .playlist__infoText > h2 {
     font-size: 6vw;

@@ -62,3 +62,20 @@
 .noPlaylistPic {
   filter: invert(70%);
 }
+
+.albumcard__text__button {
+  padding: 0;
+  border: none;
+  background: none;
+  color: gray;
+  white-space: pre;
+}
+
+.albumcard__text__link {
+  text-decoration: none;
+  color: lightgray;
+}
+.albumcard__text__link:hover {
+  color: white;
+  cursor: default;
+}

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "./Album.scss";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getAlbum } from "../../actions";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
 import NoAlbumImage from "../../assets/playlistImage.png";
@@ -39,11 +39,24 @@ function Album() {
                 <h2>{myState2.albumData.name}</h2>
                 <p>
                   <b>
-                    {myState2.albumData.artists
+                    {/* {myState2.albumData.artists
                       .map((artist) => artist.name)
-                      .join(", ")}
-                  </b> •{" "}
-                  {myState2.albumData.release_date.replace(/-.*/g, "")}{" "} •{" "}
+                      .join(", ")} */}
+                    {myState2.albumData.artists.map((artist, index) => (
+                      <>
+                        <Link
+                          className="artist__link"
+                          to={`/artist/${artist.id}`}
+                        >
+                          <>{artist.name}</>
+                        </Link>
+                        {index < myState2.albumData.artists.length - 1 && (
+                          <>, </>
+                        )}
+                      </>
+                    ))}
+                  </b>{" "}
+                  • {myState2.albumData.release_date.replace(/-.*/g, "")} •{" "}
                   {myState2.albumData.total_tracks}
                   {myState2.albumData.total_tracks === 1 ? " song" : " songs"}
                 </p>

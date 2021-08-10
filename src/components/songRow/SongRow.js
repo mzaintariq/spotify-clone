@@ -3,6 +3,7 @@ import "./SongRow.scss";
 import ExplicitIcon from "@material-ui/icons/Explicit";
 import { useSelector, useDispatch } from "react-redux";
 import { setCurrent } from "../../actions";
+import { Link } from "react-router-dom";
 
 function SongRow({ track, id, type }) {
   const myState = useSelector((state) => state.playlistReducer);
@@ -60,8 +61,41 @@ function SongRow({ track, id, type }) {
           </div>
           <div className="songrow__info__artist">
             <p>
-              {track.artists.map((artist) => artist.name).join(", ")}
-              {type !== "album" ? <> - {track.album.name} </> : <></>}
+              {/* {track.artists.map((artist) => artist.name).join(", ")} */}
+              {/* {type !== "album" ? <> - {track.album.name} </> : <></>} */}
+              {track.artists.map((artist, index) => (
+                <>
+                  <button
+                    className="album__button"
+                    onClick={(event) => event.stopPropagation()}
+                  >
+                    <Link className="album__link" to={`/artist/${artist.id}`}>
+                      <>{artist.name}</>
+                    </Link>
+                    {index < track.artists.length - 1 && <>, </>}
+                  </button>
+                </>
+              ))}
+              {type !== "album" ? (
+                <>
+                  {" "}
+                  -{" "}
+                  <button
+                    className="album__button"
+                    onClick={(event) => event.stopPropagation()}
+                  >
+                    <Link
+                      className="album__link"
+                      to={`/album/${track.album.id}`}
+                      onClick={(event) => event.stopPropagation()}
+                    >
+                      {track.album.name}
+                    </Link>{" "}
+                  </button>
+                </>
+              ) : (
+                <></>
+              )}
             </p>
           </div>
         </div>
