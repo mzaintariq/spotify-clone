@@ -6,26 +6,26 @@ import { setCurrent } from "../../actions";
 import { Link } from "react-router-dom";
 
 function SongRow({ track, id, type }) {
-  const myState = useSelector((state) => state.playlistReducer);
-  const myState2 = useSelector((state) => state.albumReducer);
-  const myState3 = useSelector((state) => state.libraryReducer);
+  const playlistData = useSelector((state) => state.playlistReducer.playlistData);
+  const albumData = useSelector((state) => state.albumReducer.albumData);
+  const libraryTracks = useSelector((state) => state.libraryReducer.libraryTracks);
   const dispatch = useDispatch();
 
   const handleClick = (index) => {
     if (type === "single") {
       dispatch(setCurrent([track.uri, 0]));
     } else if (type === "album") {
-      var albumTrackUris = myState2.albumData.tracks.items.map((item) => {
+      var albumTrackUris = albumData.tracks.items.map((item) => {
         return item.uri;
       });
       dispatch(setCurrent([albumTrackUris, index]));
     } else if (type === "library") {
-      var libraryTrackUris = myState3.libraryTracks.items.map((item) => {
+      var libraryTrackUris = libraryTracks.items.map((item) => {
         return item.track.uri;
       });
       dispatch(setCurrent([libraryTrackUris, index]));
     } else {
-      var trackUris = myState.playlistData.tracks.items.map((item) => {
+      var trackUris = playlistData.tracks.items.map((item) => {
         if (item.track) {
           return item.track.uri;
         }

@@ -12,13 +12,18 @@ import ArtistCard from "../artistCard/ArtistCard";
 import { setSearchToggle } from "../../actions";
 
 function Search() {
-  const myState = useSelector((state) => state.searchReducer);
+  const searchToggleValue = useSelector((state) => state.searchReducer.searchToggleValue);
+  const searchValue = useSelector((state) => state.searchReducer.searchValue);
+  const searchTracks = useSelector((state) => state.searchReducer.searchTracks);
+  const searchAlbums = useSelector((state) => state.searchReducer.searchAlbums);
+  const searchArtists = useSelector((state) => state.searchReducer.searchArtists);
+  const searchPlaylists = useSelector((state) => state.searchReducer.searchPlaylists);
   const dispatch = useDispatch();
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    dispatch(setSearchToggle(myState.searchToggleValue));
-  }, [dispatch, myState.searchToggleValue]);
+    dispatch(setSearchToggle(searchToggleValue));
+  }, [dispatch, searchToggleValue]);
 
   const handleClick = (value) => {
     dispatch(setSearchToggle(value));
@@ -31,32 +36,32 @@ function Search() {
           <SearchBar />
         </div>
         <div className="searchpage__toggle">
-          <input id="tracks" name="toggle" type="radio" checked={myState.searchToggleValue === "tracks"} onChange={() => handleClick("tracks")} />
+          <input id="tracks" name="toggle" type="radio" checked={searchToggleValue === "tracks"} onChange={() => handleClick("tracks")} />
           <label htmlFor="tracks" onClick={() => handleClick("tracks")}>
             <h4>Songs</h4>
           </label>
-          <input id="albums" name="toggle" type="radio" checked={myState.searchToggleValue === "albums"} onChange={() => handleClick("albums")} />
+          <input id="albums" name="toggle" type="radio" checked={searchToggleValue === "albums"} onChange={() => handleClick("albums")} />
           <label htmlFor="albums" onClick={() => handleClick("albums")}>
             <h4>Albums</h4>
           </label>
-          <input id="artists" name="toggle" type="radio" checked={myState.searchToggleValue === "artists"} onChange={() => handleClick("artists")} />
+          <input id="artists" name="toggle" type="radio" checked={searchToggleValue === "artists"} onChange={() => handleClick("artists")} />
           <label htmlFor="artists" onClick={() => handleClick("artists")}>
             <h4>Artists</h4>
           </label>
-          <input id="playlists" name="toggle" type="radio" checked={myState.searchToggleValue === "playlists"} onChange={() => handleClick("playlists")} />
+          <input id="playlists" name="toggle" type="radio" checked={searchToggleValue === "playlists"} onChange={() => handleClick("playlists")} />
           <label htmlFor="playlists" onClick={() => handleClick("playlists")}>
             <h4>Playlists</h4>
           </label>
         </div>
       </div>
 
-      {myState.searchValue ? (
+      {searchValue ? (
         <div className="searchpage__body">
-          {myState.searchToggleValue === "tracks" ? (
+          {searchToggleValue === "tracks" ? (
             <div>
-              {myState.searchTracks.total ? (
+              {searchTracks.total ? (
                 <div>
-                  <h2 className="searchpage__body__title">Songs for "{myState.searchValue}"</h2>
+                  <h2 className="searchpage__body__title">Songs for "{searchValue}"</h2>
                   <div className="searchpage__playlist__songs">
                     <div className="searchpage__playlist__header">
                       <div className="playlist__header__left">
@@ -73,7 +78,7 @@ function Search() {
                     </div>
                     <hr className="playlist__line" />
                     <div className="playlist__songList">
-                      {myState.searchTracks.items.map((item, index) => (
+                      {searchTracks.items.map((item, index) => (
                         <SongRow
                           key={item.id}
                           track={item}
@@ -86,7 +91,7 @@ function Search() {
                 </div>
               ) : (
                 <div className="noresult">
-                  <h2>No songs found for "{myState.searchValue}"</h2>
+                  <h2>No songs found for "{searchValue}"</h2>
                   <h3>
                     Please make sure your words are spelled correctly or use
                     less or different keywords.
@@ -98,14 +103,14 @@ function Search() {
             <></>
           )}
 
-          {myState.searchToggleValue === "albums" ? (
+          {searchToggleValue === "albums" ? (
             <div>
-              {myState.searchAlbums.total ? (
+              {searchAlbums.total ? (
                 <div>
-                  <h2 className="searchpage__body__title">Albums for "{myState.searchValue}"</h2>
+                  <h2 className="searchpage__body__title">Albums for "{searchValue}"</h2>
                   <div className="grid">
                     <Grid container justifyContent="flex-start" spacing={3}>
-                      {myState.searchAlbums.items.map((item, index) => (
+                      {searchAlbums.items.map((item, index) => (
                         <Grid key={item.id} item xs={6} sm={4} md={3} lg={2} xl={2}>
                           <AlbumCard
                             data={item}
@@ -118,7 +123,7 @@ function Search() {
                 </div>
               ) : (
                 <div className="noresult">
-                  <h2>No albums found for "{myState.searchValue}"</h2>
+                  <h2>No albums found for "{searchValue}"</h2>
                   <h3>
                     Please make sure your words are spelled correctly or use
                     less or different keywords.
@@ -130,14 +135,14 @@ function Search() {
             <></>
           )}
 
-          {myState.searchToggleValue === "artists" ? (
+          {searchToggleValue === "artists" ? (
             <div>
-              {myState.searchArtists.total ? (
+              {searchArtists.total ? (
                 <div>
-                  <h2 className="searchpage__body__title">Artists for "{myState.searchValue}"</h2>
+                  <h2 className="searchpage__body__title">Artists for "{searchValue}"</h2>
                   <div className="grid">
                     <Grid container justifyContent="flex-start" spacing={3}>
-                      {myState.searchArtists.items.map((item, index) => (
+                      {searchArtists.items.map((item, index) => (
                         <Grid key={item.id} item xs={6} sm={4} md={3} lg={2} xl={2}>
                           <ArtistCard
                             data={item}
@@ -150,7 +155,7 @@ function Search() {
                 </div>
               ) : (
                 <div className="noresult">
-                  <h2>No artists found for "{myState.searchValue}"</h2>
+                  <h2>No artists found for "{searchValue}"</h2>
                   <h3>
                     Please make sure your words are spelled correctly or use
                     less or different keywords.
@@ -162,14 +167,14 @@ function Search() {
             <></>
           )}
 
-          {myState.searchToggleValue === "playlists" ? (
+          {searchToggleValue === "playlists" ? (
             <div>
-              {myState.searchPlaylists.total ? (
+              {searchPlaylists.total ? (
                 <div>
-                  <h2 className="searchpage__body__title">Playlists for "{myState.searchValue}"</h2>
+                  <h2 className="searchpage__body__title">Playlists for "{searchValue}"</h2>
                   <div className="grid">
                     <Grid container justifyContent="flex-start" spacing={3}>
-                      {myState.searchPlaylists.items.map((item, index) => (
+                      {searchPlaylists.items.map((item, index) => (
                         <Grid key={item.id} item xs={6} sm={4} md={3} lg={2} xl={2}>
                           <PlaylistCard data={item} />
                         </Grid>
@@ -179,7 +184,7 @@ function Search() {
                 </div>
               ) : (
                 <div className="noresult">
-                  <h2>No playlists found for "{myState.searchValue}"</h2>
+                  <h2>No playlists found for "{searchValue}"</h2>
                   <h3>
                     Please make sure your words are spelled correctly or use
                     less or different keywords.

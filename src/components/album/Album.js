@@ -9,24 +9,24 @@ import Loading from "../loading/Loading";
 import SongRow from "../songRow/SongRow";
 
 function Album() {
-  const myState = useSelector((state) => state.authReducer);
-  const myState2 = useSelector((state) => state.albumReducer);
+  const accessToken = useSelector((state) => state.authReducer.accessToken);
+  const albumData = useSelector((state) => state.albumReducer.albumData);
   const { id } = useParams();
   const dispatch = useDispatch();
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    dispatch(getAlbum([myState.accessToken, id]));
-  }, [dispatch, id, myState.accessToken]);
+    dispatch(getAlbum([accessToken, id]));
+  }, [dispatch, id, accessToken]);
 
   return (
     <div>
-      {myState2.albumData ? (
+      {albumData ? (
         <div className="album__page">
           <div className="album">
             <div className="album__info">
-              {myState2.albumData.images[0] ? (
-                <img src={myState2.albumData.images[0].url} alt="" />
+              {albumData.images[0] ? (
+                <img src={albumData.images[0].url} alt="" />
               ) : (
                 <img
                   className="noAlbumPic"
@@ -35,14 +35,14 @@ function Album() {
                 />
               )}
               <div className="playlist__infoText">
-                <h4>{myState2.albumData.album_type.toUpperCase()}</h4>
-                <h2>{myState2.albumData.name}</h2>
+                <h4>{albumData.album_type.toUpperCase()}</h4>
+                <h2>{albumData.name}</h2>
                 <p>
                   <b>
                     {/* {myState2.albumData.artists
                       .map((artist) => artist.name)
                       .join(", ")} */}
-                    {myState2.albumData.artists.map((artist, index) => (
+                    {albumData.artists.map((artist, index) => (
                       <span key={index}>
                         <Link
                           className="artist__link"
@@ -50,15 +50,15 @@ function Album() {
                         >
                           <>{artist.name}</>
                         </Link>
-                        {index < myState2.albumData.artists.length - 1 && (
+                        {index < albumData.artists.length - 1 && (
                           <>, </>
                         )}
                       </span>
                     ))}
                   </b>{" "}
-                  • {myState2.albumData.release_date.replace(/-.*/g, "")} •{" "}
-                  {myState2.albumData.total_tracks}
-                  {myState2.albumData.total_tracks === 1 ? " song" : " songs"}
+                  • {albumData.release_date.replace(/-.*/g, "")} •{" "}
+                  {albumData.total_tracks}
+                  {albumData.total_tracks === 1 ? " song" : " songs"}
                 </p>
               </div>
             </div>
@@ -80,7 +80,7 @@ function Album() {
             </div>
             <hr className="album__line" />
             <div className="album__songList">
-              {myState2.albumData.tracks.items.map((item, index) => (
+              {albumData.tracks.items.map((item, index) => (
                 <SongRow key={item.id} track={item} id={index} type="album" />
               ))}
             </div>

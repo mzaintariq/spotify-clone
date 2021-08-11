@@ -27,23 +27,6 @@ function AlbumCard({ data }) {
           <div className="albumcard__text">
             <h4>{data.name}</h4>
             <p>{data.artists.map((artist) => artist.name).join(", ")}</p>
-            {/* <p>
-              {data.artists.map((artist, index) => (
-                <button
-                  key={artist.id}
-                  className="albumcard__text__button"
-                  onClick={(event) => event.stopPropagation()}
-                >
-                  <Link
-                    className="albumcard__text__link"
-                    to={`/artist/${artist.id}`}
-                  >
-                    <>{artist.name}</>
-                  </Link>
-                  {index < data.artists.length - 1 && <>, </>}
-                </button>
-              ))}
-            </p> */}
           </div>
         </div>
       </Link>
