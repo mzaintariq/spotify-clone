@@ -10,24 +10,28 @@ import AlbumCard from "../albumCard/AlbumCard";
 import { Grid } from "@material-ui/core";
 
 function Artist() {
-  const myState = useSelector((state) => state.authReducer);
-  const myState2 = useSelector((state) => state.artistReducer);
+  const accessToken = useSelector((state) => state.authReducer.accessToken);
+  const artistData = useSelector((state) => state.artistReducer.artistData);
+  const artistTopTracks = useSelector(
+    (state) => state.artistReducer.artistTopTracks
+  );
+  const artistAlbums = useSelector((state) => state.artistReducer.artistAlbums);
   const { id } = useParams();
   const dispatch = useDispatch();
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    dispatch(getArtist([myState.accessToken, id]));
-  }, [dispatch, myState.accessToken, id]);
+    dispatch(getArtist([accessToken, id]));
+  }, [dispatch, accessToken, id]);
 
   return (
     <div>
-      {myState2.artistData ? (
+      {artistData ? (
         <div className="artist__page">
           <div className="artist">
             <div className="artist__info">
-              {myState2.artistData.images[0] ? (
-                <img src={myState2.artistData.images[0].url} alt="" />
+              {artistData.images[0] ? (
+                <img src={artistData.images[0].url} alt="" />
               ) : (
                 <img
                   className="noArtistPic"
@@ -37,9 +41,9 @@ function Artist() {
               )}
               <div className="artist__infoText">
                 <h4>ARTIST</h4>
-                <h2>{myState2.artistData.name}</h2>
+                <h2>{artistData.name}</h2>
                 <p>
-                  {myState2.artistData.followers.total
+                  {artistData.followers.total
                     .toString()
                     .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
                   followers
@@ -50,9 +54,9 @@ function Artist() {
 
           <div className="artist__songs">
             <h2>Popular</h2>
-            {myState2.artistTopTracks ? (
+            {artistTopTracks ? (
               <div className="artist__songList">
-                {myState2.artistTopTracks.tracks.map((item, index) => (
+                {artistTopTracks.tracks.map((item, index) => (
                   <SongRow
                     key={item.id}
                     track={item}
@@ -68,26 +72,24 @@ function Artist() {
 
           <div className="artist__albums">
             <h2>Albums</h2>
-            {myState2.artistAlbums ? (
+            {artistAlbums ? (
               <div className="artist__albumGrid">
                 <Grid container justifyContent="flex-start" spacing={3}>
-                  {myState2.artistAlbums.items.map((item, index) => (
-                    <>
-                      {item.album_type === "album" && (
-                        <Grid
-                          key={item.id}
-                          item
-                          xs={6}
-                          sm={4}
-                          md={3}
-                          lg={2}
-                          xl={2}
-                        >
-                          <AlbumCard data={item} />
-                        </Grid>
-                      )}
-                    </>
-                  ))}
+                  {artistAlbums.items
+                    .filter((item) => item.album_type === "album")
+                    .map((item) => (
+                      <Grid
+                        key={item.id}
+                        item
+                        xs={6}
+                        sm={4}
+                        md={3}
+                        lg={2}
+                        xl={2}
+                      >
+                        <AlbumCard data={item} />
+                      </Grid>
+                    ))}
                 </Grid>
               </div>
             ) : (
@@ -97,26 +99,27 @@ function Artist() {
 
           <div className="artist__singles">
             <h2>Singles</h2>
-            {myState2.artistAlbums ? (
+            {artistAlbums ? (
               <div className="artist__albumGrid">
                 <Grid container justifyContent="flex-start" spacing={3}>
-                  {myState2.artistAlbums.items.map((item, index) => (
-                    <>
-                      {item.album_type === "single" && (
-                        <Grid
-                          key={item.id}
-                          item
-                          xs={6}
-                          sm={4}
-                          md={3}
-                          lg={2}
-                          xl={2}
-                        >
-                          <AlbumCard data={item} />
-                        </Grid>
-                      )}
-                    </>
-                  ))}
+                  {artistAlbums.items
+                    .filter(
+                      (item) => item.album_type === "single"
+                      // && item.artists[0].name === myState2.artistData.name
+                    )
+                    .map((item, index) => (
+                      <Grid
+                        key={item.id}
+                        item
+                        xs={6}
+                        sm={4}
+                        md={3}
+                        lg={2}
+                        xl={2}
+                      >
+                        <AlbumCard data={item} />
+                      </Grid>
+                    ))}
                 </Grid>
               </div>
             ) : (

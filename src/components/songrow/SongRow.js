@@ -64,17 +64,16 @@ function SongRow({ track, id, type }) {
               {/* {track.artists.map((artist) => artist.name).join(", ")} */}
               {/* {type !== "album" ? <> - {track.album.name} </> : <></>} */}
               {track.artists.map((artist, index) => (
-                <>
-                  <button
-                    className="album__button"
-                    onClick={(event) => event.stopPropagation()}
-                  >
-                    <Link className="album__link" to={`/artist/${artist.id}`}>
-                      <>{artist.name}</>
-                    </Link>
-                    {index < track.artists.length - 1 && <>, </>}
-                  </button>
-                </>
+                <button
+                  key={artist.id}
+                  className="album__button"
+                  onClick={(event) => event.stopPropagation()}
+                >
+                  <Link className="album__link" to={`/artist/${artist.id}`}>
+                    <>{artist.name}</>
+                  </Link>
+                  {index < track.artists.length - 1 && <>, </>}
+                </button>
               ))}
               {type !== "album" ? (
                 <>
