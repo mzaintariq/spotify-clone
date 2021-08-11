@@ -4,28 +4,29 @@ import SpotifyPlayer from "react-spotify-web-playback";
 import { useSelector, useDispatch } from "react-redux";
 
 function Footer() {
-  const myState = useSelector((state) => state.authReducer);
-  const myState2 = useSelector((state) => state.currentReducer);
+  const accessToken = useSelector((state) => state.authReducer.accessToken);
+  const currentNumber = useSelector((state) => state.currentReducer.currentNumber);
+  const currentArray = useSelector((state) => state.currentReducer.currentArray);
   const [play, setPlay] = useState(false);
 
   useEffect(() => {
     setPlay(true);
-  }, [myState2]);
+  }, [currentArray]);
   
   return (
     <div className="footer">
       <div className="player">
         <SpotifyPlayer
-          token={myState.accessToken}
+          token={accessToken}
           initialVolume={0.5}
           callback={(state) => {
             if (!state.isPlaying) setPlay(false);
           }}
           play={play}
           magnifySliderOnHover={true}
-          offset={myState2.currentNumber}
+          offset={currentNumber}
           // showSaveIcon={true}
-          uris={myState2.currentArray ? myState2.currentArray : []}
+          uris={currentArray ? currentArray : []}
           styles={{
             bgColor: "#181818",
             color: "#fff",
