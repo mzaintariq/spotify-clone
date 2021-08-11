@@ -7,15 +7,15 @@ import SongRow from "../songRow/SongRow";
 import Loading from "../loading/Loading";
 
 function Playlist() {
-  const myState = useSelector((state) => state.authReducer);
-  const myState2 = useSelector((state) => state.playlistReducer);
+  const accessToken = useSelector((state) => state.authReducer.accessToken);
+  const playlistData = useSelector((state) => state.playlistReducer.playlistData);
   const { id } = useParams();
   const dispatch = useDispatch();
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    dispatch(getPlaylist([myState.accessToken, id]));
-  }, []);
+    dispatch(getPlaylist([accessToken, id]));
+  }, [dispatch, accessToken, id]);
 
   function handleClick(item) {
     // console.log('The link was clicked.');
@@ -24,23 +24,23 @@ function Playlist() {
 
   return (
     <div>
-      {myState2.playlistData ? (
+      {playlistData ? (
         <div className="playlist__page">
           <div className="playlist">
             <div className="playlist__info">
-              <img src={myState2.playlistData.images[0].url} alt="" />
+              <img src={playlistData.images[0].url} alt="" />
               <div className="playlist__infoText">
                 <h4>PLAYLIST</h4>
-                <h2>{myState2.playlistData.name}</h2>
+                <h2>{playlistData.name}</h2>
                 <p>
-                  {myState2.playlistData.description.replaceAll(
+                  {playlistData.description.replaceAll(
                     /<[^>]*>/gi,
                     ""
                   )}
                 </p>
                 <p>
-                  <b>{myState2.playlistData.owner.display_name}</b> •{" "}
-                  {myState2.playlistData.followers.total
+                  <b>{playlistData.owner.display_name}</b> •{" "}
+                  {playlistData.followers.total
                     .toString()
                     .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
                   likes
@@ -61,7 +61,7 @@ function Playlist() {
             </div>
             <hr className="playlist__line" />
             <div className="playlist__songList">
-              {myState2.playlistData.tracks.items.map((item, index) => (
+              {playlistData.tracks.items.map((item, index) => (
                 <div onClick={() => handleClick(item.track.uri)}>
                   {/* <div onClick={() => {console.log(item.track.uri)}}> */}
                   {item.track ? (

@@ -1,7 +1,6 @@
 import React from "react";
 import "./SongRow.scss";
 import ExplicitIcon from "@material-ui/icons/Explicit";
-import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 
 function SongRow({ track, id }) {
   return (
