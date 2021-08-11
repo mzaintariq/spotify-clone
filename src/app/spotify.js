@@ -10,6 +10,8 @@ const scopes = [
   "user-read-private",
   "user-library-read",
   "user-library-modify",
+  "user-follow-read",
+  "playlist-read-private",
 ];
 export const redirectUri = "http://localhost:3000/";
 export const clientId = "9c2b9616464949a9a3e68c21250663a0";

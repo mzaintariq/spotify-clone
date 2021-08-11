@@ -22,4 +22,22 @@ export {
 } from "./searchActions";
 export { setCurrent } from "./currentActions";
 export { GET_ALBUM, getAlbum, setAlbum } from "./albumActions";
-export { GET_ARTIST, getArtist, setArtist, setArtistTopTracks, setArtistAlbums } from "./artistActions";
+export {
+  GET_ARTIST,
+  getArtist,
+  setArtist,
+  setArtistTopTracks,
+  setArtistAlbums,
+} from "./artistActions";
+export {
+  GET_LIBRARY_DATA,
+  GET_MORE_LIBRARY_TRACKS,
+  getLibraryData,
+  setLibraryAlbums,
+  setLibraryArtists,
+  setLibraryTracks,
+  setLibraryPlaylists,
+  setLibraryToggle,
+  getMoreLibraryTracks,
+  setMoreLibraryTracks,
+} from "./libraryActions";

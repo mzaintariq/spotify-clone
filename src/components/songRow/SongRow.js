@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 function SongRow({ track, id, type }) {
   const myState = useSelector((state) => state.playlistReducer);
   const myState2 = useSelector((state) => state.albumReducer);
+  const myState3 = useSelector((state) => state.libraryReducer);
   const dispatch = useDispatch();
 
   const handleClick = (index) => {
@@ -18,6 +19,11 @@ function SongRow({ track, id, type }) {
         return item.uri;
       });
       dispatch(setCurrent([albumTrackUris, index]));
+    } else if (type === "library") {
+      var libraryTrackUris = myState3.libraryTracks.items.map((item) => {
+        return item.track.uri;
+      });
+      dispatch(setCurrent([libraryTrackUris, index]));
     } else {
       var trackUris = myState.playlistData.tracks.items.map((item) => {
         if (item.track) {
@@ -64,17 +70,16 @@ function SongRow({ track, id, type }) {
               {/* {track.artists.map((artist) => artist.name).join(", ")} */}
               {/* {type !== "album" ? <> - {track.album.name} </> : <></>} */}
               {track.artists.map((artist, index) => (
-                <>
-                  <button
-                    className="album__button"
-                    onClick={(event) => event.stopPropagation()}
-                  >
-                    <Link className="album__link" to={`/artist/${artist.id}`}>
-                      <>{artist.name}</>
-                    </Link>
-                    {index < track.artists.length - 1 && <>, </>}
-                  </button>
-                </>
+                <button
+                  key={artist.id}
+                  className="album__button"
+                  onClick={(event) => event.stopPropagation()}
+                >
+                  <Link className="album__link" to={`/artist/${artist.id}`}>
+                    <>{artist.name}</>
+                  </Link>
+                  {index < track.artists.length - 1 && <>, </>}
+                </button>
               ))}
               {type !== "album" ? (
                 <>
