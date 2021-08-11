@@ -39,9 +39,6 @@ function Album() {
                 <h2>{albumData.name}</h2>
                 <p>
                   <b>
-                    {/* {myState2.albumData.artists
-                      .map((artist) => artist.name)
-                      .join(", ")} */}
                     {albumData.artists.map((artist, index) => (
                       <span key={index}>
                         <Link
@@ -50,9 +47,7 @@ function Album() {
                         >
                           <>{artist.name}</>
                         </Link>
-                        {index < albumData.artists.length - 1 && (
-                          <>, </>
-                        )}
+                        {index < albumData.artists.length - 1 && <>, </>}
                       </span>
                     ))}
                   </b>{" "}
