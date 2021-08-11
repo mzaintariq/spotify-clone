@@ -9,31 +9,31 @@ import AccessTimeIcon from "@material-ui/icons/AccessTime";
 import PlaylistImage from "../../assets/playlistImage.png";
 
 function Playlist() {
-  const myState = useSelector((state) => state.authReducer);
-  const myState2 = useSelector((state) => state.playlistReducer);
+  const accessToken = useSelector((state) => state.authReducer.accessToken);
+  const playlistData = useSelector((state) => state.playlistReducer.playlistData);
   const { id } = useParams();
   const dispatch = useDispatch();
   var num = 0;
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    dispatch(getPlaylist([myState.accessToken, id]));
-  }, []);
+    dispatch(getPlaylist([accessToken, id]));
+  }, [dispatch, accessToken, id]);
 
   useEffect(() => {
-    if (myState2.playlistData && myState2.playlistData.tracks.next) {
-      dispatch(getMorePlaylistTracks([myState.accessToken, myState2.playlistData.tracks.next]));
+    if (playlistData && playlistData.tracks.next) {
+      dispatch(getMorePlaylistTracks([accessToken, playlistData.tracks.next]));
     }
-  }, [myState2.playlistData]);
+  }, [dispatch, accessToken, playlistData]);
 
   return (
     <div>
-      {myState2.playlistData ? (
+      {playlistData ? (
         <div className="playlist__page">
           <div className="playlist">
             <div className="playlist__info">
-              {myState2.playlistData.images[0] ? (
-                <img src={myState2.playlistData.images[0].url} alt="" />
+              {playlistData.images[0] ? (
+                <img src={playlistData.images[0].url} alt="" />
               ) : (
                 <img
                   className="noUserPic"
@@ -43,16 +43,16 @@ function Playlist() {
               )}
               <div className="playlist__infoText">
                 <h4>PLAYLIST</h4>
-                <h2>{myState2.playlistData.name}</h2>
+                <h2>{playlistData.name}</h2>
                 <p>
-                  {myState2.playlistData.description.replaceAll(
+                  {playlistData.description.replaceAll(
                     /<[^>]*>/gi,
                     ""
                   )}
                 </p>
                 <p>
-                  <b>{myState2.playlistData.owner.display_name}</b> •{" "}
-                  {myState2.playlistData.followers.total
+                  <b>{playlistData.owner.display_name}</b> •{" "}
+                  {playlistData.followers.total
                     .toString()
                     .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
                   likes
@@ -77,7 +77,7 @@ function Playlist() {
             </div>
             <hr className="playlist__line" />
             <div className="playlist__songList">
-              {myState2.playlistData.tracks.items.map((item, index) => (
+              {playlistData.tracks.items.map((item, index) => (
                 <div key={index}>
                   {item.track ? (
                     <div>
