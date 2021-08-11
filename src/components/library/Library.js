@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { connect } from "react-redux";
 import {
   getLibraryData,
   getMoreLibraryTracks,
@@ -14,26 +14,30 @@ import AlbumCard from "../albumCard/AlbumCard";
 import ArtistCard from "../artistCard/ArtistCard";
 import PlaylistCard from "../playlistCard/PlaylistCard";
 
-function Library() {
-  const myState = useSelector((state) => state.authReducer);
-  const myState2 = useSelector((state) => state.libraryReducer);
-  const dispatch = useDispatch();
-
+function Library({
+  accessToken,
+  libraryTracks,
+  libraryToggleValue,
+  libraryAlbums,
+  libraryArtists,
+  libraryPlaylists,
+  getLibraryData,
+  getMoreLibraryTracks,
+  setLibraryToggle,
+}) {
   useEffect(() => {
     window.scrollTo(0, 0);
-    dispatch(getLibraryData(myState.accessToken));
-  }, [dispatch, myState.accessToken]);
+    getLibraryData(accessToken);
+  }, [getLibraryData, accessToken]);
 
   useEffect(() => {
-    if (myState2.libraryTracks && myState2.libraryTracks.next) {
-      dispatch(
-        getMoreLibraryTracks([myState.accessToken, myState2.libraryTracks.next])
-      );
+    if (libraryTracks && libraryTracks.next) {
+      getMoreLibraryTracks([accessToken, libraryTracks.next]);
     }
-  }, [myState2.libraryTracks, dispatch, myState.accessToken]);
+  }, [libraryTracks, getMoreLibraryTracks, accessToken]);
 
   const handleClick = (value) => {
-    dispatch(setLibraryToggle(value));
+    setLibraryToggle(value);
   };
 
   return (
@@ -44,7 +48,7 @@ function Library() {
             id="tracks"
             name="toggle"
             type="radio"
-            checked={myState2.libraryToggleValue === "tracks"}
+            checked={libraryToggleValue === "tracks"}
             onChange={() => handleClick("tracks")}
           />
           <label htmlFor="tracks" onClick={() => handleClick("tracks")}>
@@ -54,7 +58,7 @@ function Library() {
             id="albums"
             name="toggle"
             type="radio"
-            checked={myState2.libraryToggleValue === "albums"}
+            checked={libraryToggleValue === "albums"}
             onChange={() => handleClick("albums")}
           />
           <label htmlFor="albums" onClick={() => handleClick("albums")}>
@@ -64,7 +68,7 @@ function Library() {
             id="artists"
             name="toggle"
             type="radio"
-            checked={myState2.libraryToggleValue === "artists"}
+            checked={libraryToggleValue === "artists"}
             onChange={() => handleClick("artists")}
           />
           <label htmlFor="artists" onClick={() => handleClick("artists")}>
@@ -74,7 +78,7 @@ function Library() {
             id="playlists"
             name="toggle"
             type="radio"
-            checked={myState2.libraryToggleValue === "playlists"}
+            checked={libraryToggleValue === "playlists"}
             onChange={() => handleClick("playlists")}
           />
           <label htmlFor="playlists" onClick={() => handleClick("playlists")}>
@@ -83,9 +87,9 @@ function Library() {
         </div>
       </div>
 
-      {myState2.libraryToggleValue === "tracks" ? (
+      {libraryToggleValue === "tracks" ? (
         <div>
-          {myState2.libraryTracks ? (
+          {libraryTracks ? (
             <div>
               <h2 className="library__body__title">Songs</h2>
               <div className="library__playlist__songs">
@@ -104,7 +108,7 @@ function Library() {
                 </div>
                 <hr className="playlist__line" />
                 <div className="playlist__songList">
-                  {myState2.libraryTracks.items.map((item, index) => (
+                  {libraryTracks.items.map((item, index) => (
                     <SongRow
                       key={index}
                       track={item.track}
@@ -123,14 +127,14 @@ function Library() {
         <></>
       )}
 
-      {myState2.libraryToggleValue === "albums" ? (
+      {libraryToggleValue === "albums" ? (
         <div>
-          {myState2.libraryAlbums ? (
+          {libraryAlbums ? (
             <div>
               <h2 className="library__body__title">Albums</h2>
               <div className="library__grid">
                 <Grid container justifyContent="flex-start" spacing={3}>
-                  {myState2.libraryAlbums.items.map((item, index) => (
+                  {libraryAlbums.items.map((item, index) => (
                     <Grid key={index} item xs={6} sm={4} md={3} lg={2} xl={2}>
                       <AlbumCard data={item.album} type="newreleases" />
                     </Grid>
@@ -146,14 +150,14 @@ function Library() {
         <></>
       )}
 
-      {myState2.libraryToggleValue === "artists" ? (
+      {libraryToggleValue === "artists" ? (
         <div>
-          {myState2.libraryArtists ? (
+          {libraryArtists ? (
             <div>
               <h2 className="library__body__title">Artists</h2>
               <div className="library__grid">
                 <Grid container justifyContent="flex-start" spacing={3}>
-                  {myState2.libraryArtists.artists.items.map((item, index) => (
+                  {libraryArtists.artists.items.map((item, index) => (
                     <Grid key={item.id} item xs={6} sm={4} md={3} lg={2} xl={2}>
                       <ArtistCard data={item} />
                     </Grid>
@@ -169,14 +173,14 @@ function Library() {
         <></>
       )}
 
-      {myState2.libraryToggleValue === "playlists" ? (
+      {libraryToggleValue === "playlists" ? (
         <div>
-          {myState2.libraryPlaylists ? (
+          {libraryPlaylists ? (
             <div>
               <h2 className="library__body__title">Playlists</h2>
               <div className="library__grid">
                 <Grid container justifyContent="flex-start" spacing={3}>
-                  {myState2.libraryPlaylists.items.map((item, index) => (
+                  {libraryPlaylists.items.map((item, index) => (
                     <Grid key={item.id} item xs={6} sm={4} md={3} lg={2} xl={2}>
                       <PlaylistCard data={item} />
                     </Grid>
@@ -195,4 +199,23 @@ function Library() {
   );
 }
 
-export default Library;
+function mapStateToProps(state) {
+  return {
+    accessToken: state.authReducer.accessToken,
+    libraryTracks: state.libraryReducer.libraryTracks,
+    libraryToggleValue: state.libraryReducer.libraryToggleValue,
+    libraryAlbums: state.libraryReducer.libraryAlbums,
+    libraryArtists: state.libraryReducer.libraryArtists,
+    libraryPlaylists: state.libraryReducer.libraryPlaylists,
+  };
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getLibraryData: (accessToken) => dispatch(getLibraryData(accessToken)),
+    getMoreLibraryTracks: (data) => dispatch(getMoreLibraryTracks(data)),
+    setLibraryToggle: (value) => dispatch(setLibraryToggle(value)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Library);

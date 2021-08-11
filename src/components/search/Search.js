@@ -12,12 +12,18 @@ import ArtistCard from "../artistCard/ArtistCard";
 import { setSearchToggle } from "../../actions";
 
 function Search() {
-  const searchToggleValue = useSelector((state) => state.searchReducer.searchToggleValue);
+  const searchToggleValue = useSelector(
+    (state) => state.searchReducer.searchToggleValue
+  );
   const searchValue = useSelector((state) => state.searchReducer.searchValue);
   const searchTracks = useSelector((state) => state.searchReducer.searchTracks);
   const searchAlbums = useSelector((state) => state.searchReducer.searchAlbums);
-  const searchArtists = useSelector((state) => state.searchReducer.searchArtists);
-  const searchPlaylists = useSelector((state) => state.searchReducer.searchPlaylists);
+  const searchArtists = useSelector(
+    (state) => state.searchReducer.searchArtists
+  );
+  const searchPlaylists = useSelector(
+    (state) => state.searchReducer.searchPlaylists
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -36,19 +42,43 @@ function Search() {
           <SearchBar />
         </div>
         <div className="searchpage__toggle">
-          <input id="tracks" name="toggle" type="radio" checked={searchToggleValue === "tracks"} onChange={() => handleClick("tracks")} />
+          <input
+            id="tracks"
+            name="toggle"
+            type="radio"
+            checked={searchToggleValue === "tracks"}
+            onChange={() => handleClick("tracks")}
+          />
           <label htmlFor="tracks" onClick={() => handleClick("tracks")}>
             <h4>Songs</h4>
           </label>
-          <input id="albums" name="toggle" type="radio" checked={searchToggleValue === "albums"} onChange={() => handleClick("albums")} />
+          <input
+            id="albums"
+            name="toggle"
+            type="radio"
+            checked={searchToggleValue === "albums"}
+            onChange={() => handleClick("albums")}
+          />
           <label htmlFor="albums" onClick={() => handleClick("albums")}>
             <h4>Albums</h4>
           </label>
-          <input id="artists" name="toggle" type="radio" checked={searchToggleValue === "artists"} onChange={() => handleClick("artists")} />
+          <input
+            id="artists"
+            name="toggle"
+            type="radio"
+            checked={searchToggleValue === "artists"}
+            onChange={() => handleClick("artists")}
+          />
           <label htmlFor="artists" onClick={() => handleClick("artists")}>
             <h4>Artists</h4>
           </label>
-          <input id="playlists" name="toggle" type="radio" checked={searchToggleValue === "playlists"} onChange={() => handleClick("playlists")} />
+          <input
+            id="playlists"
+            name="toggle"
+            type="radio"
+            checked={searchToggleValue === "playlists"}
+            onChange={() => handleClick("playlists")}
+          />
           <label htmlFor="playlists" onClick={() => handleClick("playlists")}>
             <h4>Playlists</h4>
           </label>
@@ -61,7 +91,9 @@ function Search() {
             <div>
               {searchTracks.total ? (
                 <div>
-                  <h2 className="searchpage__body__title">Songs for "{searchValue}"</h2>
+                  <h2 className="searchpage__body__title">
+                    Songs for "{searchValue}"
+                  </h2>
                   <div className="searchpage__playlist__songs">
                     <div className="searchpage__playlist__header">
                       <div className="playlist__header__left">
@@ -107,15 +139,22 @@ function Search() {
             <div>
               {searchAlbums.total ? (
                 <div>
-                  <h2 className="searchpage__body__title">Albums for "{searchValue}"</h2>
+                  <h2 className="searchpage__body__title">
+                    Albums for "{searchValue}"
+                  </h2>
                   <div className="grid">
                     <Grid container justifyContent="flex-start" spacing={3}>
                       {searchAlbums.items.map((item, index) => (
-                        <Grid key={item.id} item xs={6} sm={4} md={3} lg={2} xl={2}>
-                          <AlbumCard
-                            data={item}
-                            type="newreleases"
-                          />
+                        <Grid
+                          key={item.id}
+                          item
+                          xs={6}
+                          sm={4}
+                          md={3}
+                          lg={2}
+                          xl={2}
+                        >
+                          <AlbumCard data={item} type="newreleases" />
                         </Grid>
                       ))}
                     </Grid>
@@ -139,15 +178,22 @@ function Search() {
             <div>
               {searchArtists.total ? (
                 <div>
-                  <h2 className="searchpage__body__title">Artists for "{searchValue}"</h2>
+                  <h2 className="searchpage__body__title">
+                    Artists for "{searchValue}"
+                  </h2>
                   <div className="grid">
                     <Grid container justifyContent="flex-start" spacing={3}>
                       {searchArtists.items.map((item, index) => (
-                        <Grid key={item.id} item xs={6} sm={4} md={3} lg={2} xl={2}>
-                          <ArtistCard
-                            data={item}
-                            type="newreleases"
-                          />
+                        <Grid
+                          key={item.id}
+                          item
+                          xs={6}
+                          sm={4}
+                          md={3}
+                          lg={2}
+                          xl={2}
+                        >
+                          <ArtistCard data={item} type="newreleases" />
                         </Grid>
                       ))}
                     </Grid>
@@ -171,11 +217,21 @@ function Search() {
             <div>
               {searchPlaylists.total ? (
                 <div>
-                  <h2 className="searchpage__body__title">Playlists for "{searchValue}"</h2>
+                  <h2 className="searchpage__body__title">
+                    Playlists for "{searchValue}"
+                  </h2>
                   <div className="grid">
                     <Grid container justifyContent="flex-start" spacing={3}>
                       {searchPlaylists.items.map((item, index) => (
-                        <Grid key={item.id} item xs={6} sm={4} md={3} lg={2} xl={2}>
+                        <Grid
+                          key={item.id}
+                          item
+                          xs={6}
+                          sm={4}
+                          md={3}
+                          lg={2}
+                          xl={2}
+                        >
                           <PlaylistCard data={item} />
                         </Grid>
                       ))}
