@@ -15,7 +15,7 @@ import Album from "./components/album/Album";
 import Artist from "./components/artist/Artist";
 
 function App() {
-  const myState = useSelector((state) => state.authReducer);
+  const accessToken = useSelector((state) => state.authReducer.accessToken);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -24,11 +24,11 @@ function App() {
       dispatch(getToken(code));
       window.history.pushState("", "", "/");
     }
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="app">
-      {myState.accessToken ? (
+      {accessToken ? (
         <>
           <Router>
             <Header />
@@ -57,6 +57,7 @@ function App() {
                 </Route>
               </Switch>
             </div>
+            <div className="background"></div>
             <Footer />
           </Router>
         </>

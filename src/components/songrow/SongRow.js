@@ -5,17 +5,18 @@ import { useSelector, useDispatch } from "react-redux";
 import { setCurrent } from "../../actions";
 
 function SongRow({ track, id, type }) {
-  const myState = useSelector((state) => state.playlistReducer);
+  const playlistData = useSelector((state) => state.playlistReducer.playlistData);
   const dispatch = useDispatch();
 
   const handleClick = (index) => {
     if (type === "single") {
       dispatch(setCurrent([track.uri, 0]));
     } else {
-      var trackUris = myState.playlistData.tracks.items.map((item) => {
+      var trackUris = playlistData.tracks.items.map((item) => {
         if (item.track) {
           return item.track.uri;
         }
+        return null;
       });
       var filteredTrackUris = trackUris.filter((item) => {
         return item != null;
