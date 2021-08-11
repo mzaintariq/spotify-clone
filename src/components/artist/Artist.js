@@ -20,8 +20,6 @@ function Artist() {
     dispatch(getArtist([myState.accessToken, id]));
   }, [dispatch, myState.accessToken, id]);
 
-  console.log(myState2);
-
   return (
     <div>
       {myState2.artistData ? (
