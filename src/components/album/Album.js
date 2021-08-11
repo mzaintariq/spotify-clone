@@ -43,7 +43,7 @@ function Album() {
                       .map((artist) => artist.name)
                       .join(", ")} */}
                     {myState2.albumData.artists.map((artist, index) => (
-                      <>
+                      <span key={index}>
                         <Link
                           className="artist__link"
                           to={`/artist/${artist.id}`}
@@ -53,7 +53,7 @@ function Album() {
                         {index < myState2.albumData.artists.length - 1 && (
                           <>, </>
                         )}
-                      </>
+                      </span>
                     ))}
                   </b>{" "}
                   • {myState2.albumData.release_date.replace(/-.*/g, "")} •{" "}

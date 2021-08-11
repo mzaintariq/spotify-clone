@@ -20,6 +20,8 @@ function Artist() {
     dispatch(getArtist([myState.accessToken, id]));
   }, [dispatch, myState.accessToken, id]);
 
+  console.log(myState2);
+
   return (
     <div>
       {myState2.artistData ? (
@@ -71,23 +73,21 @@ function Artist() {
             {myState2.artistAlbums ? (
               <div className="artist__albumGrid">
                 <Grid container justifyContent="flex-start" spacing={3}>
-                  {myState2.artistAlbums.items.map((item, index) => (
-                    <>
-                      {item.album_type === "album" && (
-                        <Grid
-                          key={item.id}
-                          item
-                          xs={6}
-                          sm={4}
-                          md={3}
-                          lg={2}
-                          xl={2}
-                        >
-                          <AlbumCard data={item} />
-                        </Grid>
-                      )}
-                    </>
-                  ))}
+                  {myState2.artistAlbums.items
+                    .filter((item) => item.album_type === "album")
+                    .map((item) => (
+                      <Grid
+                        key={item.id}
+                        item
+                        xs={6}
+                        sm={4}
+                        md={3}
+                        lg={2}
+                        xl={2}
+                      >
+                        <AlbumCard data={item} />
+                      </Grid>
+                    ))}
                 </Grid>
               </div>
             ) : (
@@ -100,23 +100,24 @@ function Artist() {
             {myState2.artistAlbums ? (
               <div className="artist__albumGrid">
                 <Grid container justifyContent="flex-start" spacing={3}>
-                  {myState2.artistAlbums.items.map((item, index) => (
-                    <>
-                      {item.album_type === "single" && (
-                        <Grid
-                          key={item.id}
-                          item
-                          xs={6}
-                          sm={4}
-                          md={3}
-                          lg={2}
-                          xl={2}
-                        >
-                          <AlbumCard data={item} />
-                        </Grid>
-                      )}
-                    </>
-                  ))}
+                  {myState2.artistAlbums.items
+                    .filter(
+                      (item) => item.album_type === "single"
+                      // && item.artists[0].name === myState2.artistData.name
+                    )
+                    .map((item, index) => (
+                      <Grid
+                        key={item.id}
+                        item
+                        xs={6}
+                        sm={4}
+                        md={3}
+                        lg={2}
+                        xl={2}
+                      >
+                        <AlbumCard data={item} />
+                      </Grid>
+                    ))}
                 </Grid>
               </div>
             ) : (

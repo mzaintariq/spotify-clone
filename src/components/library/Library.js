@@ -36,14 +36,8 @@ function Library() {
     dispatch(setLibraryToggle(value));
   };
 
-  // console.log(myState2)
-
   return (
     <div className="library">
-      {/* <div>
-        LIBRARY
-        <h1>LIBRARY</h1>
-      </div> */}
       <div className="library__header">
         <div className="library__toggle">
           <input
@@ -112,7 +106,7 @@ function Library() {
                 <div className="playlist__songList">
                   {myState2.libraryTracks.items.map((item, index) => (
                     <SongRow
-                      key={item.id}
+                      key={index}
                       track={item.track}
                       id={index}
                       type="library"
@@ -137,7 +131,7 @@ function Library() {
               <div className="library__grid">
                 <Grid container justifyContent="flex-start" spacing={3}>
                   {myState2.libraryAlbums.items.map((item, index) => (
-                    <Grid key={item.id} item xs={6} sm={4} md={3} lg={2} xl={2}>
+                    <Grid key={index} item xs={6} sm={4} md={3} lg={2} xl={2}>
                       <AlbumCard data={item.album} type="newreleases" />
                     </Grid>
                   ))}

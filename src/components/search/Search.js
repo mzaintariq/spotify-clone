@@ -31,19 +31,19 @@ function Search() {
           <SearchBar />
         </div>
         <div className="searchpage__toggle">
-          <input id="tracks" name="toggle" type="radio" checked={myState.searchToggleValue === "tracks"} />
+          <input id="tracks" name="toggle" type="radio" checked={myState.searchToggleValue === "tracks"} onChange={() => handleClick("tracks")} />
           <label htmlFor="tracks" onClick={() => handleClick("tracks")}>
             <h4>Songs</h4>
           </label>
-          <input id="albums" name="toggle" type="radio" checked={myState.searchToggleValue === "albums"} />
+          <input id="albums" name="toggle" type="radio" checked={myState.searchToggleValue === "albums"} onChange={() => handleClick("albums")} />
           <label htmlFor="albums" onClick={() => handleClick("albums")}>
             <h4>Albums</h4>
           </label>
-          <input id="artists" name="toggle" type="radio" checked={myState.searchToggleValue === "artists"} />
+          <input id="artists" name="toggle" type="radio" checked={myState.searchToggleValue === "artists"} onChange={() => handleClick("artists")} />
           <label htmlFor="artists" onClick={() => handleClick("artists")}>
             <h4>Artists</h4>
           </label>
-          <input id="playlists" name="toggle" type="radio" checked={myState.searchToggleValue === "playlists"} />
+          <input id="playlists" name="toggle" type="radio" checked={myState.searchToggleValue === "playlists"} onChange={() => handleClick("playlists")} />
           <label htmlFor="playlists" onClick={() => handleClick("playlists")}>
             <h4>Playlists</h4>
           </label>
