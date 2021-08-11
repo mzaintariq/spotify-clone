@@ -5,15 +5,15 @@ import { getSearchResult, setSearch } from "../../actions";
 import "./SearchBar.scss";
 
 function SearchBar() {
-  const myState = useSelector((state) => state.authReducer);
-  const myState2 = useSelector((state) => state.searchReducer);
-  const [value, setValue] = useState(myState2.searchValue);
+  const accessToken = useSelector((state) => state.authReducer.accessToken);
+  const searchValue = useSelector((state) => state.searchReducer.searchValue);
+  const [value, setValue] = useState(searchValue);
   const dispatch = useDispatch();
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       if (value) {
-        dispatch(getSearchResult([myState.accessToken, value]));
+        dispatch(getSearchResult([accessToken, value]));
       } else {
         dispatch(
           setSearch([
@@ -24,7 +24,7 @@ function SearchBar() {
       }
     }, 1000);
     return () => clearTimeout(timeoutId);
-  }, [value, dispatch, myState.accessToken]);
+  }, [value, dispatch, accessToken]);
 
   const handleOnChange = (event) => {
     setValue(event.target.value);

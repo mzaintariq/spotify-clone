@@ -11,15 +11,15 @@ import { useSelector, useDispatch } from "react-redux";
 import { getUserData } from "../../actions";
 
 function Header() {
-  const myState2 = useSelector((state) => state.authReducer);
-  const myState = useSelector((state) => state.userReducer);
+  const accessToken = useSelector((state) => state.authReducer.accessToken);
+  const userData = useSelector((state) => state.userReducer.userData);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (myState2.accessToken) {
-      dispatch(getUserData(myState2.accessToken));
+    if (accessToken) {
+      dispatch(getUserData(accessToken));
     }
-  }, [myState2, dispatch]);
+  }, [dispatch, accessToken]);
 
   return (
     <div>
@@ -31,10 +31,10 @@ function Header() {
           <Option Icon={HomeIcon} text="Home" to="/" />
           <Option Icon={SearchIcon} text="Search" to="/search" />
           <Option Icon={LibraryMusicIcon} text="My Library" to="/library" />
-          {myState.userData ? (
+          {userData ? (
             <Option
-              imgUrl={myState.userData.images[0].url}
-              text={myState.userData.display_name}
+              imgUrl={userData.images[0].url}
+              text={userData.display_name}
               to="/profile"
             />
           ) : (

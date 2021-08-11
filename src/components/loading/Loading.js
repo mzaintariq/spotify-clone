@@ -4,9 +4,9 @@ import "./Loading.scss";
 function Loading() {
   return (
     <div className="container__dots">
-      <div class="snippet" data-title=".dot-flashing">
-        <div class="stage">
-          <div class="dot-flashing"></div>
+      <div className="snippet" data-title=".dot-flashing">
+        <div className="stage">
+          <div className="dot-flashing"></div>
         </div>
       </div>
     </div>
