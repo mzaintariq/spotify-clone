@@ -13,6 +13,12 @@ import { Grid } from "@material-ui/core";
 import AlbumCard from "../albumCard/AlbumCard";
 import ArtistCard from "../artistCard/ArtistCard";
 import PlaylistCard from "../playlistCard/PlaylistCard";
+import {
+  accessTokenSelector,
+  savedLibraryPlaylistsSelector,
+  publicLibraryPlaylistsSelector,
+  privateLibraryPlaylistsSelector,
+} from "../../reselect/selectors";
 
 function Library({
   accessToken,
@@ -20,7 +26,9 @@ function Library({
   libraryToggleValue,
   libraryAlbums,
   libraryArtists,
-  libraryPlaylists,
+  publicLibraryPlaylists,
+  privateLibraryPlaylists,
+  savedLibraryPlaylists,
   getLibraryData,
   getMoreLibraryTracks,
   setLibraryToggle,
@@ -175,12 +183,16 @@ function Library({
 
       {libraryToggleValue === "playlists" ? (
         <div>
-          {libraryPlaylists ? (
+          {publicLibraryPlaylists ? (
             <div>
-              <h2 className="library__body__title">Playlists</h2>
+              {publicLibraryPlaylists.length > 0 ? (
+                <h2 className="library__body__title">Private Playlists</h2>
+              ) : (
+                <></>
+              )}
               <div className="library__grid">
                 <Grid container justifyContent="flex-start" spacing={3}>
-                  {libraryPlaylists.items.map((item, index) => (
+                  {publicLibraryPlaylists.map((item, index) => (
                     <Grid key={item.id} item xs={6} sm={4} md={3} lg={2} xl={2}>
                       <PlaylistCard data={item} />
                     </Grid>
@@ -190,6 +202,46 @@ function Library({
             </div>
           ) : (
             <Loading />
+          )}
+          {privateLibraryPlaylists ? (
+            <div>
+              {privateLibraryPlaylists.length > 0 ? (
+                <h2 className="library__body__title">Private Playlists</h2>
+              ) : (
+                <></>
+              )}
+              <div className="library__grid">
+                <Grid container justifyContent="flex-start" spacing={3}>
+                  {privateLibraryPlaylists.map((item, index) => (
+                    <Grid key={item.id} item xs={6} sm={4} md={3} lg={2} xl={2}>
+                      <PlaylistCard data={item} />
+                    </Grid>
+                  ))}
+                </Grid>
+              </div>
+            </div>
+          ) : (
+            <></>
+          )}
+          {savedLibraryPlaylists ? (
+            <div>
+              {savedLibraryPlaylists.length > 0 ? (
+                <h2 className="library__body__title">Saved Playlists</h2>
+              ) : (
+                <></>
+              )}
+              <div className="library__grid">
+                <Grid container justifyContent="flex-start" spacing={3}>
+                  {savedLibraryPlaylists.map((item, index) => (
+                    <Grid key={item.id} item xs={6} sm={4} md={3} lg={2} xl={2}>
+                      <PlaylistCard data={item} />
+                    </Grid>
+                  ))}
+                </Grid>
+              </div>
+            </div>
+          ) : (
+            <></>
           )}
         </div>
       ) : (
@@ -201,12 +253,14 @@ function Library({
 
 function mapStateToProps(state) {
   return {
-    accessToken: state.authReducer.accessToken,
+    accessToken: accessTokenSelector(state),
     libraryTracks: state.libraryReducer.libraryTracks,
     libraryToggleValue: state.libraryReducer.libraryToggleValue,
     libraryAlbums: state.libraryReducer.libraryAlbums,
     libraryArtists: state.libraryReducer.libraryArtists,
-    libraryPlaylists: state.libraryReducer.libraryPlaylists,
+    savedLibraryPlaylists: savedLibraryPlaylistsSelector(state),
+    publicLibraryPlaylists: publicLibraryPlaylistsSelector(state),
+    privateLibraryPlaylists: privateLibraryPlaylistsSelector(state),
   };
 }
 
