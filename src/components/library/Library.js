@@ -186,7 +186,7 @@ function Library({
           {publicLibraryPlaylists ? (
             <div>
               {publicLibraryPlaylists.length > 0 ? (
-                <h2 className="library__body__title">Private Playlists</h2>
+                <h2 className="library__body__title">Public Playlists</h2>
               ) : (
                 <></>
               )}
