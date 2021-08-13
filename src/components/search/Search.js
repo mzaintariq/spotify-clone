@@ -7,9 +7,10 @@ import SearchBar from "../searchBar/SearchBar";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
 import SongRow from "../songRow/SongRow";
 import "./Search.scss";
-import Home from "../home/Home";
 import ArtistCard from "../artistCard/ArtistCard";
-import { setSearchToggle } from "../../actions";
+import { getCategoriesList, setSearchToggle } from "../../actions";
+import Loading from "../loading/Loading";
+import CategoryCard from "../categoryCard/CategoryCard";
 
 function Search() {
   const searchToggleValue = useSelector(
@@ -24,12 +25,15 @@ function Search() {
   const searchPlaylists = useSelector(
     (state) => state.searchReducer.searchPlaylists
   );
+  const categoriesList = useSelector((state) => state.browseReducer.categoriesList);
+  const accessToken = useSelector((state) => state.authReducer.accessToken);
   const dispatch = useDispatch();
 
   useEffect(() => {
     window.scrollTo(0, 0);
     dispatch(setSearchToggle(searchToggleValue));
-  }, [dispatch, searchToggleValue]);
+    dispatch(getCategoriesList(accessToken));
+  }, [dispatch, searchToggleValue, accessToken]);
 
   const handleClick = (value) => {
     dispatch(setSearchToggle(value));
@@ -254,8 +258,22 @@ function Search() {
         </div>
       ) : (
         <div className="nosearch">
-          <Home />
-          {/* <h1>LANDING PAGE</h1> */}
+          {categoriesList ? (
+            <div className="homepage">
+              <h2>Browse Categories</h2>
+              <div className="grid">
+                <Grid container justifyContent="flex-start" spacing={3}>
+                  {categoriesList.items.map((item, index) => (
+                    <Grid key={item.id} item xs={6} sm={4} md={3} lg={2} xl={2}>
+                      <CategoryCard data={item} />
+                    </Grid>
+                  ))}
+                </Grid>
+              </div>
+            </div>
+          ) : (
+            <Loading />
+          )}
         </div>
       )}
     </div>

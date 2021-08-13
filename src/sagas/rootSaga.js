@@ -11,9 +11,13 @@ import { handleGetArtist } from "./handlers/artist";
 import { handleGetLibraryData } from "./handlers/library";
 import { handleGetMoreLibraryTracks } from "./handlers/library_loadmore";
 import { handleGetUserTop } from "./handlers/userTop";
+import { handleGetCategoriesList } from "./handlers/categoriesList";
+import { handleGetCategoryData } from "./handlers/category";
 import {
   GET_ALBUM,
   GET_ARTIST,
+  GET_CATEGORIES_LIST,
+  GET_CATEGORY_DATA,
   GET_FEATURED,
   GET_LIBRARY_DATA,
   GET_MORE_LIBRARY_TRACKS,
@@ -39,4 +43,6 @@ export function* watcherSaga() {
   yield takeLatest(GET_LIBRARY_DATA, handleGetLibraryData);
   yield takeLatest(GET_MORE_LIBRARY_TRACKS, handleGetMoreLibraryTracks);
   yield takeLatest(GET_USER_TOP, handleGetUserTop);
+  yield takeLatest(GET_CATEGORIES_LIST, handleGetCategoriesList);
+  yield takeLatest(GET_CATEGORY_DATA, handleGetCategoryData);
 }

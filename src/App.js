@@ -13,6 +13,7 @@ import Search from "./components/search/Search";
 import Playlist from "./components/playlist/Playlist";
 import Album from "./components/album/Album";
 import Artist from "./components/artist/Artist";
+import Category from "./components/category/Category";
 
 function App() {
   const accessToken = useSelector((state) => state.authReducer.accessToken);
@@ -51,6 +52,9 @@ function App() {
                 </Route>
                 <Route path="/artist/:id">
                   <Artist />
+                </Route>
+                <Route path="/category/:id">
+                  <Category />
                 </Route>
                 <Route path="/">
                   <Home />

@@ -50,3 +50,14 @@ export {
   getMoreLibraryTracks,
   setMoreLibraryTracks,
 } from "./libraryActions";
+export {
+  GET_CATEGORIES_LIST,
+  getCategoriesList,
+  setCategoriesList,
+} from "./categoriesListActions";
+export {
+  GET_CATEGORY_DATA,
+  getCategoryData,
+  setCategoryData,
+  setCategoryPlaylists,
+} from "./categoryActions";
