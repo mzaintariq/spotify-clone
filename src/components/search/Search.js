@@ -25,7 +25,9 @@ function Search() {
   const searchPlaylists = useSelector(
     (state) => state.searchReducer.searchPlaylists
   );
-  const categoriesList = useSelector((state) => state.browseReducer.categoriesList);
+  const categoriesList = useSelector(
+    (state) => state.browseReducer.categoriesList
+  );
   const accessToken = useSelector((state) => state.authReducer.accessToken);
   const dispatch = useDispatch();
 
@@ -100,20 +102,20 @@ function Search() {
                   </h2>
                   <div className="searchpage__playlist__songs">
                     <div className="searchpage__playlist__header">
-                      <div className="playlist__header__left">
-                        <div className="header__number">
+                      <div className="searchpage__playlist__header__left">
+                        <div className="searchpage__header__number">
                           <h4>#</h4>
                         </div>
-                        <div className="header__title">
+                        <div className="searchpage__header__title">
                           <h4>TITLE</h4>
                         </div>
                       </div>
-                      <div className="header__icons">
+                      <div className="searchpage__header__icons">
                         <AccessTimeIcon className="time__icon" />
                       </div>
                     </div>
-                    <hr className="playlist__line" />
-                    <div className="playlist__songList">
+                    <hr className="searchpage__playlist__line" />
+                    <div className="searchpage__playlist__songList">
                       {searchTracks.items.map((item, index) => (
                         <SongRow
                           key={item.id}

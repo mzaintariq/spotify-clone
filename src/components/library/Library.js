@@ -102,20 +102,20 @@ function Library({
               <h2 className="library__body__title">Songs</h2>
               <div className="library__playlist__songs">
                 <div className="library__playlist__header">
-                  <div className="playlist__header__left">
-                    <div className="header__number">
+                  <div className="library__playlist__header__left">
+                    <div className="library__header__number">
                       <h4>#</h4>
                     </div>
-                    <div className="header__title">
+                    <div className="library__header__title">
                       <h4>TITLE</h4>
                     </div>
                   </div>
-                  <div className="header__icons">
+                  <div className="library__header__icons">
                     <AccessTimeIcon className="time__icon" />
                   </div>
                 </div>
-                <hr className="playlist__line" />
-                <div className="playlist__songList">
+                <hr className="library__playlist__line" />
+                <div className="library__playlist__songList">
                   {libraryTracks.items.map((item, index) => (
                     <SongRow
                       key={index}

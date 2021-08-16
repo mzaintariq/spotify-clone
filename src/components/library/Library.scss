@@ -68,6 +68,29 @@
   justify-content: space-between;
 }
 
+.library__playlist__header__left {
+  display: flex;
+  align-items: center;
+}
+.library__playlist__header__left h4 {
+  color: gray;
+  font-size: 16px;
+}
+.library__header__number {
+  width: 22px;
+  margin: 0px 40px 0px 0px;
+}
+.time__icon {
+  color: gray;
+}
+.library__playlist__line {
+  margin: -22px 20px 0px 20px;
+  border: 0.5px #222222 solid;
+}
+.library__playlist__songList {
+  margin-top: 20px;
+}
+
 .library__grid {
   margin: 30px 0vw;
 }

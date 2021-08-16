@@ -1,19 +1,22 @@
 import "./App.scss";
-import React, { useEffect } from "react";
+import React, { useEffect, Suspense, lazy } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { getToken } from "./actions/index";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
-import Home from "./components/home/Home";
-import Profile from "./components/profile/Profile";
-import Library from "./components/library/Library";
 import Login from "./components/login/Login";
-import Search from "./components/search/Search";
-import Playlist from "./components/playlist/Playlist";
-import Album from "./components/album/Album";
-import Artist from "./components/artist/Artist";
-import Category from "./components/category/Category";
+import ErrorBoundary from "./components/errorBoundary/ErrorBoundary";
+import Loading from "./components/loading/Loading";
+
+const Home = lazy(() => import("./components/home/Home"));
+const Profile = lazy(() => import("./components/profile/Profile"));
+const Library = lazy(() => import("./components/library/Library"));
+const Search = lazy(() => import("./components/search/Search"));
+const Playlist = lazy(() => import("./components/playlist/Playlist"));
+const Album = lazy(() => import("./components/album/Album"));
+const Artist = lazy(() => import("./components/artist/Artist"));
+const Category = lazy(() => import("./components/category/Category"));
 
 function App() {
   const accessToken = useSelector((state) => state.authReducer.accessToken);
@@ -33,34 +36,44 @@ function App() {
         <>
           <Router>
             <Header />
-            <div className="mainpage">
-              <Switch>
-                <Route path="/library">
-                  <Library />
-                </Route>
-                <Route path="/profile">
-                  <Profile />
-                </Route>
-                <Route path="/search">
-                  <Search />
-                </Route>
-                <Route path="/playlist/:id">
-                  <Playlist />
-                </Route>
-                <Route path="/album/:id">
-                  <Album />
-                </Route>
-                <Route path="/artist/:id">
-                  <Artist />
-                </Route>
-                <Route path="/category/:id">
-                  <Category />
-                </Route>
-                <Route path="/">
-                  <Home />
-                </Route>
-              </Switch>
-            </div>
+            <ErrorBoundary>
+              <Suspense
+                fallback={
+                  <div className="load">
+                    <Loading />
+                  </div>
+                }
+              >
+                <div className="mainpage">
+                  <Switch>
+                    <Route path="/library">
+                      <Library />
+                    </Route>
+                    <Route path="/profile">
+                      <Profile />
+                    </Route>
+                    <Route path="/search">
+                      <Search />
+                    </Route>
+                    <Route path="/playlist/:id">
+                      <Playlist />
+                    </Route>
+                    <Route path="/album/:id">
+                      <Album />
+                    </Route>
+                    <Route path="/artist/:id">
+                      <Artist />
+                    </Route>
+                    <Route path="/category/:id">
+                      <Category />
+                    </Route>
+                    <Route path="/">
+                      <Home />
+                    </Route>
+                  </Switch>
+                </div>
+              </Suspense>
+            </ErrorBoundary>
             <div className="background"></div>
             <Footer />
           </Router>
