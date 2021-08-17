@@ -13,6 +13,7 @@ import { handleGetMoreLibraryTracks } from "./handlers/library_loadmore";
 import { handleGetUserTop } from "./handlers/userTop";
 import { handleGetCategoriesList } from "./handlers/categoriesList";
 import { handleGetCategoryData } from "./handlers/category";
+import { handleGetRefresh } from "./handlers/refresh";
 import {
   GET_ALBUM,
   GET_ARTIST,
@@ -24,6 +25,7 @@ import {
   GET_MORE_PLAYLIST_TRACKS,
   GET_NEW_RELEASES,
   GET_PLAYLIST,
+  GET_REFRESH,
   GET_SEARCH_RESULT,
   GET_TOKEN,
   GET_USER_DATA,
@@ -45,4 +47,5 @@ export function* watcherSaga() {
   yield takeLatest(GET_USER_TOP, handleGetUserTop);
   yield takeLatest(GET_CATEGORIES_LIST, handleGetCategoriesList);
   yield takeLatest(GET_CATEGORY_DATA, handleGetCategoryData);
+  yield takeLatest(GET_REFRESH, handleGetRefresh);
 }

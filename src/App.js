@@ -2,7 +2,7 @@ import "./App.scss";
 import React, { useEffect, Suspense, lazy } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { getToken } from "./actions/index";
+import { getRefresh, getToken } from "./actions/index";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import Login from "./components/login/Login";
@@ -20,8 +20,10 @@ const Category = lazy(() => import("./components/category/Category"));
 
 function App() {
   const accessToken = useSelector((state) => state.authReducer.accessToken);
+  const refreshToken = useSelector((state) => state.authReducer.refreshToken);
+  const expiresIn = useSelector((state) => state.authReducer.expiresIn);
   const dispatch = useDispatch();
-
+  
   useEffect(() => {
     const code = new URLSearchParams(window.location.search).get("code");
     if (code) {
@@ -29,6 +31,15 @@ function App() {
       window.history.pushState("", "", "/");
     }
   }, [dispatch]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (refreshToken) {
+        dispatch(getRefresh(refreshToken));
+      }
+    }, (expiresIn - 60) * 1000);
+    return () => clearInterval(interval);
+  }, [dispatch, refreshToken, expiresIn, accessToken]);
 
   return (
     <div className="app">
