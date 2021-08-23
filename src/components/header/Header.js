@@ -9,6 +9,7 @@ import SpotifyLogo from "../../assets/spotifylogo.jpeg";
 import Option from "../option/Option";
 import { useSelector, useDispatch } from "react-redux";
 import { getUserData } from "../../actions";
+import OptionProfile from "../optionProfile/OptionProfile";
 
 function Header() {
   const accessToken = useSelector((state) => state.authReducer.accessToken);
@@ -31,11 +32,19 @@ function Header() {
           <Option Icon={HomeIcon} text="Home" to="/" />
           <Option Icon={SearchIcon} text="Search" to="/search" />
           <Option Icon={LibraryMusicIcon} text="My Library" to="/library" />
-          {userData ? (
+          {/* {userData ? (
             <Option
               imgUrl={userData.images[0].url}
               text={userData.display_name}
               to="/profile"
+            />
+          ) : (
+            <Option Icon={AccountCircleIcon} text="Profile" to="/profile" />
+          )} */}
+          {userData ? (
+            <OptionProfile
+              imgUrl={userData.images[0].url}
+              text={userData.display_name}
             />
           ) : (
             <Option Icon={AccountCircleIcon} text="Profile" to="/profile" />
