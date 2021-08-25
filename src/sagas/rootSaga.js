@@ -1,7 +1,7 @@
-import { takeLatest } from "redux-saga/effects";
-import { handleGetToken } from "./handlers/auth";
-import { GET_TOKEN } from "../actions";
+import { fork, all } from "redux-saga/effects";
+
+import { authSaga } from "./auth";
 
 export function* watcherSaga() {
-  yield takeLatest(GET_TOKEN, handleGetToken);
+  yield all([fork(authSaga)]);
 }

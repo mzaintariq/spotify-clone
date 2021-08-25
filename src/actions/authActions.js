@@ -1,5 +1,3 @@
-export const GET_TOKEN = "GET_TOKEN";
-
 export const getToken = (code) => {
   return {
     type: "GET_TOKEN",

@@ -1,27 +1,15 @@
+import React from "react";
+import { useSelector } from "react-redux";
+
 import "./App.scss";
-import React, { useEffect } from "react";
 import Dashboard from "./components/dashboard/Dashboard";
 import Login from "./components/login/Login";
-import { useSelector, useDispatch } from "react-redux";
-import { getToken } from "./actions/index";
+import { accessTokenSelector } from "./reducers/authReducer";
 
 function App() {
-  const myState = useSelector((state) => state.authReducer);
-  const dispatch = useDispatch();
+  const accessToken = useSelector(accessTokenSelector);
 
-  useEffect(async () => {
-    const code = new URLSearchParams(window.location.search).get("code");
-    if (code) {
-      dispatch(getToken(code));
-      window.history.pushState("", "", "/");
-    }
-  }, []);
-
-  console.log("CHECK FINAL: ", myState.accessToken);
-
-  return (
-    <div className="app">{myState.accessToken ? <Dashboard /> : <Login />}</div>
-  );
+  return <div className="app">{accessToken ? <Dashboard /> : <Login />}</div>;
 }
 
 export default App;
