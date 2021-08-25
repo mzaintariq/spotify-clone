@@ -1,13 +1,15 @@
 import React from "react";
-import Header from "./components/header/Header";
-import "./App.css";
+import { useSelector } from "react-redux";
+
+import "./App.scss";
+import Dashboard from "./components/dashboard/Dashboard";
+import Login from "./components/login/Login";
+import { accessTokenSelector } from "./reducers/authReducer";
 
 function App() {
-  return (
-    <div className="App">
-      <Header />
-    </div>
-  );
+  const accessToken = useSelector(accessTokenSelector);
+
+  return <div className="app">{accessToken ? <Dashboard /> : <Login />}</div>;
 }
 
 export default App;

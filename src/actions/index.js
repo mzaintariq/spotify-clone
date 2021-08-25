@@ -1,1 +1,2 @@
-export const checkAction = { type: "CHECK" };
+export { getToken, setToken } from "./authActions";
+export { GET_TOKEN } from "./actionTypes";
