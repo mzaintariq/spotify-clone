@@ -5,6 +5,7 @@ import { newReleasesSaga } from "./newreleases";
 import { featuredSaga } from "./featured";
 import { userDataSaga } from "./user";
 import { playlistSaga } from "./playlist";
+import { getMoreSaga } from "./playlist_loadmore";
 
 export function* watcherSaga() {
   yield all([
@@ -13,5 +14,6 @@ export function* watcherSaga() {
     fork(featuredSaga),
     fork(userDataSaga),
     fork(playlistSaga),
+    fork(getMoreSaga),
   ]);
 }
