@@ -1,8 +1,7 @@
-import { call, put } from "redux-saga/effects";
+import { call, put, takeLatest } from "redux-saga/effects";
 
 import { setToken, GET_TOKEN } from "../actions";
 import { requestGetToken } from "../services/api";
-import { takeLatest } from "redux-saga/effects";
 
 function* getToken(action) {
   try {
