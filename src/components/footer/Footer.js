@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
-import "./Footer.scss";
+import { useSelector } from "react-redux";
+
 import SpotifyPlayer from "react-spotify-web-playback";
-import { useSelector, useDispatch } from "react-redux";
+
+import styles from "./Footer.module.scss";
+import { accessTokenSelector } from "../../reducers/authReducer";
+import { currentArraySelector, currentNumberSelector } from "../../reducers/currentReducer";
 
 function Footer() {
-  const accessToken = useSelector((state) => state.authReducer.accessToken);
-  const currentNumber = useSelector((state) => state.currentReducer.currentNumber);
-  const currentArray = useSelector((state) => state.currentReducer.currentArray);
+  const accessToken = useSelector(accessTokenSelector);
+  const currentNumber = useSelector(currentNumberSelector);
+  const currentArray = useSelector(currentArraySelector);
   const [play, setPlay] = useState(false);
 
   useEffect(() => {
@@ -14,8 +18,8 @@ function Footer() {
   }, [currentArray]);
   
   return (
-    <div className="footer">
-      <div className="player">
+    <div className={styles.footer}>
+      <div className={styles.player}>
         <SpotifyPlayer
           token={accessToken}
           initialVolume={0.5}

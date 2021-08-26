@@ -9,7 +9,10 @@ import SongRow from "../songRow/SongRow";
 import Loading from "../loading/Loading";
 import { getMorePlaylistTracks, getPlaylist } from "../../actions";
 import { accessTokenSelector } from "../../reducers/authReducer";
-import { playlistDataSelector } from "../../reducers/playlistReducer";
+import {
+  playlistDataSelector,
+  playlistTracksSelector,
+} from "../../reducers/playlistReducer";
 import { isLoadingSelector } from "../../reducers/browseReducer";
 
 import PlaylistImage from "../../assets/playlistImage.png";
@@ -17,10 +20,10 @@ import PlaylistImage from "../../assets/playlistImage.png";
 function Playlist() {
   const accessToken = useSelector(accessTokenSelector);
   const playlistData = useSelector(playlistDataSelector);
+  const playlistTracks = useSelector(playlistTracksSelector);
   const isLoading = useSelector(isLoadingSelector);
   const { id } = useParams();
   const dispatch = useDispatch();
-  var num = 0;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -32,7 +35,7 @@ function Playlist() {
       dispatch(getMorePlaylistTracks([accessToken, playlistData.tracks.next]));
     }
   }, [dispatch, accessToken, playlistData]);
-
+  
   return (
     <div>
       {isLoading ? (
@@ -85,17 +88,8 @@ function Playlist() {
                 </div>
                 <hr className={styles.playlist__line} />
                 <div className={styles.playlist__songList}>
-                  {playlistData.tracks.items.map((item, index) => (
-                    <div key={index}>
-                      {item.track ? (
-                        <div>
-                          <SongRow key={item.id} track={item.track} id={num} />
-                          <div className={styles.hidden}>{num++}</div>
-                        </div>
-                      ) : (
-                        <></>
-                      )}
-                    </div>
+                  {playlistTracks.map((item, index) => (
+                    <SongRow key={index} track={item.track} id={index} />
                   ))}
                 </div>
               </div>

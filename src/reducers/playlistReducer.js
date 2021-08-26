@@ -1,3 +1,4 @@
+import { createSelector } from "reselect";
 import { SET_MORE_PLAYLIST_TRACKS, SET_PLAYLIST } from "../actions";
 
 const initialState = {
@@ -34,3 +35,10 @@ export const playlistReducer = (state = initialState, action) => {
 export const playlistDataSelector = (state) => state.playlist.playlistData;
 
 export const isLoadingSelector = (state) => state.playlist.isLoading;
+
+export const playlistTracksSelector = createSelector(
+  playlistDataSelector,
+  (playlistDataSelector) => {
+    return playlistDataSelector?.tracks.items.filter(item => item.track);
+  }
+);

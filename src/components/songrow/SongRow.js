@@ -1,11 +1,14 @@
 import React from "react";
-import "./SongRow.scss";
-import ExplicitIcon from "@material-ui/icons/Explicit";
 import { useSelector, useDispatch } from "react-redux";
+
+import ExplicitIcon from "@material-ui/icons/Explicit";
+
+import styles from "./SongRow.module.scss";
 import { setCurrent } from "../../actions";
+import { playlistDataSelector } from "../../reducers/playlistReducer";
 
 function SongRow({ track, id, type }) {
-  const playlistData = useSelector((state) => state.playlistReducer.playlistData);
+  const playlistData = useSelector(playlistDataSelector);
   const dispatch = useDispatch();
 
   const handleClick = (index) => {
@@ -32,23 +35,23 @@ function SongRow({ track, id, type }) {
   };
 
   return (
-    <div className="songrow" onClick={() => handleClick(id)}>
-      <div className="songrow__number">
+    <div className={styles.songrow} onClick={() => handleClick(id)}>
+      <div className={styles.songrow__number}>
         <h4>{id + 1}</h4>
       </div>
-      <div className="songrow__albumart">
+      <div className={styles.songrow__albumart}>
         <img
-          className="songrow__album"
+          className={styles.songrow__album}
           src={track.album.images[0].url}
           alt=""
         />
       </div>
-      <div className="songrow__small">
-        <div className="songrow__info">
-          <div className="songrow__info__name">
+      <div className={styles.songrow__small}>
+        <div className={styles.songrow__info}>
+          <div className={styles.songrow__info__name}>
             <h1>{track.name}</h1>
           </div>
-          <div className="songrow__info__artist">
+          <div className={styles.songrow__info__artist}>
             <p>
               {track.artists.map((artist) => artist.name).join(", ")} - {}
               {track.album.name}
@@ -56,13 +59,13 @@ function SongRow({ track, id, type }) {
           </div>
         </div>
 
-        <div className="songrow_right">
+        <div className={styles.songrow_right}>
           {track.explicit ? (
-            <ExplicitIcon className="songrow__info__icon" />
+            <ExplicitIcon className={styles.songrow__info__icon} />
           ) : (
             <></>
           )}
-          <div className="songrow_time">
+          <div className={styles.songrow_time}>
             {msToMinutesAndSeconds(track.duration_ms)}
           </div>
         </div>
