@@ -1,16 +1,25 @@
 import React, { useEffect } from "react";
-import "./Home.scss";
 import { useSelector, useDispatch } from "react-redux";
-import { getFeatured, getNewReleases } from "../../actions";
+
+import { Grid } from "@material-ui/core";
+
+import styles from "./Home.module.scss";
 import Loading from "../loading/Loading";
 import PlaylistCard from "../playlistCard/PlaylistCard";
 import AlbumCard from "../albumCard/AlbumCard";
-import { Grid } from "@material-ui/core";
+import { getFeatured, getNewReleases } from "../../actions";
+import { accessTokenSelector } from "../../reducers/authReducer";
+import {
+  featuredPlaylistSelector,
+  isLoadingSelector,
+  newreleasesPlaylistSelector,
+} from "../../reducers/browseReducer";
 
 function Home() {
-  const accessToken = useSelector((state) => state.authReducer.accessToken);
-  const featuredPlaylists = useSelector((state) => state.browseReducer.featuredPlaylists);
-  const newreleasesPlaylists = useSelector((state) => state.browseReducer.newreleasesPlaylists);
+  const accessToken = useSelector(accessTokenSelector);
+  const featuredPlaylists = useSelector(featuredPlaylistSelector);
+  const newreleasesPlaylists = useSelector(newreleasesPlaylistSelector);
+  const isLoading = useSelector(isLoadingSelector);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,37 +32,39 @@ function Home() {
 
   return (
     <div>
-      {featuredPlaylists ? (
-        <div className="homepage">
-          <h2>Featured Playlists</h2>
-          <div className="grid">
-            <Grid container justifyContent="flex-start" spacing={3}>
-              {featuredPlaylists.items.map((item, index) => (
-                <Grid key={item.id} item xs={6} sm={4} md={3} lg={2} xl={2}>
-                  <PlaylistCard data={item} />
-                </Grid>
-              ))}
-            </Grid>
-          </div>
-        </div>
-      ) : (
+      {isLoading ? (
         <Loading />
-      )}
-      {newreleasesPlaylists ? (
-        <div className="homepage">
-          <h2>New Releases</h2>
-          <div className="grid">
-            <Grid container justifyContent="flex-start" spacing={3}>
-              {newreleasesPlaylists.items.map((item, index) => (
-                <Grid key={item.id} item xs={6} sm={4} md={3} lg={2} xl={2}>
-                  <AlbumCard data={item} />
-                </Grid>
-              ))}
-            </Grid>
-          </div>
-        </div>
       ) : (
-        <></>
+        <>
+          {featuredPlaylists && (
+            <div className={styles.homepage}>
+              <h2>Featured Playlists</h2>
+              <div className={styles.grid}>
+                <Grid container justifyContent="flex-start" spacing={3}>
+                  {featuredPlaylists.items.map((item, index) => (
+                    <Grid key={item.id} item xs={6} sm={4} md={3} lg={2} xl={2}>
+                      <PlaylistCard data={item} />
+                    </Grid>
+                  ))}
+                </Grid>
+              </div>
+            </div>
+          )}
+          {newreleasesPlaylists && (
+            <div className={styles.homepage}>
+              <h2>New Releases</h2>
+              <div className={styles.grid}>
+                <Grid container justifyContent="flex-start" spacing={3}>
+                  {newreleasesPlaylists.items.map((item, index) => (
+                    <Grid key={item.id} item xs={6} sm={4} md={3} lg={2} xl={2}>
+                      <AlbumCard data={item} />
+                    </Grid>
+                  ))}
+                </Grid>
+              </div>
+            </div>
+          )}
+        </>
       )}
     </div>
   );

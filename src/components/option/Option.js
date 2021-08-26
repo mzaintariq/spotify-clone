@@ -1,15 +1,17 @@
 import React from "react";
-import "./Option.scss";
 import { Link } from "react-router-dom";
+
 import Avatar from "@material-ui/core/Avatar";
+
+import styles from "./Option.module.scss";
 
 function Option({ text, Icon, to, imgUrl }) {
   return (
-    <Link className="option__link" to={to}>
-      <div className="option__label">
-        {Icon && <Icon className="option__icon" />}
+    <Link className={styles.option__link} to={to}>
+      <div className={styles.option__label}>
+        {Icon && <Icon className={styles.option__icon} />}
         {imgUrl && (
-          <div className="option__avatar">
+          <div className={styles.option__avatar}>
             <Avatar
               src={imgUrl}
               alt=""

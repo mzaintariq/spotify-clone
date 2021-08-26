@@ -1,12 +1,12 @@
 import { combineReducers } from "redux";
 import { authReducer } from "./authReducer";
-import userReducer from "./userReducer";
-import browseReducer from "./browseReducer";
+import { userReducer } from "./userReducer";
+import { browseReducer } from "./browseReducer";
 
 const rootReducer = combineReducers({
   auth: authReducer,
-  userReducer,
-  browseReducer,
+  user: userReducer,
+  browse: browseReducer,
 });
 
 export default rootReducer;
