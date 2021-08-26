@@ -4,16 +4,16 @@ import { useSelector, useDispatch } from "react-redux";
 import { Grid } from "@material-ui/core";
 
 import styles from "./Home.module.scss";
-import Loading from "../loading/Loading";
-import PlaylistCard from "../playlistCard/PlaylistCard";
-import AlbumCard from "../albumCard/AlbumCard";
-import { getFeatured, getNewReleases } from "../../actions";
-import { accessTokenSelector } from "../../reducers/authReducer";
+import Loading from "./Loading";
+import PlaylistCard from "./PlaylistCard";
+import AlbumCard from "./AlbumCard";
+import { getFeatured, getNewReleases } from "../actions";
+import { accessTokenSelector } from "../reducers/authReducer";
 import {
   featuredPlaylistSelector,
   isLoadingSelector,
   newreleasesPlaylistSelector,
-} from "../../reducers/browseReducer";
+} from "../reducers/browseReducer";
 
 function Home() {
   const accessToken = useSelector(accessTokenSelector);

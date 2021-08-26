@@ -3,16 +3,16 @@ import { useSelector } from "react-redux";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import styles from "./App.module.scss";
-import Header from "./components/header/Header";
-import Footer from "./components/footer/Footer";
-import Home from "./components/home/Home";
-import Profile from "./components/profile/Profile";
-import Library from "./components/library/Library";
-import Login from "./components/login/Login";
-import Search from "./components/search/Search";
-import Playlist from "./components/playlist/Playlist";
-import Album from "./components/album/Album";
-import NotFound from "./components/notFound/NotFound";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Home from "./components/Home";
+import Profile from "./components/Profile";
+import Library from "./components/Library";
+import Login from "./components/Login";
+import Search from "./components/Search";
+import Playlist from "./components/Playlist";
+import Album from "./components/Album";
+import NotFound from "./components/NotFound";
 import { accessTokenSelector } from "./reducers/authReducer";
 
 function App() {

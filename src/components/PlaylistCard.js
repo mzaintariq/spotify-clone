@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import styles from "./PlaylistCard.module.scss";
 
-import PlaylistImage from "../../assets/playlistImage.png";
+import PlaylistImage from "../assets/playlistImage.png";
 
 function PlaylistCard({ data }) {
   return (
