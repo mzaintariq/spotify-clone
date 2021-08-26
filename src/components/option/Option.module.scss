@@ -5,10 +5,14 @@
   padding-left: 4vw;
   padding-right: 4vw;
   transition: 250ms color ease-in;
-}
 
-.option__link:hover {
-  color: white;
+  &:hover {
+    color: white;
+  }
+
+  &:hover .option__avatar {
+    opacity: 1;
+  }
 }
 
 .option__label {
@@ -24,9 +28,6 @@
   padding-right: 10px;
   opacity: 0.8;
   transition: 250ms opacity ease-in;
-}
-.option__label:hover .option__avatar {
-  opacity: 1;
 }
 
 @media (max-width: 900px) {

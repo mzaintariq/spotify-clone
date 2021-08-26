@@ -1,19 +1,27 @@
 import React, { useEffect } from "react";
-import "./Header.scss";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+
 import HomeIcon from "@material-ui/icons/Home";
 import SearchIcon from "@material-ui/icons/Search";
 import LibraryMusicIcon from "@material-ui/icons/LibraryMusic";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import SpotifyLogo from "../../assets/spotifylogo.jpeg";
-import Option from "../option/Option";
 
-import { useSelector, useDispatch } from "react-redux";
+import styles from "./Header.module.scss";
+import Option from "../option/Option";
+import { accessTokenSelector } from "../../reducers/authReducer";
+import {
+  isLoadingSelector,
+  userDataSelector,
+} from "../../reducers/userReducer";
 import { getUserData } from "../../actions";
 
+import { ReactComponent as SpotifyLogo } from "../../assets/SpotifyLogo.svg";
+
 function Header() {
-  const accessToken = useSelector((state) => state.authReducer.accessToken);
-  const userData = useSelector((state) => state.userReducer.userData);
+  const accessToken = useSelector(accessTokenSelector);
+  const userData = useSelector(userDataSelector);
+  const isLoadingUser = useSelector(isLoadingSelector);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -24,24 +32,24 @@ function Header() {
 
   return (
     <div>
-      <header className="header">
-        <Link className="header__logo" to="/">
-          <img src={SpotifyLogo} alt="Logo" />
+      <header className={styles.header}>
+        <Link className={styles.header__logo} to="/">
+          <SpotifyLogo width="150px" height="63px" viewBox="0 -35 800 300" />
         </Link>
-        <div className="header__nav">
+        <nav className={styles.header__nav}>
           <Option Icon={HomeIcon} text="Home" to="/" />
           <Option Icon={SearchIcon} text="Search" to="/search" />
           <Option Icon={LibraryMusicIcon} text="My Library" to="/library" />
-          {userData ? (
+          {isLoadingUser ? (
+            <Option Icon={AccountCircleIcon} text="Profile" to="/profile" />
+          ) : (
             <Option
               imgUrl={userData.images[0].url}
               text={userData.display_name}
               to="/profile"
             />
-          ) : (
-            <Option Icon={AccountCircleIcon} text="Profile" to="/profile" />
           )}
-        </div>
+        </nav>
       </header>
     </div>
   );
