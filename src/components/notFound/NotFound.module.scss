@@ -1,0 +1,25 @@
+.page__notfound {
+  position: fixed;
+  width: 100%;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.page__link {
+  text-decoration: none;
+  display: grid;
+  place-items: center;
+  color: grey;
+  font-weight: 600;
+  padding-left: 4vw;
+  padding-right: 4vw;
+  transition: 250ms color ease-in;
+  
+  &:hover {
+    color: white;
+  }
+
+  &:hover .option__avatar {
+    opacity: 1;
+  }  
+}

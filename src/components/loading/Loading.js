@@ -1,14 +1,11 @@
 import React from "react";
-import "./Loading.scss";
+
+import styles from "./Loading.module.scss";
 
 function Loading() {
   return (
-    <div className="container__dots">
-      <div className="snippet" data-title=".dot-flashing">
-        <div className="stage">
-          <div className="dot-flashing"></div>
-        </div>
-      </div>
+    <div className={styles.container}>
+      <div className={styles.loading}></div>
     </div>
   );
 }

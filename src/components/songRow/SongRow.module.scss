@@ -5,23 +5,26 @@
   align-items: center;
   color: white;
   border-radius: 4px;
-}
-.songrow:hover {
-  cursor: pointer;
-  background-color: #ffffff11;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #ffffff11;
+  }
 }
 
 .songrow__number {
   width: 22px;
   margin: 0px 40px 0px 0px;
-}
-.songrow__number > h4 {
-  font-size: 16px;
+
+  & > h4 {
+    font-size: 16px;
+  }
 }
 
 .songrow__albumart {
   padding: 4px 10px 0px 0px;
 }
+
 .songrow__album {
   height: 50px;
   width: 50px;
@@ -33,18 +36,22 @@
   align-items: center;
   justify-content: space-between;
 }
+
 .songrow__info {
   margin: 0px 10px 0px 0px;
 }
+
 .songrow__info__name > h1 {
   font-size: 16px;
   margin-bottom: 0px;
 }
+
 .songrow__info__artist {
   margin: -10px 0px;
   font-size: 14px;
   color: rgb(134, 134, 134);
 }
+
 .songrow__info__icon {
   color: rgb(134, 134, 134);
 }
@@ -53,6 +60,7 @@
   display: flex;
   align-items: center;
 }
+
 .songrow_time {
   margin-left: 10px;
   color: rgb(134, 134, 134);
