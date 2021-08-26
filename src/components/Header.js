@@ -8,15 +8,15 @@ import LibraryMusicIcon from "@material-ui/icons/LibraryMusic";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
 import styles from "./Header.module.scss";
-import Option from "../option/Option";
-import { accessTokenSelector } from "../../reducers/authReducer";
+import Option from "./Option";
+import { accessTokenSelector } from "../reducers/authReducer";
 import {
   isLoadingSelector,
   userDataSelector,
-} from "../../reducers/userReducer";
-import { getUserData } from "../../actions";
+} from "../reducers/userReducer";
+import { getUserData } from "../actions";
 
-import { ReactComponent as SpotifyLogo } from "../../assets/SpotifyLogo.svg";
+import { ReactComponent as SpotifyLogo } from "../assets/SpotifyLogo.svg";
 
 function Header() {
   const accessToken = useSelector(accessTokenSelector);

@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 import { login } from "./Login.module.scss";
-import { getToken } from "../../actions/index";
+import { getToken } from "../actions/index";
 
-import SpotifyLogo from "../../assets/SpotifyLogo.svg";
-import { CLIENT_ID, REDIRECT_URI } from "../../setting";
+import SpotifyLogo from "../assets/SpotifyLogo.svg";
+import { CLIENT_ID, REDIRECT_URI } from "../setting";
 
 const SCOPES = [
   "user-read-currently-playing",
