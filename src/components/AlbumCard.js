@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import styles from "./AlbumCard.module.scss";
-import PlaylistImage from "../../assets/playlistImage.png";
+import PlaylistImage from "../assets/playlistImage.png";
 
 function AlbumCard({ data }) {
   return (

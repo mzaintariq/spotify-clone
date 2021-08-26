@@ -5,17 +5,17 @@ import { useParams } from "react-router-dom";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
 
 import styles from "./Playlist.module.scss";
-import SongRow from "../songRow/SongRow";
-import Loading from "../loading/Loading";
-import { getMorePlaylistTracks, getPlaylist } from "../../actions";
-import { accessTokenSelector } from "../../reducers/authReducer";
+import SongRow from "./SongRow";
+import Loading from "./Loading";
+import { getMorePlaylistTracks, getPlaylist } from "../actions";
+import { accessTokenSelector } from "../reducers/authReducer";
 import {
   playlistDataSelector,
   playlistTracksSelector,
-} from "../../reducers/playlistReducer";
-import { isLoadingSelector } from "../../reducers/browseReducer";
+} from "../reducers/playlistReducer";
+import { isLoadingSelector } from "../reducers/browseReducer";
 
-import PlaylistImage from "../../assets/playlistImage.png";
+import PlaylistImage from "../assets/playlistImage.png";
 
 function Playlist() {
   const accessToken = useSelector(accessTokenSelector);
