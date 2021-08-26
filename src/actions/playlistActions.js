@@ -1,15 +1,15 @@
-export const GET_PLAYLIST = "GET_PLAYLIST";
+import { GET_PLAYLIST, SET_PLAYLIST } from "./actionTypes";
 
 export const getPlaylist = (accessToken) => {
   return {
-    type: "GET_PLAYLIST",
+    type: GET_PLAYLIST,
     payload: accessToken,
   };
 };
 
 export const setPlaylist = (data) => {
   return {
-    type: "SET_PLAYLIST",
+    type: SET_PLAYLIST,
     payload: data,
   };
 };

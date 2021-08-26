@@ -1,81 +1,101 @@
 import React, { useEffect } from "react";
-import "./Playlist.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getPlaylist } from "../../actions";
+
+import AccessTimeIcon from "@material-ui/icons/AccessTime";
+
+import styles from "./Playlist.module.scss";
 import SongRow from "../songRow/SongRow";
 import Loading from "../loading/Loading";
+import { getPlaylist } from "../../actions";
+import { accessTokenSelector } from "../../reducers/authReducer";
+import { playlistDataSelector } from "../../reducers/playlistReducer";
+import { isLoadingSelector } from "../../reducers/browseReducer";
+
+import PlaylistImage from "../../assets/playlistImage.png";
 
 function Playlist() {
-  const accessToken = useSelector((state) => state.authReducer.accessToken);
-  const playlistData = useSelector((state) => state.playlistReducer.playlistData);
+  const accessToken = useSelector(accessTokenSelector);
+  const playlistData = useSelector(playlistDataSelector);
+  const isLoading = useSelector(isLoadingSelector);
   const { id } = useParams();
   const dispatch = useDispatch();
+  var num = 0;
 
   useEffect(() => {
     window.scrollTo(0, 0);
     dispatch(getPlaylist([accessToken, id]));
   }, [dispatch, accessToken, id]);
 
-  function handleClick(item) {
-    // console.log('The link was clicked.');
-    // console.log(item);
-  }
-
   return (
     <div>
-      {playlistData ? (
-        <div className="playlist__page">
-          <div className="playlist">
-            <div className="playlist__info">
-              <img src={playlistData.images[0].url} alt="" />
-              <div className="playlist__infoText">
-                <h4>PLAYLIST</h4>
-                <h2>{playlistData.name}</h2>
-                <p>
-                  {playlistData.description.replaceAll(
-                    /<[^>]*>/gi,
-                    ""
-                  )}
-                </p>
-                <p>
-                  <b>{playlistData.owner.display_name}</b> •{" "}
-                  {playlistData.followers.total
-                    .toString()
-                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
-                  likes
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="playlist__songs">
-            <div className="playlist__icons"></div>
-            <div className="playlist__header">
-              <div className="header__number">
-                <h4>#</h4>
-              </div>
-              <div className="header__title">
-                <h4>TITLE</h4>
-              </div>
-            </div>
-            <hr className="playlist__line" />
-            <div className="playlist__songList">
-              {playlistData.tracks.items.map((item, index) => (
-                <div onClick={() => handleClick(item.track.uri)}>
-                  {/* <div onClick={() => {console.log(item.track.uri)}}> */}
-                  {item.track ? (
-                    <SongRow key={item.id} track={item.track} id={index} />
-                  ) : (
-                    <></>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      ) : (
+      {isLoading ? (
         <Loading />
+      ) : (
+        <>
+          {playlistData && (
+            <div className={styles.playlist__page}>
+              <div className={styles.playlist}>
+                <div className={styles.playlist__info}>
+                  {playlistData?.images[0] ? (
+                    <img src={playlistData.images[0].url} alt="" />
+                  ) : (
+                    <img
+                      className={styles.noPlaylistPic}
+                      src={PlaylistImage}
+                      alt="NoPlaylistPicture"
+                    />
+                  )}
+                  <div className={styles.playlist__infoText}>
+                    <h4>PLAYLIST</h4>
+                    <h2>{playlistData.name}</h2>
+                    <p>
+                      {playlistData.description.replaceAll(/<[^>]*>/gi, "")}
+                    </p>
+                    <p>
+                      <b>{playlistData.owner.display_name}</b> •{" "}
+                      {playlistData.followers.total
+                        .toString()
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
+                      likes
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className={styles.playlist__songs}>
+                <div className={styles.playlist__header}>
+                  <div className={styles.playlist__header__left}>
+                    <div className={styles.header__number}>
+                      <h4>#</h4>
+                    </div>
+                    <div className={styles.header__title}>
+                      <h4>TITLE</h4>
+                    </div>
+                  </div>
+                  <div className={styles.header__icons}>
+                    <AccessTimeIcon className={styles.time__icon} />
+                  </div>
+                </div>
+                <hr className={styles.playlist__line} />
+                <div className={styles.playlist__songList}>
+                  {playlistData.tracks.items.map((item, index) => (
+                    <div key={index}>
+                      {item.track ? (
+                        <div>
+                          <SongRow key={item.id} track={item.track} id={num} />
+                          <div className={styles.hidden}>{num++}</div>
+                        </div>
+                      ) : (
+                        <></>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+        </>
       )}
     </div>
   );
