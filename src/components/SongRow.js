@@ -4,27 +4,24 @@ import { useSelector, useDispatch } from "react-redux";
 import ExplicitIcon from "@material-ui/icons/Explicit";
 
 import styles from "./SongRow.module.scss";
-import { setCurrent } from "../../actions";
-import { playlistDataSelector } from "../../reducers/playlistReducer";
+import { setCurrent } from "../actions";
+import { playlistTracksSelector } from "../reducers/playlistReducer";
 
 function SongRow({ track, id, type }) {
-  const playlistData = useSelector(playlistDataSelector);
+  const playlistTracks = useSelector(playlistTracksSelector);
   const dispatch = useDispatch();
 
   const handleClick = (index) => {
     if (type === "single") {
       dispatch(setCurrent([track.uri, 0]));
     } else {
-      var trackUris = playlistData.tracks.items.map((item) => {
+      var trackUris = playlistTracks.map((item) => {
         if (item.track) {
           return item.track.uri;
         }
         return null;
       });
-      var filteredTrackUris = trackUris.filter((item) => {
-        return item != null;
-      });
-      dispatch(setCurrent([filteredTrackUris, index]));
+      dispatch(setCurrent([trackUris, index]));
     }
   };
 

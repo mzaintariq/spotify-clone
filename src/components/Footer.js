@@ -4,8 +4,8 @@ import { useSelector } from "react-redux";
 import SpotifyPlayer from "react-spotify-web-playback";
 
 import styles from "./Footer.module.scss";
-import { accessTokenSelector } from "../../reducers/authReducer";
-import { currentArraySelector, currentNumberSelector } from "../../reducers/currentReducer";
+import { accessTokenSelector } from "../reducers/authReducer";
+import { currentArraySelector, currentNumberSelector } from "../reducers/currentReducer";
 
 function Footer() {
   const accessToken = useSelector(accessTokenSelector);
