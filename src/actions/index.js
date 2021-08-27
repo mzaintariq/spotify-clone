@@ -9,7 +9,6 @@ export {
   setMorePlaylistTracks,
 } from "./playlistActions";
 export {
-  GET_SEARCH_RESULT,
   getSearchResult,
   setSearch,
   setSearchToggle,
@@ -29,4 +28,7 @@ export {
   GET_MORE_PLAYLIST_TRACKS,
   SET_MORE_PLAYLIST_TRACKS,
   SET_CURRENT,
+  GET_SEARCH_RESULT,
+  SET_SEARCH,
+  SET_SEARCH_TOGGLE,
 } from "./actionTypes";

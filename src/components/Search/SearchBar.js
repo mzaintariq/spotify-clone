@@ -1,12 +1,16 @@
-import SearchIcon from "@material-ui/icons/Search";
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+
+import SearchIcon from "@material-ui/icons/Search";
+
+import styles from "./SearchBar.module.scss";
 import { getSearchResult, setSearch } from "../../actions";
-import "./SearchBar.scss";
+import { accessTokenSelector } from "../../reducers/authReducer";
+import { searchValueSelector } from "../../reducers/searchReducer";
 
 function SearchBar() {
-  const accessToken = useSelector((state) => state.authReducer.accessToken);
-  const searchValue = useSelector((state) => state.searchReducer.searchValue);
+  const accessToken = useSelector(accessTokenSelector);
+  const searchValue = useSelector(searchValueSelector);
   const [value, setValue] = useState(searchValue);
   const dispatch = useDispatch();
 
@@ -31,10 +35,10 @@ function SearchBar() {
   };
 
   return (
-    <div className="searchbar">
-      <SearchIcon className="searchbar__icon" />
+    <div className={styles.searchbar}>
+      <SearchIcon className={styles.searchbar__icon} />
       <input
-        className="searchbar__input"
+        className={styles.searchbar__input}
         onChange={handleOnChange}
         value={value}
         placeholder="Search"

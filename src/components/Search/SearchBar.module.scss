@@ -3,13 +3,16 @@
   flex-direction: row;
   align-items: center;
   width: 100%;
+  padding: 0px 20px 0px 0px;
 }
+
 .searchbar__icon {
   position: absolute;
   width: 100%;
   color: white;
   padding: 15px;
 }
+
 .searchbar__input {
   width: 100%;
   padding: 10px 50px;
@@ -19,11 +22,20 @@
   border-radius: 30px;
   color: white;
   transition: 250ms ease-in;
+
+  &::placeholder {
+    color: #c0c0c0;
+  }
+
+  &:focus {
+    outline: none;
+    border: 2px #1db954 solid;
+  }
 }
-.searchbar__input::placeholder {
-  color: #c0c0c0;
-}
-.searchbar__input:focus {
-  outline: none;
-  border: 2px #1db954 solid;
+
+@media (max-width: 700px) {
+  .searchbar {
+    padding: 0px 0px 0px 0px;
+    transition: 250ms ease-in;
+  }
 }
