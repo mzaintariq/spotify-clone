@@ -1,0 +1,14 @@
+.grid {
+  padding-top: 10px;
+}
+
+.noresult {
+  padding-top: 2vh;
+  text-align: center;
+}
+
+@media (max-width: 700px) {
+  .searchpage__body__title {
+    text-align: center;
+  }
+}

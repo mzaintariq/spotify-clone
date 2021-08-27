@@ -1,31 +1,41 @@
-export { GET_TOKEN, getToken, setToken } from "./authActions";
-export { GET_USER_DATA, getUserData, setUserData } from "./userActions";
-export { GET_FEATURED, getFeatured, setFeatured } from "./featuredActions";
+export { getToken, setToken } from "./authActions";
+export { getUserData, setUserData } from "./userActions";
+export { getFeatured, setFeatured } from "./featuredActions";
+export { getNewReleases, setNewReleases } from "./newreleasesActions";
 export {
-  GET_NEW_RELEASES,
-  getNewReleases,
-  setNewReleases,
-} from "./newreleasesActions";
-export {
-  GET_PLAYLIST,
-  GET_MORE_PLAYLIST_TRACKS,
   getPlaylist,
   setPlaylist,
   getMorePlaylistTracks,
   setMorePlaylistTracks,
 } from "./playlistActions";
-export {
-  GET_SEARCH_RESULT,
-  getSearchResult,
-  setSearch,
-  setSearchToggle,
-} from "./searchActions";
+export { getSearchResult, setSearch, setSearchToggle } from "./searchActions";
 export { setCurrent } from "./currentActions";
-export { GET_ALBUM, getAlbum, setAlbum } from "./albumActions";
+export { getAlbum, setAlbum } from "./albumActions";
 export {
-  GET_ARTIST,
   getArtist,
   setArtist,
   setArtistTopTracks,
   setArtistAlbums,
 } from "./artistActions";
+export {
+  GET_TOKEN,
+  SET_TOKEN,
+  GET_USER_DATA,
+  SET_USER_DATA,
+  GET_FEATURED,
+  SET_FEATURED,
+  GET_NEW_RELEASES,
+  SET_NEW_RELEASES,
+  GET_PLAYLIST,
+  SET_PLAYLIST,
+  GET_MORE_PLAYLIST_TRACKS,
+  SET_MORE_PLAYLIST_TRACKS,
+  SET_CURRENT,
+  GET_SEARCH_RESULT,
+  SET_SEARCH,
+  SET_SEARCH_TOGGLE,
+  GET_ALBUM,
+  SET_ALBUM,
+  GET_ARTIST,
+  SET_ARTIST,
+} from "./actionTypes";
