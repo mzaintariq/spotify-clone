@@ -1,8 +1,9 @@
-import { call, put } from "redux-saga/effects";
-import { setLibraryAlbums, setLibraryArtists, setLibraryPlaylists, setLibraryTracks } from "../../actions";
-import { requestGetLibraryAlbums, requestGetLibraryArtists, requestGetLibraryPlaylists, requestGetLibraryTracks } from "../requests/library";
+import { call, put, takeLatest } from "redux-saga/effects";
 
-export function* handleGetLibraryData(action) {
+import { GET_LIBRARY_DATA, setLibraryAlbums, setLibraryArtists, setLibraryPlaylists, setLibraryTracks } from "../actions";
+import { requestGetLibraryAlbums, requestGetLibraryArtists, requestGetLibraryPlaylists, requestGetLibraryTracks } from "../services/api";
+
+function* getLibraryData(action) {
   try {
     const responseArtists = yield call(requestGetLibraryArtists, action.payload);
     const responseAlbums = yield call(requestGetLibraryAlbums, action.payload);
@@ -15,4 +16,8 @@ export function* handleGetLibraryData(action) {
   } catch (error) {
     console.log(error);
   }
+}
+
+export function* librarySaga() {
+  yield takeLatest(GET_LIBRARY_DATA, getLibraryData);
 }

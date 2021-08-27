@@ -122,11 +122,43 @@ export function requestGetArtist(data) {
 }
 
 export function requestGetArtistTopTracks(data) {
-  return fetch(`https://api.spotify.com/v1/artists/${data[1]}/top-tracks?market=PK`, {
+  return fetch(
+    `https://api.spotify.com/v1/artists/${data[1]}/top-tracks?market=PK`,
+    {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        Authorization: `Bearer ${data[0]}`,
+        "Content-Type": "application/json",
+      },
+    }
+  )
+    .then((response) => response.json())
+    .catch((error) => console.log(error));
+}
+
+export function requestGetArtistAlbums(data) {
+  return fetch(
+    `https://api.spotify.com/v1/artists/${data[1]}/albums?market=PK&limit=50`,
+    {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        Authorization: `Bearer ${data[0]}`,
+        "Content-Type": "application/json",
+      },
+    }
+  )
+    .then((response) => response.json())
+    .catch((error) => console.log(error));
+}
+
+export function requestGetLibraryArtists(accessToken) {
+  return fetch(`https://api.spotify.com/v1/me/following?type=artist`, {
     method: "GET",
     headers: {
       Accept: "application/json",
-      Authorization: `Bearer ${data[0]}`,
+      Authorization: `Bearer ${accessToken}`,
       "Content-Type": "application/json",
     },
   })
@@ -134,8 +166,47 @@ export function requestGetArtistTopTracks(data) {
     .catch((error) => console.log(error));
 }
 
-export function requestGetArtistAlbums(data) {
-  return fetch(`https://api.spotify.com/v1/artists/${data[1]}/albums?market=PK&limit=50`, {
+export function requestGetLibraryTracks(accessToken) {
+  return fetch(`https://api.spotify.com/v1/me/tracks?limit=50`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .catch((error) => console.log(error));
+}
+
+export function requestGetLibraryAlbums(accessToken) {
+  return fetch(`https://api.spotify.com/v1/me/albums`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .catch((error) => console.log(error));
+}
+
+export function requestGetLibraryPlaylists(accessToken) {
+  return fetch(`https://api.spotify.com/v1/me/playlists`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .catch((error) => console.log(error));
+}
+
+export function requestGetMoreLibraryTracks(data) {
+  return fetch(data[1], {
     method: "GET",
     headers: {
       Accept: "application/json",

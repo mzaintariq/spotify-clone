@@ -10,7 +10,7 @@ import { searchResultSaga } from "./search";
 import { albumSaga } from "./album";
 import { artistSaga } from "./artist";
 import { librarySaga } from "./library";
-import { getMoreLibraryTracks } from "../actions";
+import { getMoreLibraryTracksSaga } from "./library_loadmore";
 
 export function* watcherSaga() {
   yield all([
@@ -24,6 +24,6 @@ export function* watcherSaga() {
     fork(albumSaga),
     fork(artistSaga),
     fork(librarySaga),
-    fork(getMoreLibraryTracks),
+    fork(getMoreLibraryTracksSaga),
   ]);
 }

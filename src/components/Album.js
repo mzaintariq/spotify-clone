@@ -57,9 +57,7 @@ function Album() {
                             >
                               <>{artist.name}</>
                             </Link>
-                            {index < albumData.artists.length - 1 && (
-                              <>, </>
-                            )}
+                            {index < albumData.artists.length - 1 && <>, </>}
                           </span>
                         ))}
                       </b>{" "}
@@ -88,7 +86,12 @@ function Album() {
                 <hr className={styles.album__line} />
                 <div className={styles.album__songList}>
                   {albumData.tracks.items.map((item, index) => (
-                    <SongRow key={item.id} track={item} id={index} type="album" />
+                    <SongRow
+                      key={item.id}
+                      track={item}
+                      id={index}
+                      type="album"
+                    />
                   ))}
                 </div>
               </div>
@@ -101,6 +104,3 @@ function Album() {
 }
 
 export default Album;
-
-
-
