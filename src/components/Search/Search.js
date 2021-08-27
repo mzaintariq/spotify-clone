@@ -2,18 +2,18 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import styles from "./Search.module.scss";
-import Home from "./Home";
-import SearchBar from "./Search/SearchBar";
-import SearchToggle from "./Search/SearchToggle";
-import SearchTracks from "./Search/SearchTracks";
-import SearchAlbums from "./Search/SearchAlbums";
-import SearchArtists from "./Search/SearchArtists";
-import SearchPlaylists from "./Search/SearchPlaylists";
-import { setSearchToggle } from "../actions";
+import Home from "../Home";
+import SearchBar from "./SearchBar";
+import SearchToggle from "./SearchToggle";
+import SearchTracks from "./SearchTracks";
+import SearchAlbums from "./SearchAlbums";
+import SearchArtists from "./SearchArtists";
+import SearchPlaylists from "./SearchPlaylists";
+import { setSearchToggle } from "../../actions";
 import {
   searchToggleValueSelector,
   searchValueSelector,
-} from "../reducers/searchReducer";
+} from "../../reducers/searchReducer";
 
 function Search() {
   const searchToggleValue = useSelector(searchToggleValueSelector);
