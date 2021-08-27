@@ -14,3 +14,5 @@ export const SET_CURRENT = "SET_CURRENT";
 export const GET_SEARCH_RESULT = "GET_SEARCH_RESULT";
 export const SET_SEARCH = "SET_SEARCH";
 export const SET_SEARCH_TOGGLE = "SET_SEARCH_TOGGLE";
+export const GET_ALBUM = "GET_ALBUM";
+export const SET_ALBUM = "SET_ALBUM";

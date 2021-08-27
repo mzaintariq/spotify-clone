@@ -1,18 +1,23 @@
+import { SET_ALBUM } from "../actions";
+
 const initialState = {
   albumData: null,
+  isLoading: true,
 };
 
-const albumReducer = (state = initialState, action) => {
-  const data = action.payload;
+export const albumReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "SET_ALBUM":
+    case SET_ALBUM:
       return {
         ...state,
-        albumData: data,
+        albumData: action.payload,
+        isLoading: false,
       };
     default:
       return state;
   }
 };
 
-export default albumReducer;
+export const albumDataSelector = (state) => state.album.albumData;
+
+export const isLoadingSelector = (state) => state.album.isLoading;
