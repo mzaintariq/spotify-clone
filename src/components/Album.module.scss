@@ -87,9 +87,10 @@
 .artist__link {
   text-decoration: none;
   color: white;
-}
-.artist__link:hover {
-  cursor: pointer;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .noAlbumPic {

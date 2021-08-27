@@ -62,15 +62,16 @@ function SongRow({ track, id, type }) {
           </div>
           <div className={styles.songrow__info__artist}>
             <p>
-              {/* {track.artists.map((artist) => artist.name).join(", ")} */}
-              {/* {type !== "album" ? <> - {track.album.name} </> : <></>} */}
               {track.artists.map((artist, index) => (
                 <button
                   key={artist.id}
                   className={styles.album__button}
                   onClick={(event) => event.stopPropagation()}
                 >
-                  <Link className={styles.album__link} to={`/artist/${artist.id}`}>
+                  <Link
+                    className={styles.album__link}
+                    to={`/artist/${artist.id}`}
+                  >
                     <>{artist.name}</>
                   </Link>
                   {index < track.artists.length - 1 && <>, </>}

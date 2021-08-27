@@ -16,3 +16,7 @@ export const SET_SEARCH = "SET_SEARCH";
 export const SET_SEARCH_TOGGLE = "SET_SEARCH_TOGGLE";
 export const GET_ALBUM = "GET_ALBUM";
 export const SET_ALBUM = "SET_ALBUM";
+export const GET_ARTIST = "GET_ARTIST";
+export const SET_ARTIST = "SET_ARTIST";
+export const SET_ARTIST_TOP_TRACKS = "SET_ARTIST_TOP_TRACKS";
+export const SET_ARTIST_ALBUMS = "SET_ARTIST_ALBUMS";

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
 
@@ -35,7 +35,7 @@ function Album() {
             <div className={styles.album__page}>
               <div className={styles.album}>
                 <div className={styles.album__info}>
-                  {albumData?.images[0] ? (
+                  {albumData.images[0] ? (
                     <img src={albumData.images[0].url} alt="" />
                   ) : (
                     <img
@@ -44,14 +44,24 @@ function Album() {
                       alt="NoAlbumPicture"
                     />
                   )}
-                  <div className={styles.album__infoText}>
+                  <div className={styles.playlist__infoText}>
                     <h4>{albumData.album_type.toUpperCase()}</h4>
                     <h2>{albumData.name}</h2>
                     <p>
                       <b>
-                        {albumData.artists
-                          .map((artist) => artist.name)
-                          .join(", ")}
+                        {albumData.artists.map((artist, index) => (
+                          <span key={index}>
+                            <Link
+                              className={styles.artist__link}
+                              to={`/artist/${artist.id}`}
+                            >
+                              <>{artist.name}</>
+                            </Link>
+                            {index < albumData.artists.length - 1 && (
+                              <>, </>
+                            )}
+                          </span>
+                        ))}
                       </b>{" "}
                       • {albumData.release_date.replace(/-.*/g, "")} •{" "}
                       {albumData.total_tracks}
@@ -78,12 +88,7 @@ function Album() {
                 <hr className={styles.album__line} />
                 <div className={styles.album__songList}>
                   {albumData.tracks.items.map((item, index) => (
-                    <SongRow
-                      key={item.id}
-                      track={item}
-                      id={index}
-                      type="album"
-                    />
+                    <SongRow key={item.id} track={item} id={index} type="album" />
                   ))}
                 </div>
               </div>
@@ -96,3 +101,6 @@ function Album() {
 }
 
 export default Album;
+
+
+
