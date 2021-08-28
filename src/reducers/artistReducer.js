@@ -1,23 +1,30 @@
+import { createSelector } from "reselect";
+import {
+  SET_ARTIST,
+  SET_ARTIST_ALBUMS,
+  SET_ARTIST_TOP_TRACKS,
+} from "../actions/actionTypes";
+
 const initialState = {
   artistData: null,
   artistTopTracks: null,
   artistAlbums: null,
 };
 
-const playlistReducer = (state = initialState, action) => {
+export const artistReducer = (state = initialState, action) => {
   const data = action.payload;
   switch (action.type) {
-    case "SET_ARTIST":
+    case SET_ARTIST:
       return {
         ...state,
         artistData: data,
       };
-    case "SET_ARTIST_TOP_TRACKS":
+    case SET_ARTIST_TOP_TRACKS:
       return {
         ...state,
         artistTopTracks: data,
       };
-    case "SET_ARTIST_ALBUMS":
+    case SET_ARTIST_ALBUMS:
       return {
         ...state,
         artistAlbums: data,
@@ -27,4 +34,38 @@ const playlistReducer = (state = initialState, action) => {
   }
 };
 
-export default playlistReducer;
+export const artistDataSelector = (state) => state.artist.artistData;
+
+export const artistTopTracksSelector = (state) => state.artist.artistTopTracks;
+
+export const artistAlbumsSelector = (state) => state.artist.artistAlbums;
+
+export const artistAlbumSelector = createSelector(
+  artistAlbumsSelector,
+  (artistAlbumsSelector) => {
+    return artistAlbumsSelector?.items.filter(
+      (item) => item.album_type === "album"
+    );
+  }
+);
+
+export const artistSingleSelector = createSelector(
+  artistAlbumsSelector,
+  (artistAlbumsSelector) => {
+    return artistAlbumsSelector?.items.filter(
+      (item) => item.album_type === "single"
+    );
+  }
+);
+
+export const isLoadingSelector = createSelector(
+  artistDataSelector,
+  artistTopTracksSelector,
+  artistAlbumsSelector,
+  (artistDataSelector, artistTopTracksSelector, artistAlbumsSelector) => {
+    if (artistDataSelector && artistTopTracksSelector && artistAlbumsSelector) {
+      return false;
+    }
+    return true;
+  }
+);
