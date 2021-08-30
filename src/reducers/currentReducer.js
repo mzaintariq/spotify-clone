@@ -3,7 +3,7 @@ const initialState = {
   currentNumber: null,
 };
 
-const currentReducer = (state = initialState, action) => {
+export const currentReducer = (state = initialState, action) => {
   switch (action.type) {
     case "SET_CURRENT":
       const data = action.payload;
@@ -17,4 +17,6 @@ const currentReducer = (state = initialState, action) => {
   }
 };
 
-export default currentReducer;
+export const currentArraySelector = (state) => state.current.currentArray;
+
+export const currentNumberSelector = (state) => state.current.currentNumber;

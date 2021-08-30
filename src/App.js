@@ -1,31 +1,24 @@
-import "./App.scss";
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { getToken } from "./actions/index";
-import Header from "./components/header/Header";
-import Footer from "./components/footer/Footer";
-import Home from "./components/home/Home";
-import Profile from "./components/profile/Profile";
-import Library from "./components/library/Library";
-import Login from "./components/login/Login";
-import Search from "./components/search/Search";
-import Playlist from "./components/playlist/Playlist";
-import Album from "./components/album/Album";
-import Artist from "./components/artist/Artist";
-import Category from "./components/category/Category";
+
+import styles from "./App.module.scss";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Home from "./components/Home";
+import Profile from "./components/Profile";
+import Library from "./components/Library";
+import Login from "./components/Login";
+import Search from "./components/Search";
+import Playlist from "./components/Playlist";
+import Album from "./components/Album";
+import NotFound from "./components/NotFound";
+import Artist from "./components/Artist";
+import Category from "./components/Category";
+import { accessTokenSelector } from "./reducers/authReducer";
 
 function App() {
-  const accessToken = useSelector((state) => state.authReducer.accessToken);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    const code = new URLSearchParams(window.location.search).get("code");
-    if (code) {
-      dispatch(getToken(code));
-      window.history.pushState("", "", "/");
-    }
-  }, [dispatch]);
+  const accessToken = useSelector(accessTokenSelector);
 
   return (
     <div className="app">
@@ -33,15 +26,15 @@ function App() {
         <>
           <Router>
             <Header />
-            <div className="mainpage">
+            <div className={styles.mainpage}>
               <Switch>
-                <Route path="/library">
+                <Route exact path="/library">
                   <Library />
                 </Route>
-                <Route path="/profile">
+                <Route exact path="/profile">
                   <Profile />
                 </Route>
-                <Route path="/search">
+                <Route exact path="/search">
                   <Search />
                 </Route>
                 <Route path="/playlist/:id">
@@ -56,12 +49,15 @@ function App() {
                 <Route path="/category/:id">
                   <Category />
                 </Route>
-                <Route path="/">
+                <Route exact path="/">
                   <Home />
+                </Route>
+                <Route>
+                  <NotFound />
                 </Route>
               </Switch>
             </div>
-            <div className="background"></div>
+            <div className={styles.background}></div>
             <Footer />
           </Router>
         </>

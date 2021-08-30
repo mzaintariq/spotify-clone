@@ -1,0 +1,31 @@
+.header {
+  width: 100vw;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  height: 70px;
+  z-index: 2;
+}
+
+.header__logo {
+  background-color: black;
+  height: 60px;
+  margin-left: 3vw;
+
+  & > img {
+    height: 70%;
+    object-fit: contain;
+    margin-bottom: 10px;
+    margin-left: 3vw;
+    margin-right: 30px;
+    margin-top: 10px;
+  }
+}
+
+.header__nav {
+  display: flex;
+  color: white;
+}
