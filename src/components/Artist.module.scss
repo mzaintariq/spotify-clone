@@ -43,7 +43,7 @@
 
 .artist__songs {
   background-color: #000000;
-  padding: 20px 50px;
+  padding: 20px 50px 10px 50px;
 }
 
 .artist__songList {
@@ -57,17 +57,12 @@
 
 .artist__albums {
   background-color: #000000;
-  padding: 20px 50px 20px 50px;
+  padding: 10px 50px 10px 50px;
 }
 
 .artist__albumGrid {
   border-radius: 5px;
   margin: 30px 0vw;
-}
-
-.artist__singles {
-  background-color: #000000;
-  padding: 20px 50px 20px 50px;
 }
 
 @media (max-width: 800px) {

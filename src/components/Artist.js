@@ -12,6 +12,7 @@ import { getArtist } from "../actions";
 import { accessTokenSelector } from "../reducers/authReducer";
 import {
   artistAlbumSelector,
+  artistAppearsOnSelector,
   artistDataSelector,
   artistSingleSelector,
   artistTopTracksSelector,
@@ -26,6 +27,7 @@ function Artist() {
   const artistTopTracks = useSelector(artistTopTracksSelector);
   const artistAlbums = useSelector(artistAlbumSelector);
   const artistSingles = useSelector(artistSingleSelector);
+  const artistAppearsOn = useSelector(artistAppearsOnSelector);
   const isLoading = useSelector(isLoadingSelector);
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -83,9 +85,9 @@ function Artist() {
                 )}
               </div>
 
-              <div className={styles.artist__albums}>
-                <h2>Albums</h2>
-                {artistAlbums && (
+              {artistAlbums.length > 0 && (
+                <div className={styles.artist__albums}>
+                  <h2>Albums</h2>
                   <div className={styles.artist__albumGrid}>
                     <Grid container justifyContent="flex-start" spacing={3}>
                       {artistAlbums.map((item) => (
@@ -103,12 +105,12 @@ function Artist() {
                       ))}
                     </Grid>
                   </div>
-                )}
-              </div>
+                </div>
+              )}
 
-              <div className={styles.artist__singles}>
-                <h2>Singles</h2>
-                {artistAlbums && (
+              {artistSingles.length > 0 && (
+                <div className={styles.artist__albums}>
+                  <h2>Singles</h2>
                   <div className={styles.artist__albumGrid}>
                     <Grid container justifyContent="flex-start" spacing={3}>
                       {artistSingles.map((item, index) => (
@@ -126,8 +128,31 @@ function Artist() {
                       ))}
                     </Grid>
                   </div>
-                )}
-              </div>
+                </div>
+              )}
+
+              {artistAppearsOn.length > 0 && (
+                <div className={styles.artist__albums}>
+                  <h2>Appears On</h2>
+                  <div className={styles.artist__albumGrid}>
+                    <Grid container justifyContent="flex-start" spacing={3}>
+                      {artistAppearsOn.map((item, index) => (
+                        <Grid
+                          key={item.id}
+                          item
+                          xs={6}
+                          sm={4}
+                          md={3}
+                          lg={2}
+                          xl={2}
+                        >
+                          <AlbumCard data={item} />
+                        </Grid>
+                      ))}
+                    </Grid>
+                  </div>
+                </div>
+              )}
             </div>
           )}
         </>
