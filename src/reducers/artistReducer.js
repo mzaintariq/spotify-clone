@@ -44,7 +44,7 @@ export const artistAlbumSelector = createSelector(
   artistAlbumsSelector,
   (artistAlbumsSelector) => {
     return artistAlbumsSelector?.items.filter(
-      (item) => item.album_type === "album"
+      (item) => item.album_group === "album"
     );
   }
 );
@@ -53,7 +53,16 @@ export const artistSingleSelector = createSelector(
   artistAlbumsSelector,
   (artistAlbumsSelector) => {
     return artistAlbumsSelector?.items.filter(
-      (item) => item.album_type === "single"
+      (item) => item.album_group === "single"
+    );
+  }
+);
+
+export const artistAppearsOnSelector = createSelector(
+  artistAlbumsSelector,
+  (artistAlbumsSelector) => {
+    return artistAlbumsSelector?.items.filter(
+      (item) => item.album_group === "appears_on"
     );
   }
 );
