@@ -9,15 +9,12 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
 import styles from "./Header.module.scss";
 import Option from "./Option";
-import OptionProfile from "./optionProfile/OptionProfile";
-import { accessTokenSelector } from "../reducers/authReducer";
-import {
-  isLoadingSelector,
-  userDataSelector,
-} from "../reducers/userReducer";
-import { getUserData } from "../actions";
+import OptionProfile from "./OptionProfile";
+import { getUserData } from "../../actions";
+import { accessTokenSelector } from "../../reducers/authReducer";
+import { isLoadingSelector, userDataSelector } from "../../reducers/userReducer";
 
-import { ReactComponent as SpotifyLogo } from "../assets/SpotifyLogo.svg";
+import { ReactComponent as SpotifyLogo } from "../../assets/SpotifyLogo.svg";
 
 function Header() {
   const accessToken = useSelector(accessTokenSelector);
@@ -41,18 +38,6 @@ function Header() {
           <Option Icon={HomeIcon} text="Home" to="/" />
           <Option Icon={SearchIcon} text="Search" to="/search" />
           <Option Icon={LibraryMusicIcon} text="My Library" to="/library" />
-          {/* {userData ? (
-          {isLoadingUser ? (
-            <Option Icon={AccountCircleIcon} text="Profile" to="/profile" />
-          ) : (
-            <Option
-              imgUrl={userData.images[0].url}
-              text={userData.display_name}
-              to="/profile"
-            />
-          ) : (
-            <Option Icon={AccountCircleIcon} text="Profile" to="/profile" />
-          )} */}
           {isLoadingUser ? (
             <Option Icon={AccountCircleIcon} text="Profile" to="/profile" />
           ) : (
@@ -61,14 +46,6 @@ function Header() {
               text={userData.display_name}
             />
           )}
-          {/* {userData ? (
-            <OptionProfile
-              imgUrl={userData.images[0].url}
-              text={userData.display_name}
-            />
-          ) : (
-            <Option Icon={AccountCircleIcon} text="Profile" to="/profile" />
-          )} */}
         </nav>
       </header>
     </div>

@@ -310,3 +310,16 @@ export function requestGetCategoryPlaylists(data) {
     .then((response) => response.json())
     .catch((error) => console.log(error));
 }
+
+export function requestGetRefresh(refreshToken) {
+  const formBody = `grant_type=refresh_token&refresh_token=${refreshToken}&redirect_uri=${REDIRECT_URI}&client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}`;
+  return fetch("https://accounts.spotify.com/api/token", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: formBody,
+  })
+    .then((response) => response.json())
+    .catch((error) => console.log(error));
+}

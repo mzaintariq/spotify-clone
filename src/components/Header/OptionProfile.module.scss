@@ -6,16 +6,20 @@
   padding-right: 4vw;
   transition: 250ms color ease-in;
   align-items: center;
-}
 
-.option__link:hover {
-  color: white;
-  cursor: pointer;
+  &:hover {
+    color: white;
+    cursor: pointer;
+  }
 }
 
 .option__label {
   display: flex;
   align-items: center;
+
+  &:hover .option__avatar {
+    opacity: 1;
+  }
 }
 
 .option__icon {
@@ -27,14 +31,10 @@
   opacity: 0.8;
   transition: 250ms opacity ease-in;
 }
-.option__label:hover .option__avatar {
-  opacity: 1;
-}
 
 .dropdown {
   position: absolute;
   margin: 15px 50px;
-  // margin: 10px 50px;
   padding: 5px;
   border-radius: 2px;
   background-color: black;
@@ -50,14 +50,16 @@
   font-size: 14px;
   transition: 250ms color ease-in;
   padding: 10px 5px;
+
+  &:hover {
+    color: white;
+    cursor: pointer;
+  }
 }
+
 .profile__link__icon {
   padding-right: 5px;
   font-size: 20px !important;
-}
-.profile__link:hover {
-  color: white;
-  cursor: pointer;
 }
 
 .logout__button {
@@ -67,17 +69,19 @@
   font-size: 14px;
   transition: 250ms color ease-in;
   padding: 10px 5px;
+
+  &:hover {
+    color: white;
+    cursor: pointer;
+  }
 }
+
 .logout__button__icon {
   padding-right: 5px;
   font-size: 20px !important;
 }
-.logout__button:hover {
-  color: white;
-  cursor: pointer;
-}
 
-.arrow-up {
+.arrow__up {
   position: absolute;
   top: -5px;
   left: 75px;
@@ -92,6 +96,7 @@
   .option__label > h4 {
     display: none;
   }
+
   .dropdown {
     top: 65px;
     right: -35px;
@@ -103,10 +108,12 @@
   .option__label > h4 {
     display: none;
   }
+
   .option__link {
     padding-left: 2vw;
     padding-right: 2vw;
   }
+
   .header__logo > img {
     margin-left: 2vw;
     margin-right: 2vw;

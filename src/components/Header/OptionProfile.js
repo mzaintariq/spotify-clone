@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
-import "./OptionProfile.scss";
-import { Link } from "react-router-dom";
-import Avatar from "@material-ui/core/Avatar";
-import { setToken } from "../../actions";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+
+import Avatar from "@material-ui/core/Avatar";
 import PersonIcon from "@material-ui/icons/Person";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+
+import styles from "./OptionProfile.module.scss";
+import { setToken } from "../../actions";
 
 function OptionProfile({ text, Icon, imgUrl }) {
   const [open, setOpen] = useState(false);
@@ -38,10 +40,10 @@ function OptionProfile({ text, Icon, imgUrl }) {
 
   return (
     <div ref={container}>
-      <div className="option__link" onClick={() => handleClick()}>
-        <div className="option__label">
+      <div className={styles.option__link} onClick={() => handleClick()}>
+        <div className={styles.option__label}>
           {imgUrl && (
-            <div className="option__avatar">
+            <div className={styles.option__avatar}>
               <Avatar
                 src={imgUrl}
                 alt=""
@@ -53,18 +55,18 @@ function OptionProfile({ text, Icon, imgUrl }) {
         </div>
       </div>
       {open && (
-        <div className="dropdown">
-          <div className="arrow-up"></div>
+        <div className={styles.dropdown}>
+          <div className={styles.arrow__up}></div>
           <Link
-            className="profile__link"
+            className={styles.profile__link}
             to="/profile"
             onClick={() => handleClick()}
           >
-            <PersonIcon className="profile__link__icon" />
+            <PersonIcon className={styles.profile__link__icon} />
             My Profile
           </Link>
-          <div className="logout__button" onClick={() => handleLogout()}>
-            <ExitToAppIcon className="logout__button__icon" />
+          <div className={styles.logout__button} onClick={() => handleLogout()}>
+            <ExitToAppIcon className={styles.logout__button__icon} />
             Log Out
           </div>
         </div>

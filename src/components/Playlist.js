@@ -13,7 +13,7 @@ import {
   playlistDataSelector,
   playlistTracksSelector,
 } from "../reducers/playlistReducer";
-import { isLoadingSelector } from "../reducers/browseReducer";
+import { isLoadingSelector } from "../reducers/playlistReducer";
 
 import PlaylistImage from "../assets/playlistImage.png";
 

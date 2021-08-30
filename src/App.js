@@ -7,7 +7,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Login from "./components/Login";
 import Loading from "./components/Loading";
-import ErrorBoundary from "./components/errorBoundary/ErrorBoundary";
+import ErrorBoundary from "./components/ErrorBoundary";
 import { getRefresh } from "./actions/index";
 import {
   accessTokenSelector,
