@@ -1,20 +1,25 @@
 import React, { useEffect } from "react";
-import { getCategoryData } from "../../actions";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import "./Category.scss";
-import Loading from "../loading/Loading";
+
 import { Grid } from "@material-ui/core";
-import PlaylistCard from "../playlistCard/PlaylistCard";
+
+import styles from "./Category.module.scss";
+import Loading from "./Loading";
+import PlaylistCard from "./PlaylistCard";
+import { getCategoryData } from "../actions";
+import { accessTokenSelector } from "../reducers/authReducer";
+import {
+  categoryDataSelector,
+  categoryPlaylistsSelector,
+  isLoadingSelector,
+} from "../reducers/categoryReducer";
 
 function Category() {
-  const accessToken = useSelector((state) => state.authReducer.accessToken);
-  const categoryData = useSelector(
-    (state) => state.categoryReducer.categoryData
-  );
-  const categoryPlaylists = useSelector(
-    (state) => state.categoryReducer.categoryPlaylists
-  );
+  const accessToken = useSelector(accessTokenSelector);
+  const categoryData = useSelector(categoryDataSelector);
+  const categoryPlaylists = useSelector(categoryPlaylistsSelector);
+  const isLoading = useSelector(isLoadingSelector);
   const { id } = useParams();
   const dispatch = useDispatch();
 
@@ -25,22 +30,24 @@ function Category() {
 
   return (
     <div>
-      {categoryData ? (
-        <div className="category__page">
-          <div className="category">
-            <div className="category__info">
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <div className={styles.category__page}>
+          <div className={styles.category}>
+            <div className={styles.category__info}>
               <img src={categoryData.icons[0].url} alt="" />
-              <div className="category__infoText">
+              <div className={styles.category__infoText}>
                 <h4>Genre</h4>
                 <h2>{categoryData.name}</h2>
               </div>
             </div>
           </div>
 
-          <div className="category__playlist">
+          <div className={styles.category__playlist}>
             <h2>Popular playlists</h2>
-            {categoryPlaylists ? (
-              <div className="category__playlistGrid">
+            {categoryPlaylists && (
+              <div className={styles.category__playlistGrid}>
                 <Grid container justifyContent="flex-start" spacing={3}>
                   {categoryPlaylists.items.map((item) => (
                     <Grid key={item.id} item xs={6} sm={4} md={3} lg={2} xl={2}>
@@ -49,13 +56,9 @@ function Category() {
                   ))}
                 </Grid>
               </div>
-            ) : (
-              <Loading />
             )}
           </div>
         </div>
-      ) : (
-        <Loading />
       )}
     </div>
   );

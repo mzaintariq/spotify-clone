@@ -2,13 +2,13 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import styles from "./Search.module.scss";
-import Home from "../Home";
 import SearchBar from "./SearchBar";
 import SearchToggle from "./SearchToggle";
 import SearchTracks from "./SearchTracks";
 import SearchAlbums from "./SearchAlbums";
 import SearchArtists from "./SearchArtists";
 import SearchPlaylists from "./SearchPlaylists";
+import NoSearch from "./NoSearch";
 import { setSearchToggle } from "../../actions";
 import {
   searchToggleValueSelector,
@@ -40,9 +40,7 @@ function Search() {
           {searchToggleValue === "playlists" && <SearchPlaylists />}
         </div>
       ) : (
-        <div className={styles.nosearch}>
-          <Home />
-        </div>
+        <NoSearch />
       )}
     </div>
   );
