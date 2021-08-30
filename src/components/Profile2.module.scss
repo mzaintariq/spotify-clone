@@ -9,31 +9,36 @@
 .profile__info {
   display: flex;
   align-items: flex-end;
+
+  & > img {
+    height: 40vw;
+    max-height: 300px;
+    margin: 0 20px 0 0;
+    box-shadow: 0 4px 60px rgba(0, 0, 0, 0.5);
+    border-radius: 250px;
+  }
 }
 
-.profile__info > img {
-  height: 40vw;
-  max-height: 300px;
-  margin: 0 20px 0 0;
-  box-shadow: 0 4px 60px rgba(0, 0, 0, 0.5);
-  border-radius: 250px;
-}
+.profile__infoText {
+  & > h4 {
+    font-size: 12px;
+    margin: 0;
+  }
 
-.profile__infoText > h4 {
-  font-size: 12px;
-  margin: 0;
-}
-.profile__infoText > h2 {
-  font-size: 5vw;
-  margin: 0;
-  padding: 0;
-}
-.profile__infoText > p {
-  font-size: 13px;
-  color: lightgray;
-}
-.profile__infoText > p > b {
-  color: white;
+  & > h2 {
+    font-size: 5vw;
+    margin: 0;
+    padding: 0;
+  }
+
+  & > p {
+    font-size: 13px;
+    color: lightgray;
+
+    & > b {
+      color: white;
+    }
+  }
 }
 
 .profile__songs {
@@ -47,20 +52,16 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: -20px;
-}
-.profile__songs__header > p {
-  padding-right: 10px;
-  color: gray;
-}
-.profile__songs__header > p:hover {
-  color: white;
-  cursor: pointer;
-}
-#showLess {
-  display: none;
-}
-#showLessArtists {
-  display: none;
+
+  & > p {
+    padding-right: 10px;
+    color: gray;
+
+    &:hover {
+      color: white;
+      cursor: pointer;
+    }
+  }
 }
 
 .profile__songList {

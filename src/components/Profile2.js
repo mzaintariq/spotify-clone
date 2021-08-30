@@ -1,23 +1,34 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import NoUserImage from "../../assets/userImage.png";
-import Loading from "../loading/Loading";
-import "./Profile.scss";
+
 import { Grid } from "@material-ui/core";
-import PlaylistCard from "../playlistCard/PlaylistCard";
-import { getUserTop } from "../../actions";
-import SongRow from "../songRow/SongRow";
-import ArtistCard from "../artistCard/ArtistCard";
+
+import styles from "./Profile.module.scss";
+import Loading from "./Loading";
+import SongRow from "./SongRow";
+import PlaylistCard from "./PlaylistCard";
+import ArtistCard from "./ArtistCard";
+import { getUserTop } from "../actions";
+import { accessTokenSelector } from "../reducers/authReducer";
+import {
+  userDataSelector,
+  userPlaylistsSelector,
+  userTopArtistsSelector,
+  userTopTracksSelector,
+} from "../reducers/userReducer";
+
+import NoUserImage from "../assets/userImage.png";
 
 function Profile() {
-  const accessToken = useSelector((state) => state.authReducer.accessToken);
-  const userData = useSelector((state) => state.userReducer.userData);
-  const topTracks = useSelector((state) => state.userReducer.userTopTracks);
-  const topArtists = useSelector((state) => state.userReducer.userTopArtists);
-  const playlists = useSelector((state) => state.userReducer.userPlaylists);
+  const accessToken = useSelector(accessTokenSelector);
+  const userData = useSelector(userDataSelector);
+  const topTracks = useSelector(userTopTracksSelector);
+  const topArtists = useSelector(userTopArtistsSelector);
+  const playlists = useSelector(userPlaylistsSelector);
+  const dispatch = useDispatch();
+
   const [showAll, setShowAll] = useState(false);
   const [showAllArtists, setShowAllArtists] = useState(false);
-  const dispatch = useDispatch();
   const tracksLength = showAll ? topTracks.items.length : 5;
   const artistsLength = showAllArtists ? topArtists.items.length : 6;
 
@@ -26,48 +37,44 @@ function Profile() {
     dispatch(getUserTop(accessToken));
   }, [dispatch, accessToken]);
 
-  const handleClick = (value) => {
-    setShowAll(value);
+  const handleClick = () => {
     var showAll = document.getElementById("showAll");
-    var showLess = document.getElementById("showLess");
-    if (value) {
-      showAll.style.display = "none";
-      showLess.style.display = "block";
+    if (showAll.innerHTML === 'show all') {
+      showAll.innerHTML = 'show less';
+      setShowAll(true);
     } else {
-      showAll.style.display = "block";
-      showLess.style.display = "none";
+      showAll.innerHTML = 'show all';
+      setShowAll(false);
     }
   };
 
-  const handleClickArtists = (value) => {
-    setShowAllArtists(value);
+  const handleClickArtists = () => {
     var showAllArtists = document.getElementById("showAllArtists");
-    var showLessArtists = document.getElementById("showLessArtists");
-    if (value) {
-      showAllArtists.style.display = "none";
-      showLessArtists.style.display = "block";
+    if (showAllArtists.innerHTML === 'show all') {
+      showAllArtists.innerHTML = 'show less';
+      setShowAllArtists(true);
     } else {
-      showAllArtists.style.display = "block";
-      showLessArtists.style.display = "none";
+      showAllArtists.innerHTML = 'show all';
+      setShowAllArtists(false);
     }
   };
 
   return (
     <div>
       {userData ? (
-        <div className="profile__page">
-          <div className="profile">
-            <div className="profile__info">
+        <div className={styles.profile__page}>
+          <div className={styles.profile}>
+            <div className={styles.profile__info}>
               {userData.images[0] ? (
                 <img src={userData.images[0].url} alt="" />
               ) : (
                 <img
-                  className="noArtistPic"
+                  className={styles.noArtistPic}
                   src={NoUserImage}
                   alt="NoUserPicture"
                 />
               )}
-              <div className="profile__infoText">
+              <div className={styles.profile__infoText}>
                 <h4>PROFILE</h4>
                 <h2>{userData.display_name}</h2>
                 <p>
@@ -80,18 +87,15 @@ function Profile() {
             </div>
           </div>
 
-          <div className="profile__songs">
-            <div className="profile__songs__header">
+          <div className={styles.profile__songs}>
+            <div className={styles.profile__songs__header}>
               <h2>Top Tracks</h2>
-              <p id="showAll" onClick={() => handleClick(true)}>
+              <p id="showAll" onClick={() => handleClick()}>
                 show all
-              </p>
-              <p id="showLess" onClick={() => handleClick(false)}>
-                show less
               </p>
             </div>
             {topTracks ? (
-              <div className="profile__songList">
+              <div className={styles.profile__songList}>
                 {topTracks.items.slice(0, tracksLength).map((item, index) => (
                   <SongRow
                     key={item.id}
@@ -106,18 +110,15 @@ function Profile() {
             )}
           </div>
 
-          <div className="profile__artists">
-            <div className="profile__songs__header">
+          <div className={styles.profile__artists}>
+            <div className={styles.profile__songs__header}>
               <h2>Top Artists</h2>
-              <p id="showAllArtists" onClick={() => handleClickArtists(true)}>
+              <p id="showAllArtists" onClick={() => handleClickArtists()}>
                 show all
-              </p>
-              <p id="showLessArtists" onClick={() => handleClickArtists(false)}>
-                show less
               </p>
             </div>
             {topArtists ? (
-              <div className="profile__artistGrid">
+              <div className={styles.profile__artistGrid}>
                 <Grid container justifyContent="flex-start" spacing={3}>
                   {topArtists.items.slice(0, artistsLength).map((item) => (
                     <Grid key={item.id} item xs={6} sm={4} md={3} lg={2} xl={2}>
@@ -131,10 +132,10 @@ function Profile() {
             )}
           </div>
 
-          <div className="profile__artists">
+          <div className={styles.profile__artists}>
             <h2>Public Playlists</h2>
             {playlists ? (
-              <div className="profile__artistGrid">
+              <div className={styles.profile__artistGrid}>
                 <Grid container justifyContent="flex-start" spacing={3}>
                   {playlists.items
                     .filter(

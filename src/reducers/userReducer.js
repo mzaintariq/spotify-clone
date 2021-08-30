@@ -1,3 +1,4 @@
+import { createSelector } from "reselect";
 import {
   SET_USER_DATA,
   SET_USER_PLAYLISTS,
@@ -50,3 +51,15 @@ export const userTopArtistsSelector = (state) => state.user.userTopArtists;
 export const userPlaylistsSelector = (state) => state.user.userPlaylists;
 
 export const isLoadingSelector = (state) => state.user.isLoading;
+
+export const isLoadingAllSelector = createSelector(
+  userTopTracksSelector,
+  userTopArtistsSelector,
+  userPlaylistsSelector,
+  (userTopTracks, userTopArtists, userPlaylists) => {
+    if (userTopTracks && userTopArtists && userPlaylists) {
+      return false;
+    }
+    return true;
+  }
+);
