@@ -1,36 +1,35 @@
-import "./App.scss";
 import React, { useEffect, Suspense, lazy } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { getRefresh, getToken } from "./actions/index";
-import Header from "./components/header/Header";
-import Footer from "./components/footer/Footer";
-import Login from "./components/login/Login";
-import ErrorBoundary from "./components/errorBoundary/ErrorBoundary";
-import Loading from "./components/loading/Loading";
 
-const Home = lazy(() => import("./components/home/Home"));
-const Profile = lazy(() => import("./components/profile/Profile"));
-const Library = lazy(() => import("./components/library/Library"));
-const Search = lazy(() => import("./components/search/Search"));
-const Playlist = lazy(() => import("./components/playlist/Playlist"));
-const Album = lazy(() => import("./components/album/Album"));
-const Artist = lazy(() => import("./components/artist/Artist"));
-const Category = lazy(() => import("./components/category/Category"));
+import styles from "./App.module.scss";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Login from "./components/Login";
+import Loading from "./components/Loading";
+import ErrorBoundary from "./components/errorBoundary/ErrorBoundary";
+import { getRefresh } from "./actions/index";
+import {
+  accessTokenSelector,
+  expiresInSelector,
+  refreshTokenSelector,
+} from "./reducers/authReducer";
+
+const Home = lazy(() => import("./components/Home"));
+const Profile = lazy(() => import("./components/Profile"));
+const Library = lazy(() => import("./components/Library"));
+const Search = lazy(() => import("./components/Search"));
+const Playlist = lazy(() => import("./components/Playlist"));
+const Album = lazy(() => import("./components/Album"));
+const Artist = lazy(() => import("./components/Artist"));
+const Category = lazy(() => import("./components/Category"));
+const NotFound = lazy(() => import("./components/NotFound"));
 
 function App() {
-  const accessToken = useSelector((state) => state.authReducer.accessToken);
-  const refreshToken = useSelector((state) => state.authReducer.refreshToken);
-  const expiresIn = useSelector((state) => state.authReducer.expiresIn);
+  const accessToken = useSelector(accessTokenSelector);
+  const refreshToken = useSelector(refreshTokenSelector);
+  const expiresIn = useSelector(expiresInSelector);
   const dispatch = useDispatch();
-  
-  useEffect(() => {
-    const code = new URLSearchParams(window.location.search).get("code");
-    if (code) {
-      dispatch(getToken(code));
-      window.history.pushState("", "", "/");
-    }
-  }, [dispatch]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -55,15 +54,15 @@ function App() {
                   </div>
                 }
               >
-                <div className="mainpage">
+                <div className={styles.mainpage}>
                   <Switch>
-                    <Route path="/library">
+                    <Route exact path="/library">
                       <Library />
                     </Route>
-                    <Route path="/profile">
+                    <Route exact path="/profile">
                       <Profile />
                     </Route>
-                    <Route path="/search">
+                    <Route exact path="/search">
                       <Search />
                     </Route>
                     <Route path="/playlist/:id">
@@ -78,14 +77,17 @@ function App() {
                     <Route path="/category/:id">
                       <Category />
                     </Route>
-                    <Route path="/">
+                    <Route exact path="/">
                       <Home />
+                    </Route>
+                    <Route>
+                      <NotFound />
                     </Route>
                   </Switch>
                 </div>
               </Suspense>
             </ErrorBoundary>
-            <div className="background"></div>
+            <div className={styles.background}></div>
             <Footer />
           </Router>
         </>

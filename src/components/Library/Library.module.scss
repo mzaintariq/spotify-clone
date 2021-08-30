@@ -1,0 +1,21 @@
+.library {
+  margin: 30px 4vw;
+  padding-bottom: 20px;
+}
+
+.library__header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 50px;
+  align-items: center;
+  margin-top: 20px;
+}
+
+@media (max-width: 700px) {
+  .library__header {
+    display: flex;
+    flex-direction: column;
+    border-radius: 25px;
+  }
+}
