@@ -23,3 +23,9 @@
   text-align: center;
   padding-top: 10px;
 }
+
+@media (max-width: 1025px) {
+  .mainpage {
+    padding-bottom: 140px;
+  }
+}

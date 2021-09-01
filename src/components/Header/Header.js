@@ -32,7 +32,7 @@ function Header() {
     <div>
       <header className={styles.header}>
         <Link className={styles.header__logo} to="/">
-          <SpotifyLogo width="150px" height="63px" viewBox="0 -35 800 300" />
+          <SpotifyLogo width="150px" height="63px" viewBox="0 -25 800 300" />
         </Link>
         <nav className={styles.header__nav}>
           <Option Icon={HomeIcon} text="Home" to="/" />
