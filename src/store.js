@@ -1,12 +1,14 @@
 import { createStore, applyMiddleware } from "redux";
-import rootReducer from "./reducers/index";
 import createSagaMiddleware from "redux-saga";
+import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
+
+import rootReducer from "./reducers/index";
 import { watcherSaga } from "./sagas/rootSaga";
 
 const sagaMiddleware = createSagaMiddleware();
 const middleware =
   process.env.NODE_ENV !== "production"
-    ? [require("redux-immutable-state-invariant").default(), sagaMiddleware]
+    ? [reduxImmutableStateInvariant(), sagaMiddleware]
     : [sagaMiddleware];
 
 const store = createStore(rootReducer, {}, applyMiddleware(...middleware));
