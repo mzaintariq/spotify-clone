@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import App from "./App";
 import store from "./store";
 
-it("renders without crashing", () => {
+test("renders login page without crashing", () => {
   const div = document.createElement("div");
   act(() => {
     ReactDOM.render(
@@ -18,6 +18,6 @@ it("renders without crashing", () => {
       div
     );
   });
-  const button = div.querySelector('a');
-  expect(button.textContent).toBe('LOGIN WITH SPOTIFY');
+  const button = div.querySelector("a");
+  expect(button.textContent).toBe("LOGIN WITH SPOTIFY");
 });
