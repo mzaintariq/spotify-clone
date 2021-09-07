@@ -1,4 +1,4 @@
-import { GET_REFRESH, GET_TOKEN, SET_REFRESH, SET_TOKEN } from "./actionTypes";
+import { GET_REFRESH, GET_TOKEN, SET_REFRESH, SET_TOKEN, LOGOUT } from "./actionTypes";
 
 export const getToken = (code) => {
   return {
@@ -26,4 +26,8 @@ export const setRefresh = (data) => {
     type: SET_REFRESH,
     payload: data,
   };
+};
+
+export const logout = {
+  type: LOGOUT,
 };

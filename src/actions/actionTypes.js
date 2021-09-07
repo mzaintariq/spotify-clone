@@ -39,3 +39,4 @@ export const SET_CATEGORY_DATA = "SET_CATEGORY_DATA";
 export const SET_CATEGORY_PLAYLISTS = "SET_CATEGORY_PLAYLISTS";
 export const GET_REFRESH = "GET_REFRESH";
 export const SET_REFRESH = "SET_REFRESH";
+export const LOGOUT = "LOGOUT";

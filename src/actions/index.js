@@ -1,4 +1,10 @@
-export { getToken, setToken, getRefresh, setRefresh } from "./authActions";
+export {
+  getToken,
+  setToken,
+  getRefresh,
+  setRefresh,
+  logout,
+} from "./authActions";
 export {
   getUserData,
   setUserData,
@@ -81,4 +87,5 @@ export {
   SET_CATEGORY_PLAYLISTS,
   GET_REFRESH,
   SET_REFRESH,
+  LOGOUT,
 } from "./actionTypes";

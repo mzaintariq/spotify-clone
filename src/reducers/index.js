@@ -9,8 +9,9 @@ import { albumReducer } from "./albumReducer";
 import { artistReducer } from "./artistReducer";
 import { libraryReducer } from "./libraryReducer";
 import { categoryReducer } from "./categoryReducer";
+import { LOGOUT } from "../actions";
 
-const rootReducer = combineReducers({
+const appReducer = combineReducers({
   auth: authReducer,
   user: userReducer,
   browse: browseReducer,
@@ -22,5 +23,12 @@ const rootReducer = combineReducers({
   library: libraryReducer,
   category: categoryReducer,
 });
+
+const rootReducer = (state, action) => {
+  if (action.type === LOGOUT) {
+    return appReducer(undefined, action);
+  }
+  return appReducer(state, action);
+};
 
 export default rootReducer;

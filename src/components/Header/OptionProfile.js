@@ -7,7 +7,7 @@ import PersonIcon from "@material-ui/icons/Person";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 import styles from "./OptionProfile.module.scss";
-import { setToken } from "../../actions";
+import { logout } from "../../actions/authActions";
 
 function OptionProfile({ text, Icon, imgUrl }) {
   const [open, setOpen] = useState(false);
@@ -33,9 +33,7 @@ function OptionProfile({ text, Icon, imgUrl }) {
 
   const handleLogout = () => {
     setOpen(!open);
-    dispatch(
-      setToken({ access_token: null, expires_in: null, refresh_token: null })
-    );
+    dispatch(logout);
   };
 
   return (
