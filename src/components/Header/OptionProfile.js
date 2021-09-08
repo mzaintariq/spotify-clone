@@ -40,6 +40,7 @@ function OptionProfile({ text, Icon, imgUrl }) {
     <div ref={container}>
       <div className={styles.option__link} onClick={() => handleClick()}>
         <div className={styles.option__label}>
+          {Icon && <Icon className={styles.option__icon} />}
           {imgUrl && (
             <div className={styles.option__avatar}>
               <Avatar

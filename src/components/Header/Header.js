@@ -12,7 +12,10 @@ import Option from "./Option";
 import OptionProfile from "./OptionProfile";
 import { getUserData } from "../../actions";
 import { accessTokenSelector } from "../../reducers/authReducer";
-import { isLoadingSelector, userDataSelector } from "../../reducers/userReducer";
+import {
+  isLoadingSelector,
+  userDataSelector,
+} from "../../reducers/userReducer";
 
 import { ReactComponent as SpotifyLogo } from "../../assets/SpotifyLogo.svg";
 
@@ -39,7 +42,7 @@ function Header() {
           <Option Icon={SearchIcon} text="Search" to="/search" />
           <Option Icon={LibraryMusicIcon} text="My Library" to="/library" />
           {isLoadingUser ? (
-            <Option Icon={AccountCircleIcon} text="Profile" to="/profile" />
+            <OptionProfile Icon={AccountCircleIcon} text="Profile" />
           ) : (
             <OptionProfile
               imgUrl={userData.images[0].url}
