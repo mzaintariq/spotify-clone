@@ -1,0 +1,69 @@
+.artistcard__link {
+  text-decoration: none;
+  z-index: 0;
+}
+
+.artistcard {
+  border-radius: 5px;
+  background-color: #ffffff0c;
+  transition: 250ms background-color ease-in;
+  box-shadow: 0 4px 8px 0 rgb(0, 0, 0);
+
+  &:hover {
+    background-color: #ffffff2c;
+    box-shadow: 0 8px 16px 0 rgb(0, 0, 0);
+  }
+
+  & img {
+    width: 100%;
+    height: 13em;
+    object-fit: cover;
+    border-radius: 200px;
+    transition: 0.5s ease transform;
+  }
+}
+
+.artistcard__thumbnail {
+  padding: 15px;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:hover img {
+    transform: scale(1.05);
+  }
+}
+
+.artistcard__text {
+  padding: 16px 16px;
+
+  & h4 {
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    margin: 0px;
+    height: 1.4em;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  & p {
+    color: lightgray;
+    font-size: 14px;
+    height: 2.4em;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.noUserPic {
+  filter: invert(70%);
+}
