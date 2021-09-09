@@ -5,30 +5,22 @@ import {
   SET_ARTIST_TOP_TRACKS,
 } from "./actionTypes";
 
-export const getArtist = (accessToken) => {
-  return {
-    type: GET_ARTIST,
-    payload: accessToken,
-  };
-};
+export const getArtist = (payload) => ({
+  type: GET_ARTIST,
+  payload,
+});
 
-export const setArtist = (data) => {
-  return {
-    type: SET_ARTIST,
-    payload: data,
-  };
-};
+export const setArtist = (payload) => ({
+  type: SET_ARTIST,
+  payload,
+});
 
-export const setArtistTopTracks = (data) => {
-  return {
-    type: SET_ARTIST_TOP_TRACKS,
-    payload: data,
-  };
-};
+export const setArtistTopTracks = (payload) => ({
+  type: SET_ARTIST_TOP_TRACKS,
+  payload,
+});
 
-export const setArtistAlbums = (data) => {
-  return {
-    type: SET_ARTIST_ALBUMS,
-    payload: data,
-  };
-};
+export const setArtistAlbums = (payload) => ({
+  type: SET_ARTIST_ALBUMS,
+  payload,
+});

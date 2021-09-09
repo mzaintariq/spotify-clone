@@ -5,7 +5,7 @@ import { watcherSaga } from "./sagas/rootSaga";
 
 const sagaMiddleware = createSagaMiddleware();
 const middleware =
-  process.env.NODE_ENV !== "production"
+  process.env.NODE_ENV === "development"
     ? [require("redux-immutable-state-invariant").default(), sagaMiddleware]
     : [sagaMiddleware];
 
