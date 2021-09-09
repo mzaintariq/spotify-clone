@@ -1,5 +1,8 @@
 import React, { Component } from "react";
-import "./ErrorBoundary.scss";
+import { connect } from "react-redux";
+
+import styles from "./ErrorBoundary.module.scss";
+import { logout } from "../actions/authActions";
 
 class ErrorBoundary extends Component {
   constructor(props) {
@@ -7,6 +10,7 @@ class ErrorBoundary extends Component {
     this.state = {
       hasError: false,
     };
+    this.handleLogout = this.handleLogout.bind(this);
   }
 
   componentDidCatch() {
@@ -15,11 +19,21 @@ class ErrorBoundary extends Component {
     });
   }
 
+  handleLogout() {
+    this.props.logout();
+  }
+
   render() {
     if (this.state.hasError) {
       return (
-        <div className="error__message">
+        <div className={styles.error__message}>
           <h2>Something went wrong</h2>
+          <div
+            className={styles.refresh__button}
+            onClick={() => this.handleLogout()}
+          >
+            Refresh
+          </div>
         </div>
       );
     }
@@ -27,4 +41,10 @@ class ErrorBoundary extends Component {
   }
 }
 
-export default ErrorBoundary;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logout: () => {dispatch(logout)},
+  };
+};
+
+export default connect(null, mapDispatchToProps)(ErrorBoundary);

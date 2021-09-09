@@ -45,7 +45,7 @@ function Header() {
             <OptionProfile Icon={AccountCircleIcon} text="Profile" />
           ) : (
             <OptionProfile
-              imgUrl={userData.images[0].url}
+              imgUrl={userData?.images[0]?.url}
               text={userData.display_name}
             />
           )}
