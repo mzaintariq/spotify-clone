@@ -4,6 +4,14 @@ import { authSaga } from "./auth";
 import { newReleasesSaga } from "./newreleases";
 import { featuredSaga } from "./featured";
 import { userDataSaga } from "./user";
+import { playlistSaga } from "./playlist";
+import { getMoreSaga } from "./playlist_loadmore";
+import { searchResultSaga } from "./search";
+import { albumSaga } from "./album";
+import { artistSaga } from "./artist";
+import { librarySaga } from "./library";
+import { getMoreLibraryTracksSaga } from "./library_loadmore";
+import { userTopSaga } from "./userTop";
 
 export function* watcherSaga() {
   yield all([
@@ -11,5 +19,13 @@ export function* watcherSaga() {
     fork(newReleasesSaga),
     fork(featuredSaga),
     fork(userDataSaga),
+    fork(playlistSaga),
+    fork(getMoreSaga),
+    fork(searchResultSaga),
+    fork(albumSaga),
+    fork(artistSaga),
+    fork(librarySaga),
+    fork(getMoreLibraryTracksSaga),
+    fork(userTopSaga),
   ]);
 }
