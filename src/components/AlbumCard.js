@@ -1,8 +1,13 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 import styles from "./AlbumCard.module.scss";
 import PlaylistImage from "../assets/playlistImage.png";
+
+AlbumCard.propTypes = {
+  data: PropTypes.object,
+};
 
 function AlbumCard({ data }) {
   return (

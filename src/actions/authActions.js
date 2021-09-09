@@ -1,4 +1,4 @@
-import { GET_TOKEN, SET_TOKEN } from "./actionTypes";
+import { GET_REFRESH, GET_TOKEN, SET_REFRESH, SET_TOKEN } from "./actionTypes";
 
 export const getToken = (payload) => ({
   type: GET_TOKEN,
@@ -7,5 +7,15 @@ export const getToken = (payload) => ({
 
 export const setToken = (payload) => ({
   type: SET_TOKEN,
+  payload,
+});
+
+export const getRefresh = (payload) => ({
+  type: GET_REFRESH,
+  payload,
+});
+
+export const setRefresh = (payload) => ({
+  type: SET_REFRESH,
   payload,
 });

@@ -9,14 +9,12 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
 import styles from "./Header.module.scss";
 import Option from "./Option";
-import { accessTokenSelector } from "../reducers/authReducer";
-import {
-  isLoadingSelector,
-  userDataSelector,
-} from "../reducers/userReducer";
-import { getUserData } from "../actions";
+import OptionProfile from "./OptionProfile";
+import { getUserData } from "../../actions";
+import { accessTokenSelector } from "../../reducers/authReducer";
+import { isLoadingSelector, userDataSelector } from "../../reducers/userReducer";
 
-import { ReactComponent as SpotifyLogo } from "../assets/SpotifyLogo.svg";
+import { ReactComponent as SpotifyLogo } from "../../assets/SpotifyLogo.svg";
 
 function Header() {
   const accessToken = useSelector(accessTokenSelector);
@@ -34,7 +32,7 @@ function Header() {
     <div>
       <header className={styles.header}>
         <Link className={styles.header__logo} to="/">
-          <SpotifyLogo width="150px" height="63px" viewBox="0 -35 800 300" />
+          <SpotifyLogo width="150px" height="63px" viewBox="0 -25 800 300" />
         </Link>
         <nav className={styles.header__nav}>
           <Option Icon={HomeIcon} text="Home" to="/" />
@@ -43,10 +41,9 @@ function Header() {
           {isLoadingUser ? (
             <Option Icon={AccountCircleIcon} text="Profile" to="/profile" />
           ) : (
-            <Option
+            <OptionProfile
               imgUrl={userData.images[0].url}
               text={userData.display_name}
-              to="/profile"
             />
           )}
         </nav>
