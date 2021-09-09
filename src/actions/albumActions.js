@@ -1,15 +1,11 @@
 import { GET_ALBUM, SET_ALBUM } from "./actionTypes";
 
-export const getAlbum = (accessToken) => {
-  return {
-    type: GET_ALBUM,
-    payload: accessToken,
-  };
-};
+export const getAlbum = (payload) => ({
+  type: GET_ALBUM,
+  payload,
+});
 
-export const setAlbum = (data) => {
-  return {
-    type: SET_ALBUM,
-    payload: data,
-  };
-};
+export const setAlbum = (payload) => ({
+  type: SET_ALBUM,
+  payload,
+});
