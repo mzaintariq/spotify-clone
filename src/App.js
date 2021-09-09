@@ -13,6 +13,7 @@ import Search from "./components/Search";
 import Playlist from "./components/Playlist";
 import Album from "./components/Album";
 import NotFound from "./components/NotFound";
+import Artist from "./components/Artist";
 import { accessTokenSelector } from "./reducers/authReducer";
 
 function App() {
@@ -40,6 +41,9 @@ function App() {
                 </Route>
                 <Route path="/album/:id">
                   <Album />
+                </Route>
+                <Route path="/artist/:id">
+                  <Artist />
                 </Route>
                 <Route exact path="/">
                   <Home />
