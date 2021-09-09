@@ -1,15 +1,11 @@
 import { GET_USER_DATA, SET_USER_DATA } from "./actionTypes";
 
-export const getUserData = (accessToken) => {
-  return {
-    type: GET_USER_DATA,
-    payload: accessToken,
-  };
-};
+export const getUserData = (payload) => ({
+  type: GET_USER_DATA,
+  payload,
+});
 
-export const setUserData = (data) => {
-  return {
-    type: SET_USER_DATA,
-    payload: data,
-  };
-};
+export const setUserData = (payload) => ({
+  type: SET_USER_DATA,
+  payload,
+});
