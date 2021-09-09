@@ -46,7 +46,7 @@ function Header() {
           ) : (
             <OptionProfile
               imgUrl={userData?.images[0]?.url}
-              text={userData.display_name}
+              text={userData?.display_name}
             />
           )}
         </nav>
