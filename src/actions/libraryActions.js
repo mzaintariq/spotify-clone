@@ -9,58 +9,42 @@ import {
   SET_MORE_LIBRARY_TRACKS,
 } from "./actionTypes";
 
-export const getLibraryData = (accessToken) => {
-  return {
-    type: GET_LIBRARY_DATA,
-    payload: accessToken,
-  };
-};
+export const getLibraryData = (payload) => ({
+  type: GET_LIBRARY_DATA,
+  payload,
+});
 
-export const setLibraryAlbums = (data) => {
-  return {
-    type: SET_LIBRARY_ALBUMS,
-    payload: data,
-  };
-};
+export const setLibraryAlbums = (payload) => ({
+  type: SET_LIBRARY_ALBUMS,
+  payload,
+});
 
-export const setLibraryArtists = (data) => {
-  return {
-    type: SET_LIBRARY_ARTISTS,
-    payload: data,
-  };
-};
+export const setLibraryArtists = (payload) => ({
+  type: SET_LIBRARY_ARTISTS,
+  payload,
+});
 
-export const setLibraryTracks = (data) => {
-  return {
-    type: SET_LIBRARY_TRACKS,
-    payload: data,
-  };
-};
+export const setLibraryTracks = (payload) => ({
+  type: SET_LIBRARY_TRACKS,
+  payload,
+});
 
-export const setLibraryPlaylists = (data) => {
-  return {
-    type: SET_LIBRARY_PLAYLISTS,
-    payload: data,
-  };
-};
+export const setLibraryPlaylists = (payload) => ({
+  type: SET_LIBRARY_PLAYLISTS,
+  payload,
+});
 
-export const setLibraryToggle = (data) => {
-  return {
-    type: SET_LIBRARY_TOGGLE,
-    payload: data,
-  };
-};
+export const setLibraryToggle = (payload) => ({
+  type: SET_LIBRARY_TOGGLE,
+  payload,
+});
 
-export const getMoreLibraryTracks = (accessToken) => {
-  return {
-    type: GET_MORE_LIBRARY_TRACKS,
-    payload: accessToken,
-  };
-};
+export const getMoreLibraryTracks = (payload) => ({
+  type: GET_MORE_LIBRARY_TRACKS,
+  payload,
+});
 
-export const setMoreLibraryTracks = (data) => {
-  return {
-    type: SET_MORE_LIBRARY_TRACKS,
-    payload: data,
-  };
-};
+export const setMoreLibraryTracks = (payload) => ({
+  type: SET_MORE_LIBRARY_TRACKS,
+  payload,
+});
