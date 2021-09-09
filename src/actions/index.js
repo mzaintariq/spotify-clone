@@ -3,6 +3,12 @@ export { getUserData, setUserData } from "./userActions";
 export { getFeatured, setFeatured } from "./featuredActions";
 export { getNewReleases, setNewReleases } from "./newreleasesActions";
 export {
+  getPlaylist,
+  setPlaylist,
+  getMorePlaylistTracks,
+  setMorePlaylistTracks,
+} from "./playlistActions";
+export {
   GET_TOKEN,
   SET_TOKEN,
   GET_USER_DATA,
@@ -11,4 +17,8 @@ export {
   SET_FEATURED,
   GET_NEW_RELEASES,
   SET_NEW_RELEASES,
+  GET_PLAYLIST,
+  SET_PLAYLIST,
+  GET_MORE_PLAYLIST_TRACKS,
+  SET_MORE_PLAYLIST_TRACKS,
 } from "./actionTypes";
