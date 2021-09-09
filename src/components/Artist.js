@@ -1,19 +1,17 @@
 import React, { useEffect } from "react";
-import "./Search.scss";
+import "./Artist.scss";
 
-function Search() {
+function Artist() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   return (
     <div>
-      <div>
-        SEARCH
-        <h1>SEARCH</h1>
-      </div>
+      ARTIST
+      <h1>ARTIST</h1>
     </div>
   );
 }
 
-export default Search;
+export default Artist;
