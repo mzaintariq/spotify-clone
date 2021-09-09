@@ -1,15 +1,11 @@
 import { GET_CATEGORY_LIST, SET_CATEGORY_LIST } from "./actionTypes";
 
-export const getCategoryList = (accessToken) => {
-  return {
-    type: GET_CATEGORY_LIST,
-    payload: accessToken,
-  };
-};
+export const getCategoryList = (payload) => ({
+  type: GET_CATEGORY_LIST,
+  payload,
+});
 
-export const setCategoryList = (data) => {
-  return {
-    type: SET_CATEGORY_LIST,
-    payload: data,
-  };
-};
+export const setCategoryList = (payload) => ({
+  type: SET_CATEGORY_LIST,
+  payload,
+});
