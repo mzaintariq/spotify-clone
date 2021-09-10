@@ -53,3 +53,11 @@
     }
   }
 }
+
+@media (max-width: 500px) {
+  .searchpage__toggle {
+    & input + label {
+      width: 80px;
+    }
+  } 
+}

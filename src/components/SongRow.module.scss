@@ -66,6 +66,28 @@
   color: rgb(134, 134, 134);
 }
 
+.artist__button {
+  padding: 0;
+  border: none;
+  background: none;
+  color: gray;
+  white-space: pre;
+}
+
+.artist__link {
+  text-decoration: none;
+  color: gray;
+
+  &:hover {
+    color: white;
+    cursor: default;
+  }
+}
+
+.dash {
+  display: inline;
+}
+
 .album__button {
   padding: 0;
   border: none;
@@ -81,5 +103,69 @@
   &:hover {
     color: white;
     cursor: default;
+  }
+}
+
+
+@media (max-width: 900px) {
+  .songrow {
+    margin: 0px 10px;
+    padding: 0px 10px;
+  }
+
+  .songrow__number {
+    width: 22px;
+    margin: 0px 20px 0px 0px;
+
+    & > h4 {
+      font-size: 16px;
+    }
+  }
+
+  .songrow__albumart {
+    padding: 4px 10px 0px 0px;
+  }
+
+  .songrow__info__name > h1 {
+    width: 40vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .dash {
+    display: none;
+  }
+
+  .album__button {
+    display: none;
+  }
+}
+
+
+@media (max-width: 500px) {
+  .songrow {
+    margin: 0px 10px;
+    padding: 0px 10px;
+  }
+
+  .songrow__number {
+    width: 22px;
+    margin: 0px 20px 0px 0px;
+
+    & > h4 {
+      font-size: 16px;
+    }
+  }
+
+  .songrow__albumart {
+    padding: 4px 10px 0px 0px;
+  }
+
+  .songrow__info__name > h1 {
+    width: 120px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }

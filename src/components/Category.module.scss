@@ -46,3 +46,13 @@
     font-size: 6vw;
   }
 }
+
+@media (max-width: 500px) {
+  .category__playlist {
+    padding: 20px 20px;
+  }
+
+  .category__playlistGrid {
+    margin: 20px 0vw;
+  }
+}

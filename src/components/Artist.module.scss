@@ -70,3 +70,25 @@
     font-size: 6vw;
   }
 }
+
+@media (max-width: 500px) {
+  .artist {
+    padding: 20px;
+  }
+
+  .artist__songs {
+    padding: 20px 20px 10px 20px;
+  }
+
+  .artist__songList {
+    margin: 20px 0vw;
+  }
+
+  .artist__albums {
+    padding: 10px 20px;
+  }
+
+  .artist__albumGrid {
+    margin: 20px 0vw;
+  }
+}

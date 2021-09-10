@@ -50,3 +50,9 @@
     font-size: 6vw;
   }
 }
+
+@media (max-width: 500px) {
+  .profile {
+    padding: 20px;
+  }
+}

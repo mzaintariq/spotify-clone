@@ -25,3 +25,14 @@
     }
   }
 }
+
+
+@media (max-width: 500px) {
+  .profile__artists {
+    padding: 10px 20px;
+  }
+
+  .profile__artistGrid {
+    margin: 10px 0vw;
+  }
+}

@@ -45,8 +45,8 @@ function App() {
       {accessToken ? (
         <>
           <Router>
-            <Header />
             <ErrorBoundary>
+              <Header />
               <Suspense
                 fallback={
                   <div className="load">

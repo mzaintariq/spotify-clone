@@ -72,11 +72,11 @@ function SongRow({ track, id, type }) {
               {track.artists.map((artist, index) => (
                 <button
                   key={artist.id}
-                  className={styles.album__button}
+                  className={styles.artist__button}
                   onClick={(event) => event.stopPropagation()}
                 >
                   <Link
-                    className={styles.album__link}
+                    className={styles.artist__link}
                     to={`/artist/${artist.id}`}
                   >
                     <>{artist.name}</>
@@ -86,8 +86,10 @@ function SongRow({ track, id, type }) {
               ))}
               {type !== "album" ? (
                 <>
-                  {" "}
-                  -{" "}
+                  <span className={styles.dash}>
+                    {" "}
+                    -{" "}
+                  </span>
                   <button
                     className={styles.album__button}
                     onClick={(event) => event.stopPropagation()}
