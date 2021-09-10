@@ -102,3 +102,19 @@
     font-size: 6vw;
   }
 }
+
+@media (max-width: 900px) {
+  .album__header {
+    margin: 0px 10px;
+    padding: 20px 10px;
+  }
+
+  .header__number {
+    margin: 0px 15px 0px 0px;
+  }
+
+  .album__line {
+    margin: -22px 10px 0px 10px;
+    border: 0.5px #222222 solid;
+  }
+}

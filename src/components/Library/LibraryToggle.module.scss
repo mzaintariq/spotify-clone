@@ -52,3 +52,11 @@
     }
   }
 }
+
+@media (max-width: 500px) {
+  .library__toggle {
+    & input + label {
+      width: 80px;
+    }
+  }
+}

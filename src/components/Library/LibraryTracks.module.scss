@@ -47,3 +47,18 @@
     text-align: center;
   }
 }
+
+@media (max-width: 900px) {
+  .library__playlist__header {
+    margin: 0px 10px;
+    padding: 20px 10px;
+  }
+
+  .library__header__number {
+    margin: 0px 15px 0px 0px;
+  }
+
+  .library__playlist__line {
+    margin: -22px 15px 0px 15px;
+  }
+}

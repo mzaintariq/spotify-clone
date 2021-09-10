@@ -59,7 +59,7 @@
 .playlist__header__left {
   display: flex;
   align-items: center;
-  
+
   & h4 {
     color: gray;
     font-size: 16px;
@@ -91,5 +91,21 @@
 @media (max-width: 800px) {
   .playlist__infoText > h2 {
     font-size: 6vw;
+  }
+}
+
+@media (max-width: 900px) {
+  .playlist__header {
+    margin: 0px 10px;
+    padding: 20px 10px;
+  }
+
+  .header__number {
+    margin: 0px 15px 0px 0px;
+  }
+
+  .playlist__line {
+    margin: -22px 10px 0px 10px;
+    border: 0.5px #222222 solid;
   }
 }
