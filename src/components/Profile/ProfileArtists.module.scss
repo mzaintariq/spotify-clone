@@ -1,0 +1,38 @@
+.profile__artists {
+  background-color: #000000;
+  padding: 20px 50px 20px 50px;
+}
+
+.profile__artistGrid {
+  border-radius: 5px;
+  margin: 30px 0vw;
+}
+
+.profile__songs__header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: -20px;
+
+  & > p {
+    padding-right: 10px;
+    color: gray;
+
+    &:hover {
+      color: white;
+      cursor: pointer;
+    }
+  }
+}
+
+
+@media (max-width: 500px) {
+  .profile__artists {
+    padding: 10px 20px;
+  }
+
+  .profile__artistGrid {
+    margin: 10px 0vw;
+  }
+}

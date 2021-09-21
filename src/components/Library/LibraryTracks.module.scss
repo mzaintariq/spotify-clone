@@ -1,0 +1,64 @@
+.library__playlist__songs {
+  background-color: #ffffff0c;
+  border-radius: 5px;
+  margin: 30px 0vw;
+  padding-bottom: 20px;
+  box-shadow: 0 4px 8px 0 rgb(0, 0, 0);
+}
+
+.library__playlist__header {
+  margin: 0px 20px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.library__playlist__header__left {
+  display: flex;
+  align-items: center;
+
+  & h4 {
+    color: gray;
+    font-size: 16px;
+  }
+}
+
+.library__header__number {
+  width: 22px;
+  margin: 0px 40px 0px 0px;
+}
+
+.library__time__icon {
+  color: gray;
+}
+
+.library__playlist__line {
+  margin: -22px 20px 0px 20px;
+  border: 0.5px #222222 solid;
+}
+
+.library__playlist__songList {
+  margin-top: 20px;
+}
+
+@media (max-width: 700px) {
+  .library__body__title {
+    text-align: center;
+  }
+}
+
+@media (max-width: 900px) {
+  .library__playlist__header {
+    margin: 0px 10px;
+    padding: 20px 10px;
+  }
+
+  .library__header__number {
+    margin: 0px 15px 0px 0px;
+  }
+
+  .library__playlist__line {
+    margin: -22px 15px 0px 15px;
+  }
+}

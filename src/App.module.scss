@@ -18,3 +18,14 @@
     rgba(0, 0, 0, 1) 100%
   );
 }
+
+.load {
+  text-align: center;
+  padding-top: 10px;
+}
+
+@media (max-width: 1025px) {
+  .mainpage {
+    padding-bottom: 140px;
+  }
+}

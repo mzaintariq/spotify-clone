@@ -1,0 +1,37 @@
+.profile__songs {
+  background-color: #000000;
+  padding: 20px 50px;
+}
+
+.profile__songs__header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: -20px;
+
+  & > p {
+    padding-right: 10px;
+    color: gray;
+
+    &:hover {
+      color: white;
+      cursor: pointer;
+    }
+  }
+}
+
+.profile__songList {
+  background-color: #ffffff0c;
+  border-radius: 5px;
+  margin: 30px 0vw;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  box-shadow: 0 4px 8px 0 rgb(0, 0, 0);
+}
+
+@media (max-width: 500px) {
+  .profile__songs {
+    padding: 20px 20px 10px 20px;
+  }
+}

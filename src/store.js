@@ -1,7 +1,17 @@
 import { createStore, applyMiddleware } from "redux";
-import rootReducer from "./reducers/index";
 import createSagaMiddleware from "redux-saga";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+
+import rootReducer from "./reducers/index";
 import { watcherSaga } from "./sagas/rootSaga";
+
+const persistConfig = {
+  key: "root",
+  storage,
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const sagaMiddleware = createSagaMiddleware();
 const middleware =
@@ -9,8 +19,11 @@ const middleware =
     ? [require("redux-immutable-state-invariant").default(), sagaMiddleware]
     : [sagaMiddleware];
 
-const store = createStore(rootReducer, {}, applyMiddleware(...middleware));
+export const store = createStore(
+  persistedReducer,
+  {},
+  applyMiddleware(...middleware)
+);
+export const persistor = persistStore(store);
 
 sagaMiddleware.run(watcherSaga);
-
-export default store;

@@ -1,0 +1,16 @@
+.error__message {
+  padding-top: 80px;
+  text-align: center;
+  color: white;
+}
+
+.refresh__button {
+  color: grey;
+  font-weight: 600;
+  transition: 250ms color ease-in;
+
+  &:hover {
+    color: white;
+    cursor: pointer;
+  }
+}
