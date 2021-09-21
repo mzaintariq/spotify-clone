@@ -3,16 +3,24 @@ import { fork, all } from "redux-saga/effects";
 import { authSaga } from "./auth";
 import { newReleasesSaga } from "./newreleases";
 import { featuredSaga } from "./featured";
-import { userDataSaga } from "./user";
-import { playlistSaga } from "./playlist";
-import { getMoreSaga } from "./playlist_loadmore";
+import {
+  userDataSaga,
+  userPlaylistsSaga,
+  userTopArtistsSaga,
+  userTopTracksSaga,
+} from "./user";
+import { getMoreSaga, playlistSaga } from "./playlist";
 import { searchResultSaga } from "./search";
 import { albumSaga } from "./album";
-import { artistSaga } from "./artist";
-import { librarySaga } from "./library";
-import { getMoreLibraryTracksSaga } from "./library_loadmore";
-import { userTopSaga } from "./userTop";
-import { categoryListSaga } from "./categoryList";
+import { artistAlbumsSaga, artistSaga, artistTopTracksSaga } from "./artist";
+import {
+  getMoreLibraryTracksSaga,
+  libraryAlbumsSaga,
+  libraryArtistsSaga,
+  libraryPlaylistsSaga,
+  libraryTracksSaga,
+} from "./library";
+import { categoryListSaga, categoryPlaylistsSaga } from "./category";
 import { categoryDataSaga } from "./category";
 import { refreshSaga } from "./refresh";
 
@@ -27,11 +35,19 @@ export function* watcherSaga() {
     fork(searchResultSaga),
     fork(albumSaga),
     fork(artistSaga),
-    fork(librarySaga),
+    fork(artistTopTracksSaga),
+    fork(artistAlbumsSaga),
+    fork(libraryAlbumsSaga),
+    fork(libraryArtistsSaga),
+    fork(libraryTracksSaga),
+    fork(libraryPlaylistsSaga),
     fork(getMoreLibraryTracksSaga),
-    fork(userTopSaga),
+    fork(userTopArtistsSaga),
+    fork(userTopTracksSaga),
+    fork(userPlaylistsSaga),
     fork(categoryListSaga),
     fork(categoryDataSaga),
+    fork(categoryPlaylistsSaga),
     fork(refreshSaga),
   ]);
 }

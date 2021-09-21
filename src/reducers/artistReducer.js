@@ -34,11 +34,22 @@ export const artistReducer = (state = initialState, action) => {
   }
 };
 
-export const artistDataSelector = (state) => state.artist.artistData;
+export const artistSelector = (state) => state.artist;
 
-export const artistTopTracksSelector = (state) => state.artist.artistTopTracks;
+export const artistDataSelector = createSelector(artistSelector, (artist) => {
+  return artist.artistData;
+});
 
-export const artistAlbumsSelector = (state) => state.artist.artistAlbums;
+export const artistTopTracksSelector = createSelector(
+  artistSelector,
+  (artist) => {
+    return artist.artistTopTracks;
+  }
+);
+
+export const artistAlbumsSelector = createSelector(artistSelector, (artist) => {
+  return artist.artistAlbums;
+});
 
 export const artistAlbumSelector = createSelector(
   artistAlbumsSelector,

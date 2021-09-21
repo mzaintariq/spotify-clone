@@ -8,7 +8,7 @@ import styles from "./Artist.module.scss";
 import Loading from "./Loading";
 import SongRow from "./SongRow";
 import AlbumCard from "./AlbumCard";
-import { getArtist } from "../actions";
+import { getArtist, getArtistAlbums, getArtistTopTracks } from "../actions";
 import { accessTokenSelector } from "../reducers/authReducer";
 import {
   artistAlbumSelector,
@@ -35,6 +35,8 @@ function Artist() {
   useEffect(() => {
     window.scrollTo(0, 0);
     dispatch(getArtist([accessToken, id]));
+    dispatch(getArtistTopTracks([accessToken, id]));
+    dispatch(getArtistAlbums([accessToken, id]));
   }, [dispatch, accessToken, id]);
 
   return (

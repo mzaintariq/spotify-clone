@@ -37,14 +37,35 @@ export const categoryReducer = (state = initialState, action) => {
   }
 };
 
-export const categoryDataSelector = (state) => state.category.categoryData;
+export const categorySelector = (state) => state.category;
 
-export const categoryPlaylistsSelector = (state) =>
-  state.category.categoryPlaylists;
+export const categoryDataSelector = createSelector(
+  categorySelector,
+  (category) => {
+    return category.categoryData;
+  }
+);
 
-export const categoryListSelector = (state) => state.category.categoryList;
+export const categoryPlaylistsSelector = createSelector(
+  categorySelector,
+  (category) => {
+    return category.categoryPlaylists;
+  }
+);
 
-export const isLoadingListSelector = (state) => state.category.isLoadingList;
+export const categoryListSelector = createSelector(
+  categorySelector,
+  (category) => {
+    return category.categoryList;
+  }
+);
+
+export const isLoadingListSelector = createSelector(
+  categorySelector,
+  (category) => {
+    return category.isLoadingList;
+  }
+);
 
 export const isLoadingSelector = createSelector(
   categoryDataSelector,

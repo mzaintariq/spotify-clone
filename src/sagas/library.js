@@ -1,23 +1,92 @@
 import { call, put, takeLatest } from "redux-saga/effects";
 
-import { GET_LIBRARY_DATA, setLibraryAlbums, setLibraryArtists, setLibraryPlaylists, setLibraryTracks } from "../actions";
-import { requestGetLibraryAlbums, requestGetLibraryArtists, requestGetLibraryPlaylists, requestGetLibraryTracks } from "../services/api";
+import {
+  GET_LIBRARY_ARTISTS,
+  GET_LIBRARY_ALBUMS,
+  GET_LIBRARY_PLAYLISTS,
+  GET_LIBRARY_TRACKS,
+  setLibraryAlbums,
+  setLibraryArtists,
+  setLibraryPlaylists,
+  setLibraryTracks,
+  GET_MORE_LIBRARY_TRACKS,
+  setMoreLibraryTracks,
+} from "../actions";
+import {
+  requestGetLibraryAlbums,
+  requestGetLibraryArtists,
+  requestGetLibraryPlaylists,
+  requestGetLibraryTracks,
+  requestGetMoreLibraryTracks,
+} from "../services/api";
 
-function* getLibraryData(action) {
+function* getLibraryArtists(action) {
   try {
-    const responseArtists = yield call(requestGetLibraryArtists, action.payload);
-    const responseAlbums = yield call(requestGetLibraryAlbums, action.payload);
-    const responseTracks = yield call(requestGetLibraryTracks, action.payload);
-    const responsePlaylists = yield call(requestGetLibraryPlaylists, action.payload);
+    const responseArtists = yield call(
+      requestGetLibraryArtists,
+      action.payload
+    );
     yield put(setLibraryArtists(responseArtists));
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export function* libraryArtistsSaga() {
+  yield takeLatest(GET_LIBRARY_ARTISTS, getLibraryArtists);
+}
+
+function* getLibraryAlbums(action) {
+  try {
+    const responseAlbums = yield call(requestGetLibraryAlbums, action.payload);
     yield put(setLibraryAlbums(responseAlbums));
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export function* libraryAlbumsSaga() {
+  yield takeLatest(GET_LIBRARY_ALBUMS, getLibraryAlbums);
+}
+
+function* getLibraryTracks(action) {
+  try {
+    const responseTracks = yield call(requestGetLibraryTracks, action.payload);
     yield put(setLibraryTracks(responseTracks));
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export function* libraryTracksSaga() {
+  yield takeLatest(GET_LIBRARY_TRACKS, getLibraryTracks);
+}
+
+function* getMoreLibraryTracks(action) {
+  try {
+    const response = yield call(requestGetMoreLibraryTracks, action.payload);
+    yield put(setMoreLibraryTracks(response));
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export function* getMoreLibraryTracksSaga() {
+  yield takeLatest(GET_MORE_LIBRARY_TRACKS, getMoreLibraryTracks);
+}
+
+function* getLibraryPlaylists(action) {
+  try {
+    const responsePlaylists = yield call(
+      requestGetLibraryPlaylists,
+      action.payload
+    );
     yield put(setLibraryPlaylists(responsePlaylists));
   } catch (error) {
     console.log(error);
   }
 }
 
-export function* librarySaga() {
-  yield takeLatest(GET_LIBRARY_DATA, getLibraryData);
+export function* libraryPlaylistsSaga() {
+  yield takeLatest(GET_LIBRARY_PLAYLISTS, getLibraryPlaylists);
 }

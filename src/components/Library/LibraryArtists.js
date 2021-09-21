@@ -1,18 +1,34 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import { Grid } from "@material-ui/core";
 
 import styles from "./LibraryArtists.module.scss";
 import ArtistCard from "../ArtistCard";
-import { libraryArtistsSelector } from "../../reducers/libraryReducer";
+import Loading from "../Loading";
+import { getLibraryArtists } from "../../actions";
+import {
+  isLoadingArtistsSelector,
+  libraryArtistsSelector,
+} from "../../reducers/libraryReducer";
+import { accessTokenSelector } from "../../reducers/authReducer";
 
 function LibraryArtists() {
+  const accessToken = useSelector(accessTokenSelector);
   const libraryArtists = useSelector(libraryArtistsSelector);
+  const isLoading = useSelector(isLoadingArtistsSelector);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    dispatch(getLibraryArtists(accessToken));
+  }, [accessToken, dispatch]);
 
   return (
     <div>
-      {libraryArtists && (
+      {isLoading ? (
+        <Loading />
+      ) : (
         <div>
           <h2 className={styles.library__body__title}>Followed Artists</h2>
           <div className={styles.library__grid}>

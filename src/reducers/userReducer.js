@@ -42,15 +42,27 @@ export const userReducer = (state = initialState, action) => {
   }
 };
 
-export const userDataSelector = (state) => state.user.userData;
+export const userSelector = (state) => state.user;
 
-export const userTopTracksSelector = (state) => state.user.userTopTracks;
+export const userDataSelector = createSelector(userSelector, (user) => {
+  return user.userData;
+});
 
-export const userTopArtistsSelector = (state) => state.user.userTopArtists;
+export const userTopTracksSelector = createSelector(userSelector, (user) => {
+  return user.userTopTracks;
+});
 
-export const userPlaylistsSelector = (state) => state.user.userPlaylists;
+export const userTopArtistsSelector = createSelector(userSelector, (user) => {
+  return user.userTopArtists;
+});
 
-export const isLoadingSelector = (state) => state.user.isLoading;
+export const userPlaylistsSelector = createSelector(userSelector, (user) => {
+  return user.userPlaylists;
+});
+
+export const isLoadingSelector = createSelector(userSelector, (user) => {
+  return user.isLoading;
+});
 
 export const isLoadingAllSelector = createSelector(
   userTopTracksSelector,

@@ -1,18 +1,34 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 
 import { Grid } from "@material-ui/core";
 
 import styles from "./LibraryAlbums.module.scss";
 import AlbumCard from "../AlbumCard";
-import { libraryAlbumsSelector } from "../../reducers/libraryReducer";
+import Loading from "../Loading";
+import { getLibraryAlbums } from "../../actions";
+import {
+  isLoadingAlbumsSelector,
+  libraryAlbumsSelector,
+} from "../../reducers/libraryReducer";
+import { accessTokenSelector } from "../../reducers/authReducer";
 
-function LibraryAlbums() {
-  const libraryAlbums = useSelector(libraryAlbumsSelector);
+function LibraryAlbums({
+  accessToken,
+  isLoading,
+  libraryAlbums,
+  getLibraryAlbums,
+}) {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    getLibraryAlbums(accessToken);
+  }, [accessToken, getLibraryAlbums]);
 
   return (
     <div>
-      {libraryAlbums && (
+      {isLoading ? (
+        <Loading />
+      ) : (
         <div>
           <h2 className={styles.library__body__title}>Saved Albums</h2>
           <div className={styles.library__grid}>
@@ -30,4 +46,18 @@ function LibraryAlbums() {
   );
 }
 
-export default LibraryAlbums;
+function mapStateToProps(state) {
+  return {
+    accessToken: accessTokenSelector(state),
+    libraryAlbums: libraryAlbumsSelector(state),
+    isLoading: isLoadingAlbumsSelector(state),
+  };
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getLibraryAlbums: (accessToken) => dispatch(getLibraryAlbums(accessToken)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LibraryAlbums);

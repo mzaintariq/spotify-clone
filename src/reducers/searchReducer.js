@@ -1,7 +1,7 @@
+import { createSelector } from "reselect";
 import { SET_SEARCH, SET_SEARCH_TOGGLE } from "../actions";
 
 const initialState = {
-  // searchValue: null,
   searchValue: "",
   searchToggleValue: "tracks",
   searchAlbums: null,
@@ -12,7 +12,6 @@ const initialState = {
 
 export const searchReducer = (state = initialState, action) => {
   const data = action.payload;
-  // const {} = data[1];
   switch (action.type) {
     case SET_SEARCH:
       return {
@@ -33,14 +32,37 @@ export const searchReducer = (state = initialState, action) => {
   }
 };
 
-export const searchToggleValueSelector = (state) => state.search.searchToggleValue;
+export const searchSelector = (state) => state.search;
 
-export const searchValueSelector = (state) => state.search.searchValue;
+export const searchToggleValueSelector = createSelector(
+  searchSelector,
+  (search) => {
+    return search.searchToggleValue;
+  }
+);
 
-export const searchTracksSelector = (state) => state.search.searchTracks;
+export const searchValueSelector = createSelector(searchSelector, (search) => {
+  return search.searchValue;
+});
 
-export const searchAlbumsSelector = (state) => state.search.searchAlbums;
+export const searchTracksSelector = createSelector(searchSelector, (search) => {
+  return search.searchTracks;
+});
 
-export const searchArtistsSelector = (state) => state.search.searchArtists;
+export const searchAlbumsSelector = createSelector(searchSelector, (search) => {
+  return search.searchAlbums;
+});
 
-export const searchPlaylistsSelector = (state) => state.search.searchPlaylists;
+export const searchArtistsSelector = createSelector(
+  searchSelector,
+  (search) => {
+    return search.searchArtists;
+  }
+);
+
+export const searchPlaylistsSelector = createSelector(
+  searchSelector,
+  (search) => {
+    return search.searchPlaylists;
+  }
+);

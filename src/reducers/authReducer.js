@@ -1,3 +1,4 @@
+import { createSelector } from "reselect";
 import { SET_REFRESH, SET_TOKEN } from "../actions";
 
 const initialState = {
@@ -28,8 +29,16 @@ export const authReducer = (state = initialState, action) => {
   }
 };
 
-export const accessTokenSelector = (state) => state.auth.accessToken;
+export const authSelector = (state) => state.auth;
 
-export const refreshTokenSelector = (state) => state.auth.refreshToken;
+export const accessTokenSelector = createSelector(authSelector, (auth) => {
+  return auth.accessToken;
+});
 
-export const expiresInSelector = (state) => state.auth.expiresIn;
+export const refreshTokenSelector = createSelector(authSelector, (auth) => {
+  return auth.refreshToken;
+});
+
+export const expiresInSelector = createSelector(authSelector, (auth) => {
+  return auth.expiresIn;
+});

@@ -28,16 +28,32 @@ export const browseReducer = (state = initialState, action) => {
   }
 };
 
-export const featuredPlaylistSelector = (state) =>
-  state.browse.featuredPlaylists;
+export const browseSelector = (state) => state.browse;
 
-export const newreleasesPlaylistSelector = (state) =>
-  state.browse.newreleasesPlaylists;
+export const featuredPlaylistSelector = createSelector(
+  browseSelector,
+  (browse) => {
+    return browse.featuredPlaylists;
+  }
+);
 
-const isLoadingFeaturedSelector = (state) => state.browse.isLoadingFeatured;
+export const newreleasesPlaylistSelector = createSelector(
+  browseSelector,
+  (browse) => {
+    return browse.newreleasesPlaylists;
+  }
+);
 
-const isLoadingNewreleasesSelector = (state) =>
-  state.browse.isLoadingNewreleases;
+const isLoadingFeaturedSelector = createSelector(browseSelector, (browse) => {
+  return browse.isLoadingFeatured;
+});
+
+const isLoadingNewreleasesSelector = createSelector(
+  browseSelector,
+  (browse) => {
+    return browse.isLoadingNewreleases;
+  }
+);
 
 export const isLoadingSelector = createSelector(
   isLoadingFeaturedSelector,

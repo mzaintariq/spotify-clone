@@ -1,3 +1,5 @@
+import { createSelector } from "reselect";
+
 const initialState = {
   currentArray: null,
   currentNumber: null,
@@ -17,6 +19,18 @@ export const currentReducer = (state = initialState, action) => {
   }
 };
 
-export const currentArraySelector = (state) => state.current.currentArray;
+export const currentSelector = (state) => state.current;
 
-export const currentNumberSelector = (state) => state.current.currentNumber;
+export const currentArraySelector = createSelector(
+  currentSelector,
+  (current) => {
+    return current.currentArray;
+  }
+);
+
+export const currentNumberSelector = createSelector(
+  currentSelector,
+  (current) => {
+    return current.currentNumber;
+  }
+);

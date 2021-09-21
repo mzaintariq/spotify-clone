@@ -32,13 +32,25 @@ export const playlistReducer = (state = initialState, action) => {
   }
 };
 
-export const playlistDataSelector = (state) => state.playlist.playlistData;
+export const playlistSelector = (state) => state.playlist;
 
-export const isLoadingSelector = (state) => state.playlist.isLoading;
+export const playlistDataSelector = createSelector(
+  playlistSelector,
+  (playlist) => {
+    return playlist.playlistData;
+  }
+);
+
+export const isLoadingSelector = createSelector(
+  playlistSelector,
+  (playlist) => {
+    return playlist.isLoading;
+  }
+);
 
 export const playlistTracksSelector = createSelector(
   playlistDataSelector,
   (playlistDataSelector) => {
-    return playlistDataSelector?.tracks.items.filter(item => item.track);
+    return playlistDataSelector?.tracks.items.filter((item) => item.track);
   }
 );

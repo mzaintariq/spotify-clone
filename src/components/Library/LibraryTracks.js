@@ -5,14 +5,24 @@ import AccessTimeIcon from "@material-ui/icons/AccessTime";
 
 import styles from "./LibraryTracks.module.scss";
 import SongRow from "../SongRow";
+import Loading from "../Loading";
 import { accessTokenSelector } from "../../reducers/authReducer";
-import { libraryTracksSelector } from "../../reducers/libraryReducer";
-import { getMoreLibraryTracks } from "../../actions";
+import {
+  isLoadingTracksSelector,
+  libraryTracksSelector,
+} from "../../reducers/libraryReducer";
+import { getLibraryTracks, getMoreLibraryTracks } from "../../actions";
 
 function LibraryTracks() {
   const accessToken = useSelector(accessTokenSelector);
   const libraryTracks = useSelector(libraryTracksSelector);
+  const isLoading = useSelector(isLoadingTracksSelector);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    dispatch(getLibraryTracks(accessToken));
+  }, [accessToken, dispatch]);
 
   useEffect(() => {
     if (libraryTracks && libraryTracks.next) {
@@ -22,7 +32,9 @@ function LibraryTracks() {
 
   return (
     <div>
-      {libraryTracks && (
+      {isLoading ? (
+        <Loading />
+      ) : (
         <div>
           <h2 className={styles.library__body__title}>Saved Songs</h2>
           <div className={styles.library__playlist__songs}>

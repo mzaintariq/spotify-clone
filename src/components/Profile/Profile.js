@@ -6,7 +6,11 @@ import ProfileTracks from "./ProfileTracks";
 import ProfileArtists from "./ProfileArtists";
 import ProfilePlaylists from "./ProfilePlaylists";
 import Loading from "../Loading";
-import { getUserTop } from "../../actions";
+import {
+  getUserPlaylists,
+  getUserTopArtists,
+  getUserTopTracks,
+} from "../../actions";
 import { accessTokenSelector } from "../../reducers/authReducer";
 import {
   isLoadingAllSelector,
@@ -23,7 +27,9 @@ function Profile() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    dispatch(getUserTop(accessToken));
+    dispatch(getUserTopTracks(accessToken));
+    dispatch(getUserTopArtists(accessToken));
+    dispatch(getUserPlaylists(accessToken));
   }, [dispatch, accessToken]);
 
   return (

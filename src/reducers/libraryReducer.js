@@ -60,28 +60,68 @@ export const libraryReducer = (state = initialState, action) => {
   }
 };
 
-export const libraryToggleValueSelector = (state) =>
-  state.library.libraryToggleValue;
+export const librarySelector = (state) => state.library;
 
-export const libraryAlbumsSelector = (state) => state.library.libraryAlbums;
+export const libraryToggleValueSelector = createSelector(
+  librarySelector,
+  (library) => {
+    return library.libraryToggleValue;
+  }
+);
 
-export const libraryTracksSelector = (state) => state.library.libraryTracks;
+export const libraryAlbumsSelector = createSelector(
+  librarySelector,
+  (library) => {
+    return library.libraryAlbums;
+  }
+);
 
-export const libraryPlaylistsSelector = (state) =>
-  state.library.libraryPlaylists;
+export const libraryTracksSelector = createSelector(
+  librarySelector,
+  (library) => {
+    return library.libraryTracks;
+  }
+);
 
-export const libraryArtistsSelector = (state) => state.library.libraryArtists;
+export const libraryPlaylistsSelector = createSelector(
+  librarySelector,
+  (library) => {
+    return library.libraryPlaylists;
+  }
+);
 
-export const isLoadingSelector = createSelector(
+export const libraryArtistsSelector = createSelector(
+  librarySelector,
+  (library) => {
+    return library.libraryArtists;
+  }
+);
+
+export const isLoadingAlbumsSelector = createSelector(
   libraryAlbumsSelector,
-  libraryTracksSelector,
-  libraryPlaylistsSelector,
+  (libraryAlbums) => {
+    return !libraryAlbums;
+  }
+);
+
+export const isLoadingArtistsSelector = createSelector(
   libraryArtistsSelector,
-  (libraryAlbums, libraryTracks, libraryPlaylists, libraryArtists) => {
-    if (libraryAlbums && libraryTracks && libraryPlaylists && libraryArtists) {
-      return false;
-    }
-    return true;
+  (libraryArtists) => {
+    return !libraryArtists;
+  }
+);
+
+export const isLoadingTracksSelector = createSelector(
+  libraryTracksSelector,
+  (libraryTracks) => {
+    return !libraryTracks;
+  }
+);
+
+export const isLoadingPlaylistsSelector = createSelector(
+  libraryPlaylistsSelector,
+  (libraryPlaylists) => {
+    return !libraryPlaylists;
   }
 );
 

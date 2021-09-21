@@ -5,7 +5,10 @@ import SpotifyPlayer from "react-spotify-web-playback";
 
 import styles from "./Footer.module.scss";
 import { accessTokenSelector } from "../reducers/authReducer";
-import { currentArraySelector, currentNumberSelector } from "../reducers/currentReducer";
+import {
+  currentArraySelector,
+  currentNumberSelector,
+} from "../reducers/currentReducer";
 
 function Footer() {
   const accessToken = useSelector(accessTokenSelector);
@@ -16,7 +19,7 @@ function Footer() {
   useEffect(() => {
     setPlay(true);
   }, [currentArray]);
-  
+
   return (
     <div className={styles.footer}>
       <div className={styles.player}>
@@ -29,7 +32,7 @@ function Footer() {
           play={play}
           magnifySliderOnHover={true}
           offset={currentNumber}
-          // showSaveIcon={true}
+          showSaveIcon={true}
           uris={currentArray ? currentArray : []}
           styles={{
             bgColor: "#181818",

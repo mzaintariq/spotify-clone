@@ -7,7 +7,7 @@ import { Grid } from "@material-ui/core";
 import styles from "./Category.module.scss";
 import Loading from "./Loading";
 import PlaylistCard from "./PlaylistCard";
-import { getCategoryData } from "../actions";
+import { getCategoryData, getCategoryPlaylists } from "../actions";
 import { accessTokenSelector } from "../reducers/authReducer";
 import {
   categoryDataSelector,
@@ -26,6 +26,7 @@ function Category() {
   useEffect(() => {
     window.scrollTo(0, 0);
     dispatch(getCategoryData([accessToken, id]));
+    dispatch(getCategoryPlaylists([accessToken, id]));
   }, [dispatch, accessToken, id]);
 
   return (

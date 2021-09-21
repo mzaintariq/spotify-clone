@@ -1,3 +1,4 @@
+import { createSelector } from "reselect";
 import { SET_ALBUM } from "../actions";
 
 const initialState = {
@@ -18,6 +19,12 @@ export const albumReducer = (state = initialState, action) => {
   }
 };
 
-export const albumDataSelector = (state) => state.album.albumData;
+export const albumSelector = (state) => state.album;
 
-export const isLoadingSelector = (state) => state.album.isLoading;
+export const albumDataSelector = createSelector(albumSelector, (album) => {
+  return album.albumData;
+});
+
+export const isLoadingSelector = createSelector(albumSelector, (album) => {
+  return album.isLoading;
+});
